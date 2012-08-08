@@ -47,7 +47,7 @@ class TypeConstructor(type):
                 raise AttributeError(message % (name, repr(ret)))
 
             field.__bind__(ret, name)
-            if field.is_required():
+            if field.required:
                 required[name] = field
             fields[name] = field
 
@@ -93,9 +93,6 @@ class Field(object):
 
     def get_default(self):
         return self.default
-
-    def is_required(self):
-        return self.required
 
     def get_attribute_name(self):
         """Retrieve attribute key for instance property."""
