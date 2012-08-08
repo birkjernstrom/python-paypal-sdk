@@ -25,6 +25,14 @@ def get_field_inheritance(bases):
     return fields
 
 
+def is_dict(obj):
+    return hasattr(obj, '__getitem__') and hasattr(obj, 'setdefault')
+
+
+def is_non_string_sequence(obj):
+    return hasattr(obj, '__iter__') and not is_dict(obj)
+
+
 ###############################################################################
 # CORE TYPE CLASSES
 ###############################################################################
@@ -70,9 +78,30 @@ class TypeConstructor(type):
 class BaseType(object):
     __metaclass__ = TypeConstructor
 
+    @classmethod
+    def get_fields(cls):
+        return getattr(cls, CLS_FIELDS_ATTRIBUTE)
+
+    @classmethod
+    def get_required_fields(cls):
+        return getattr(cls, CLS_REQUIRED_FIELDS_ATTRIBUTE)
+
     def __init__(self, *args, **kwargs):
         for k, v in kwargs.iteritems():
             setattr(self, k, v)
+
+    def validate(self):
+        pass
+
+    def to_dict(self):
+        ret = {}
+        print 'RUN %s.to_dict()' % (self)
+        fields = self.get_fields()
+        for name, field in fields.iteritems():
+            value = getattr(self, name)
+            if not field.is_empty(value):
+                ret[name] = field.to_dict(value)
+        return ret
 
 
 ###############################################################################
@@ -127,6 +156,9 @@ class Field(object):
                 raise ValueError(message % value)
 
         return True
+
+    def to_dict(self, value):
+        return value
 
     def __bind__(self, owner, key):
         self.owner = owner
@@ -238,7 +270,7 @@ class NumericField(Field):
         return True
 
 
-class IntegerField(Field):
+class IntegerField(NumericField):
     def sanitize(self, value):
         return int(value)
 
@@ -246,37 +278,110 @@ class IntegerField(Field):
 class BooleanField(Field):
     def sanitize(self, value):
         try:
-            # PayPal will return boolean values as integers.
-            # However, API responses are not type casted and thus we try to
-            # cast the boolean string here.
+            # In PayPal responses boolean values are represented as integers.
+            # Therefore, we type cast the value to an integer prior to
+            # to converting it to a boolean.
+            # In order to avoid '0' values being represented as True.
             value = int(value)
         except ValueError:
             pass
         return bool(value)
+
+    def to_dict(self, value):
+        return 1 if value else 0
 
 
 class TypeField(Field):
     def __init__(self,
                  name=None,
                  required=None,
-                 cls=BaseType):
+                 instanceof=BaseType):
         """
         """
         super(TypeField, self).__init__(name=name, required=required)
-        self.type_cls = cls
+        self.instanceof = instanceof
 
     def sanitize(self, value):
         value = super(TypeField, self).sanitize(value)
-        if hasattr(value, '__getitem__') and hasattr(value, 'setdefault'):
-            value = self.type_cls(**value)
+        if is_dict(value):
+            value = self.instanceof(**value)
         return value
 
-    def validate(self, value):
-        if isinstance(value, self.type_cls):
+    def validate(self, obj):
+        if isinstance(obj, self.instanceof):
             return True
 
         message = 'Given field value is not an instance of type %s'
-        raise ValueError(message % self.type_cls)
+        raise ValueError(message % self.instanceof)
+
+    def to_dict(self, obj):
+        return obj.to_dict()
+
+
+class ListTypeField(Field):
+    def __init__(self,
+                 name=None,
+                 required=None,
+                 instanceof=BaseType):
+        super(ListTypeField, self).__init__(name=name, required=required)
+        self.instanceof = instanceof
+
+    def sanitize(self, value):
+        value = super(ListTypeField, self).sanitize(value)
+        if isinstance(value, self.instanceof):
+            return value
+
+        # Return value in case it is not a list, tuple, set or frozenset
+        if not is_non_string_sequence(value):
+            return value
+
+        return [self.instanceof(**current) for current in value]
+
+    def validate(self, sequence):
+        if not super(ListTypeField, self).validate(sequence):
+            return False
+
+        if not is_non_string_sequence(sequence):
+            msg = 'Invalid value given. Expected list of instances of type. %s'
+            raise ValueError(msg % self.instanceof)
+
+        for instance in sequence:
+            if not isinstance(instance, self.instanceof):
+                msg = 'Invalid instance given. Expected one of class %s.'
+                raise ValueError(msg % self.instanceof)
+
+            # Trigger validation for each instance
+            instance.validate()
+
+        return True
+
+    def to_dict(self, sequence):
+        return [instance.to_dict() for instance in sequence]
+
+
+class ListField(Field):
+    def __init__(self,
+                 name=None,
+                 required=None,
+                 sanitization_callback=None,
+                 validation_callback=None):
+        super(ListField, self).__init__(name=name, required=required)
+        self.sanitization_callback = sanitization_callback
+        self.validation_callback = validation_callback
+
+    def sanitize(self, value):
+        value = super(ListField, self).sanitize(value)
+        if self.sanitization_callback:
+            return self.sanitization_callback(value)
+        return value
+
+    def validate(self, value):
+        if not super(ListField, self).validate(value):
+            return False
+
+        if self.validation_callback:
+            return self.validation_callback(value)
+        return True
 
 
 class ConstantField(Field):
