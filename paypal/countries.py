@@ -1308,6 +1308,40 @@ US_TERRITORIES = {}
 US_TERRITORIES.update(US_STATES)
 US_TERRITORIES.update(US_PROVINCES)
 
+SUPPORTED_LOCALES = (
+    'AU',  # Australia
+    'AT',  # Austria
+    'BE',  # Belgium
+    'BR',  # Brazil
+    'CA',  # Canada
+    'CH',  # Switzerland
+    'CN',  # China
+    'DE',  # Germany
+    'ES',  # Spain
+    'GB',  # United Kingdom
+    'FR',  # France
+    'IT',  # Italy
+    'NL',  # Netherlands
+    'PL',  # Poland
+    'PT',  # Portugal
+    'RU',  # Russia
+    'US',  # United States
+
+    'da_DK',  # Denmark (only)
+    'he_IL',  # Hebrew (all)
+    'id_ID',  # Indonesian (only)
+    'jp_JP',  # Japanese (only)
+    'no_NO',  # Norwegian (only)
+    'pt_BR',  # Brazilian Portuguese (Portugal & Brazil only)
+    'ru_RU',  # Russian (Lithania, Latvia & Ukraine only)
+    'sv_SE',  # Sweden (only)
+    'th_TH',  # Thailand (only)
+    'tr_TR',  # Turkey (only)
+    'zh_CN',  # Simplified Chinese (China only)
+    'zh_HK',  # Traditional Chinese (Hong Kong only)
+    'zh_TW',  # Traditional Chinese (Taiwan only)
+)
+
 PAYMENTS_PRO_DISABLED = (
     'DZ',  # Algeria
     'AQ',  # Antarctica
