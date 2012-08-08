@@ -8,7 +8,7 @@ CLS_REQUIRED_FIELDS_ATTRIBUTE = '__required_fields__'
 
 
 def get_fields(obj):
-    return getattr(obj, CLS_FIELDS_ATTRIBUTE, {}).copy()
+    return getattr(obj, CLS_FIELDS_ATTRIBUTE, {})
 
 
 def get_field_inheritance(bases):
@@ -20,20 +20,25 @@ def get_field_inheritance(bases):
     return fields
 
 
+###############################################################################
+# CORE TYPE CLASSES
+###############################################################################
+
+
 class TypeConstructor(type):
     def __new__(cls, name, bases, attributes):
-        new = super(TypeConstructor, cls).__new__
-        ret = new(cls, name, bases, attributes)
+        constructor = super(TypeConstructor, cls).__new__
+        ret = constructor(cls, name, bases, attributes)
 
         parents = [b for b in bases if isinstance(b, TypeConstructor)]
         if not parents:
             return ret
 
-        required = {}
         reserved_attributes = dir(BaseType)
         fields = get_field_inheritance(bases)
 
-        for name, field in fields.iteritems():
+        required = {}
+        for name, field in attributes.iteritems():
             if not isinstance(field, Field):
                 continue
 
@@ -41,7 +46,7 @@ class TypeConstructor(type):
                 message = 'Illegal field name: %s %s'
                 raise AttributeError(message % (name, repr(ret)))
 
-            field.__bind__(name, ret)
+            field.__bind__(ret, name)
             if field.is_required():
                 required[name] = field
             fields[name] = field
@@ -60,17 +65,25 @@ class TypeConstructor(type):
 class BaseType(object):
     __metaclass__ = TypeConstructor
 
+    def __init__(self, *args, **kwargs):
+        for k, v in kwargs.iteritems():
+            setattr(self, k, v)
+
+
+###############################################################################
+# FIELDS
+###############################################################################
 
 class Field(object):
     def __init__(self,
                  name=None,
-                 required=None,
+                 required=False,
                  choices=(),
                  default=None):
         """
         """
         self.name = name
-        self.is_required = required
+        self.required = required
         self.choices = choices
         self.default = default
         self.initialize()
@@ -82,7 +95,7 @@ class Field(object):
         return self.default
 
     def is_required(self):
-        return False
+        return self.required
 
     def get_attribute_name(self):
         """Retrieve attribute key for instance property."""
@@ -94,9 +107,8 @@ class Field(object):
     def validate(self, value):
         return True
 
-    def __bind__(self, key, owner):
+    def __bind__(self, owner, key):
         self.owner_cls = owner
-        self.owner_name = key
         if self.name is None:
             self.name = key
 
@@ -130,7 +142,7 @@ class Field(object):
             message = 'Invalid value given for field %s: %s'
             raise ValueError(message % (field_name, value))
 
-        if not is_none or self.is_required:
+        if not is_none or self.required:
             if not self.validate(value):
                 raise_validation_exception(field_name, value)
 
