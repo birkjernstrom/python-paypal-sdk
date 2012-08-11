@@ -185,6 +185,9 @@ def parse_docstring_sections(description):
     contents = filter(lambda value: value != ' ', description.contents)
     is_tail_paragraph = False
     for node in contents:
+        if not hasattr(node, 'name'):
+            continue
+
         node_name = node.name
 
         # Replace all code references in the documentation with
