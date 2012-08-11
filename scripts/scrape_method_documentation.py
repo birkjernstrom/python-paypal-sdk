@@ -81,11 +81,6 @@ def normalize_text(parts):
     return ''.join(parts)
 
 
-def get_type_group_name(tag):
-    parts = tag.find('h4').findAll(text=True)
-    return normalize_text(parts)
-
-
 def parse_type_api_version(string):
     if string.startswith(VERSION_REQUIREMENT_NEEDLE):
         offset = VERSION_REQUIREMENT_NEEDLE_LEN
@@ -286,6 +281,9 @@ def scrape_type(tag):
     if not type_name:
         type_name = tag.find('span', 'apiname')
 
+    if not type_name:
+        type_name = tag.find('td')
+
     type_name = type_name.findAll(text=True)
     type_name = normalize_text(type_name)
 
@@ -303,13 +301,14 @@ def scrape_type(tag):
 
 
 def scrape_type_group(tag):
-    # Print group name header
-    group_name = get_type_group_name(tag)
-    separator = '#' + '-' * 78
-    print '%s\n# %s\n%s\n' % (separator, group_name, separator)
+    group_name = tag.findPrevious('h4')
+    if group_name:
+        # Print group name header
+        group_name = normalize_text(group_name.findAll(text=True))
+        separator = '#' + '-' * 78
+        print '%s\n# %s\n%s\n' % (separator, group_name, separator)
 
-    table = tag.find('table')
-    tbody = table.find('tbody')
+    tbody = tag.find('tbody')
     rows = tbody('tr')
 
     # All types are contained within the group table in their
@@ -318,30 +317,17 @@ def scrape_type_group(tag):
         scrape_type(row)
 
 
-def scrape_type_groups(container, is_request_type):
-    # Print RESPONSE or REQUEST header depending on type of groups
-    separator = '#' * 79
-    headline = ('RESPONSE TYPES', 'REQUEST TYPES')[is_request_type]
-    print '%s\n# %s\n%s\n' % (separator, headline, separator)
-
-    # Each type is contained within a div.nested2 node
-    groups = container('div', 'nested2')
-    for group in groups:
-        scrape_type_group(group)
-
-
 def scrape_documentation(service, method):
     url = generate_documentation_url(service, method)
     documentation = get_documentation_html(url)
     soup = BeautifulSoup(documentation)
 
-    # Everything we need is within the .field-items node
-    content = soup.find('div', 'field-items')
-    # Extract response types. Once done all remaining div.nested1
-    # nodes will correspond to request types only.
-    response_types = content.find('div', 'nested1').extract()
-    scrape_type_groups(content, is_request_type=True)
-    scrape_type_groups(response_types, is_request_type=False)
+    groups = soup.findAll('table', {'id': lambda v: v != 'logo-box'})
+    if not groups:
+        raise RuntimeError('No group tables in node')
+
+    for group in groups:
+        scrape_type_group(group)
 
 
 def main(argc, argv):
