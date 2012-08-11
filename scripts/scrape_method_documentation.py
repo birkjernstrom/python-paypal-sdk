@@ -25,7 +25,29 @@ from BeautifulSoup import BeautifulSoup
 
 
 EXPRESS_CHECKOUT_URLS = {
+    'AddressVerify': 'addressverify-api-operation-nvp',
+    'BillOutstandingAmount': 'billoutstandingamount-api-operation-nvp',
+    'Callback': 'callback-api-operation-nvp',
+    'CreateRecurringPaymentsProfile': 'createrecurringpaymentsprofile-api-operation-nvp',
+    'DoAuthorization': 'doauthorization-api-operation-nvp',
+    'DoCapture': 'docapture-api-operation-nvp',
+    'DoExpressCheckoutPayment': 'doexpresscheckoutpayment-api-operation-nvp',
+    'DoReauthorization': 'doreauthorization-api-operation-nvp',
+    'DoReferenceTransaction': 'doreferencetransaction-api-operation-nvp',
+    'DoVoid': 'dovoid-api-operation-nvp',
+    'GetBalance': 'getbalance-api-operation-nvp',
+    'GetBillingAgreementCustomerDetails': 'getbillingagreementcustomerdetails-api-operation-nvp',
+    'GetExpressCheckoutDetails': 'getexpresscheckoutdetails-api-operation-nvp',
+    'GetPalDetails': 'getpaldetails-api-operation',
+    'GetTransactionDetails': 'gettransactiondetails-api-operation-nvp',
+    'GetRecurringPaymentsProfileDetails': 'getrecurringpaymentsprofiledetails-api-operation-nvp',
+    'ManagePendingTransactionStatus': 'managependingtransactionstatus-api-operation-nvp',
+    'ManageRecurringPaymentsProfileStatus': 'managerecurringpaymentsprofilestatus-api-operation-nvp',
+    'RefundTransaction': 'refundtransaction-api-operation-nvp',
+    'SetCustomerBillingAgreement': 'setcustomerbillingagreement-api-operation-nvp',
     'SetExpressCheckout': 'setexpresscheckout-api-operation-nvp',
+    'TransactionSearch': 'transactionsearch-api-operation-nvp',
+    'UpdateRecurringPaymentsProfile': 'updaterecurringpaymentsprofile-api-operation-nvp',
 }
 
 ALL_URLS = {
