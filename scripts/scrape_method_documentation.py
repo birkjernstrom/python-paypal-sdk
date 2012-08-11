@@ -246,7 +246,8 @@ def generate_type_docstring(description):
         lines.append('')
         lines.extend(generate_docstring_description(tail))
 
-    docstring = '#:' + '\n#:'.join(lines)
+    encoder = lambda line: line.encode('utf-8')
+    docstring = '#:' + '\n#:'.join(map(encoder, lines))
     return docstring
 
 
