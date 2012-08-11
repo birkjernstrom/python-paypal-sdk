@@ -85,6 +85,34 @@ def normalize_text(parts):
     return parser.unescape(''.join(parts))
 
 
+def parse_docstring_hyperlinks(description):
+    hyperlinks = description('a')
+    if not hyperlinks:
+        return []
+
+    prepared = []
+    for hyperlink in hyperlinks:
+        url = hyperlink.get('href', None)
+        if not url:
+            continue
+
+        name_node = hyperlink
+        name = name_node.getString()
+        if not name:
+            name_node = hyperlink.contents[0]
+            name = name_node.getString()
+
+        if not name:
+            continue
+
+        if not (url.startswith('https://') or url.startswith('http://')):
+            url = 'https://www.x.com%s' % url
+
+        prepared.append(' .. _%s: %s' % (name, url))
+        name_node.setString('%s_' % name)
+    return prepared
+
+
 def parse_type_api_version(string):
     if string.startswith(VERSION_REQUIREMENT_NEEDLE):
         offset = VERSION_REQUIREMENT_NEEDLE_LEN
@@ -200,6 +228,8 @@ def parse_docstring_sections(description):
         'tail': [],  # End of the description
     }
 
+    sections['hyperlinks'] = parse_docstring_hyperlinks(description)
+
     description_keys = ('head', 'tail')
     contents = filter(lambda value: value != ' ', description.contents)
     is_tail_paragraph = False
@@ -273,6 +303,11 @@ def generate_type_docstring(description):
     if tail:
         lines.append('')
         lines.extend(generate_docstring_description(tail))
+
+    hyperlinks = sections['hyperlinks']
+    if hyperlinks:
+        lines.append('')
+        lines.extend(hyperlinks)
 
     encoder = lambda line: line.encode('utf-8')
     docstring = '#:' + '\n#:'.join(map(encoder, lines))
