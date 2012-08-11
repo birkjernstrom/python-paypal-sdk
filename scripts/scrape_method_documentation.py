@@ -60,7 +60,7 @@ def normalize_text(parts):
 
 
 def get_type_group_name(tag):
-    parts = tag.find('h4', 'topictitle3').findAll(text=True)
+    parts = tag.find('h4').findAll(text=True)
     return normalize_text(parts)
 
 
