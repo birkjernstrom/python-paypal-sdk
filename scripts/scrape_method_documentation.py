@@ -101,10 +101,7 @@ def parse_type_api_version(string):
     return version
 
 
-def parse_type_docstring_paragraph(tag, sections, description_key):
-    value = tag.findAll(text=True)
-    value = normalize_text(value)
-
+def parse_type_docstring_paragraph(value, sections, description_key):
     # Add string describing value limitations to the limitations
     # list so that we can concatenate all of the limitations in one
     # section in our docstring.
@@ -207,10 +204,17 @@ def parse_docstring_sections(description):
     contents = filter(lambda value: value != ' ', description.contents)
     is_tail_paragraph = False
     for node in contents:
-        if not hasattr(node, 'name'):
+        if not node or node == '\n':
             continue
 
-        node_name = node.name
+        node_name = getattr(node, 'name', None)
+        if node_name is None:
+            # The paragraph tag can contain either our head or tail
+            # along with character limitations and required version
+            # information.
+            key = description_keys[is_tail_paragraph]
+            parse_type_docstring_paragraph(node, sections, key)
+            continue
 
         # Replace all code references in the documentation with
         # ``code_reference``. All references are placed within a samp
@@ -220,11 +224,12 @@ def parse_docstring_sections(description):
             reference.replaceWith('``%s``' % reference.string)
 
         if node_name == 'p':
-            # The paragraph tag can contain either our head or tail
-            # along with character limitations and required version
-            # information.
+            # Sanitize paragraph
+            paragraph = node.findAll(text=True)
+            paragraph = normalize_text(paragraph)
+
             key = description_keys[is_tail_paragraph]
-            parse_type_docstring_paragraph(node, sections, key)
+            parse_type_docstring_paragraph(paragraph, sections, key)
         elif node_name == 'div':
             # Only notes are placed within the div node
             parse_type_docstring_notes(node, sections)
