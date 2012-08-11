@@ -308,8 +308,8 @@ def scrape_documentation(service, method):
     documentation = get_documentation_html(url)
     soup = BeautifulSoup(documentation)
 
-    # Everything we need is within the .field-item node
-    content = soup.find('div', 'field-item')
+    # Everything we need is within the .field-items node
+    content = soup.find('div', 'field-items')
     # Extract response types. Once done all remaining div.nested1
     # nodes will correspond to request types only.
     response_types = content.find('div', 'nested1').extract()
