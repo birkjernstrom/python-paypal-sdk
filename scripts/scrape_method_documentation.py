@@ -255,7 +255,11 @@ def scrape_type(tag):
     # Retrieve the name of the current type. We achieve this by
     # retrieving the first <samp class="codeph"> node which
     # sanitized contains the type name.
-    type_name = tag.find('samp', 'codeph').findAll(text=True)
+    type_name = tag.find('samp', 'codeph')
+    if not type_name:
+        type_name = tag.find('span', 'apiname')
+
+    type_name = type_name.findAll(text=True)
     type_name = normalize_text(type_name)
 
     # The type description, i.e the text from which we generate
