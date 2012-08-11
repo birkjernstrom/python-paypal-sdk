@@ -54,11 +54,6 @@ def get_documentation_html(url):
     return documentation
 
 
-def get_test_documentation():
-    with open('source.html') as f:
-        return f.read()
-
-
 def normalize_text(parts):
     parts = filter(lambda value: value != '\n', parts)
     return ''.join(parts)
