@@ -41,9 +41,6 @@ VERSION_REQUIREMENT_NEEDLE_LEN = len(VERSION_REQUIREMENT_NEEDLE)
 VERSION_REQUIREMENT_NEEDLE_ALT = 'This field is available since version '
 VERSION_REQUIREMENT_NEEDLE_ALT_LEN = len(VERSION_REQUIREMENT_NEEDLE_ALT)
 
-CHOICES_NEEDLE = ' It is one of the following values:'
-CHOICES_NEEDLE_LEN = len(CHOICES_NEEDLE)
-
 
 def generate_documentation_url(service, method):
     base = 'https://www.x.com/developers/paypal/documentation-tools/api/%s'
@@ -103,13 +100,6 @@ def parse_type_docstring_paragraph(tag, sections, description_key):
     if version:
         sections['required_version'] = version
         return
-
-    # Remove description string corresponding to which choices
-    # are accepted for given type since we will output that
-    # headline ourselves.
-    choices_headline_index = value.rfind(CHOICES_NEEDLE)
-    if choices_headline_index >= 0:
-        value = value[:choices_headline_index]
 
     sections[description_key].append(value)
 
