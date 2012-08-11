@@ -141,10 +141,12 @@ def generate_docstring_description(sentences):
     return generate_docstring_lines(sentences)
 
 
-def _generate_docstring_section(headline, rows):
+def _generate_docstring_section(rows, headline=None):
     lines = []
     lines.append('')
-    lines.append(' %s:' % headline)
+
+    if headline is not None:
+        lines.append(' %s:' % headline)
 
     i = 0
     row_count = len(rows)
@@ -157,18 +159,16 @@ def _generate_docstring_section(headline, rows):
 
 
 def generate_docstring_choices(choices):
-    headline = 'The value can be one of the following'
-    return _generate_docstring_section(headline, choices)
+    return _generate_docstring_section(choices)
 
 
 def generate_docstring_limitations(limitations):
     headline = 'Character length and limitations'
-    return _generate_docstring_section(headline, limitations)
+    return _generate_docstring_section(limitations, headline=headline)
 
 
 def generate_docstring_notes(notes):
-    headline = 'Notes'
-    return _generate_docstring_section(headline, notes)
+    return _generate_docstring_section(notes, headline='Notes')
 
 
 def parse_docstring_sections(description):
