@@ -22,6 +22,7 @@ easily detecting once changes have been made to the API.
 import sys
 import urllib2
 from BeautifulSoup import BeautifulSoup
+from HTMLParser import HTMLParser
 
 
 EXPRESS_CHECKOUT_URLS = {
@@ -63,6 +64,8 @@ VERSION_REQUIREMENT_NEEDLE_LEN = len(VERSION_REQUIREMENT_NEEDLE)
 VERSION_REQUIREMENT_NEEDLE_ALT = 'This field is available since version '
 VERSION_REQUIREMENT_NEEDLE_ALT_LEN = len(VERSION_REQUIREMENT_NEEDLE_ALT)
 
+parser = HTMLParser()
+
 
 def generate_documentation_url(service, method):
     base = 'https://www.x.com/developers/paypal/documentation-tools/api/%s'
@@ -77,8 +80,9 @@ def get_documentation_html(url):
 
 
 def normalize_text(parts):
+    global parser
     parts = filter(lambda value: value != '\n', parts)
-    return ''.join(parts)
+    return parser.unescape(''.join(parts))
 
 
 def parse_type_api_version(string):
@@ -186,6 +190,7 @@ def generate_docstring_notes(notes):
 
 
 def parse_docstring_sections(description):
+    global parser
     sections = {
         'head': [],  # Beginning of the description
         'limitations': [],  # Value limitations found in the description
@@ -208,7 +213,8 @@ def parse_docstring_sections(description):
             # along with character limitations and required version
             # information.
             key = description_keys[is_tail_paragraph]
-            parse_type_docstring_paragraph(node, sections, key)
+            paragraph = parser.unescape(node)
+            parse_type_docstring_paragraph(paragraph, sections, key)
             continue
 
         # Replace all code references in the documentation with
