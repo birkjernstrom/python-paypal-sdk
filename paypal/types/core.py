@@ -3,7 +3,9 @@
 
 """
 
+import time
 import decimal
+from datetime import datetime
 
 from paypal.util import ensure_unicode
 
@@ -31,6 +33,42 @@ def is_dict(obj):
 
 def is_non_string_sequence(obj):
     return hasattr(obj, '__iter__') and not is_dict(obj)
+
+
+###############################################################################
+# VALIDATOR GENERATORS
+###############################################################################
+
+def gen_strlen_validator(param_name, max_length):
+    def validator(value):
+        if len(value) <= max_length:
+            return True
+
+        message = 'Exceeded the maximum limit of %s characters for param: %s'
+        raise ValueError(message % (max_length, param_name))
+    return validator
+
+
+def gen_unsigned_int_validator(param_name):
+    def validator(value):
+        if value >= 0:
+            return True
+
+        message = '%s is required to be an unsigned integer'
+        raise ValueError(message % value)
+    return validator
+
+
+def gen_choice_validator(param_name, choices):
+    choices = frozenset(choices)
+
+    def validator(value):
+        if value in choices:
+            return True
+
+        message = '%s value is not among the valid choices %s: %s'
+        raise ValueError(message % (param_name, choices, value))
+    return validator
 
 
 ###############################################################################
@@ -136,9 +174,13 @@ class Field(object):
         """
         self.name = name
         self.required = required
-        self.choices = choices
+        self.choices = frozenset(choices)
         self.default = default
         self.initialize(**kwargs)
+
+    @classmethod
+    def sanitize(cls, value):
+        return value
 
     def initialize(self):
         pass
@@ -150,9 +192,6 @@ class Field(object):
         """Retrieve attribute key for instance property."""
         return '_field_%s' % self.name
 
-    def sanitize(self, value):
-        return value
-
     def is_empty(self, value):
         return (value is None)
 
@@ -161,16 +200,9 @@ class Field(object):
             message = 'Field %s cannot be an empty value since it is required'
             raise ValueError(message % (self.name))
 
-        if self.choices:
-            match = False
-            for choice in self.choices:
-                if choice == value:
-                    match = True
-                    break
-
-            if not match:
-                message = 'Given value is not one of the accepted choices: %s'
-                raise ValueError(message % value)
+        if self.choices and value not in self.choices:
+            message = 'Given value is not one of the accepted choices: %s'
+            raise ValueError(message % value)
 
         return True
 
@@ -295,6 +327,19 @@ class BooleanField(Field):
         return 1 if value else 0
 
 
+class UTCDatetimeField(Field):
+    FORMAT_STRING = '%Y-%m-%dT%H:%M:%SZ'
+    def sanitize(self, value):
+        if hasattr(value, 'timetuple') and hasattr(value, 'utcnow'):
+            return value
+
+        time_struct = time.strptime(value, self.FORMAT_STRING)
+        return datetime.fromtimestamp(time.mktime(time_struct))
+
+    def to_dict(self, obj):
+        return time.strftime(self.FORMAT_STRING, obj.timetuple())
+
+
 class TypeField(Field):
     def __init__(self,
                  name=None,
@@ -386,6 +431,12 @@ class ListField(Field):
         if self.validation_callback:
             return self.validation_callback(value)
         return True
+
+
+class ListStringField(ListField):
+    def sanitize(self, value):
+        value = super(ListStringField, self).sanitize(value)
+        return ensure_unicode(value)
 
 
 class ConstantField(Field):
