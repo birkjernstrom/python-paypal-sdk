@@ -35,29 +35,31 @@ NEW_ZEALAND_DOLLAR = 'NZD'
 
 NATIONALLY_ONLY = frozenset([BRAZILIAN_REAL, MALAYSIAN_RINGGIT])
 
-ALL_CODES = frozenset([US_DOLLAR,
-                       CANADIAN_DOLLAR,
-                       MEXICAN_PESO,
-                       BRAZILIAN_REAL,
-                       EURO,
-                       CZECH_KORUNA,
-                       DANISH_KRONE,
-                       NORWEGIAN_KRONE,
-                       SWEDISH_KRONA,
-                       HUNGARIAN_FORINT,
-                       POUND_STERLING,
-                       SWISS_FRANC,
-                       POLISH_ZLOTY,
-                       HONG_KONG_DOLLAR,
-                       JAPANEASE_YEN,
-                       ISRAELI_NEW_SHEQEL,
-                       MALAYSIAN_RINGGIT,
-                       SINGAPORE_DOLLAR,
-                       TAIWAN_NEW_DOLLAR,
-                       THAI_BAHT,
-                       PHILIPPINE_PESO,
-                       AUSTRALIAN_DOLLAR,
-                       NEW_ZEALAND_DOLLAR])
+codes = frozenset([
+    US_DOLLAR,
+    CANADIAN_DOLLAR,
+    MEXICAN_PESO,
+    BRAZILIAN_REAL,
+    EURO,
+    CZECH_KORUNA,
+    DANISH_KRONE,
+    NORWEGIAN_KRONE,
+    SWEDISH_KRONA,
+    HUNGARIAN_FORINT,
+    POUND_STERLING,
+    SWISS_FRANC,
+    POLISH_ZLOTY,
+    HONG_KONG_DOLLAR,
+    JAPANEASE_YEN,
+    ISRAELI_NEW_SHEQEL,
+    MALAYSIAN_RINGGIT,
+    SINGAPORE_DOLLAR,
+    TAIWAN_NEW_DOLLAR,
+    THAI_BAHT,
+    PHILIPPINE_PESO,
+    AUSTRALIAN_DOLLAR,
+    NEW_ZEALAND_DOLLAR,
+])
 
 NAME_MAPPING = {
     US_DOLLAR: 'United States dollar',
@@ -82,14 +84,17 @@ NAME_MAPPING = {
     THAI_BAHT: 'Thai Baht',
     PHILIPPINE_PESO: 'Philippine Peso',
     AUSTRALIAN_DOLLAR: 'Australian Dollar',
-    NEW_ZEALAND_DOLLAR: 'New Zealand Dollar'
+    NEW_ZEALAND_DOLLAR: 'New Zealand Dollar',
 }
 
+
 def is_valid_code(code):
-    return (code in ALL_CODES)
+    return (code in codes)
+
 
 def is_supported_internationally(code):
     return not (code in NATIONALLY_ONLY)
+
 
 def get_name(code):
     return NAME_MAPPING[code.upper()]
