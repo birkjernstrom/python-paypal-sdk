@@ -109,7 +109,7 @@ def parse_docstring_hyperlinks(description):
             url = 'https://www.x.com%s' % url
 
         prepared.append(' .. _%s: %s' % (name, url))
-        name_node.setString('%s_' % name)
+        name_node.replaceWith('%s_' % name)
     return prepared
 
 
