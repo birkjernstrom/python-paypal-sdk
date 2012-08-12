@@ -17,6 +17,21 @@ Allowing us to easily get a diff of our implemented types and their
 docstrings and the latest versions of the documentation. Thereby
 easily detecting once changes have been made to the API.
 
+This script will not generate flawless docstrings for all types.
+There are some issues that will have to be solved manually.
+However, for > 95% of the types it will work without the
+requirement of manual changes.
+
+Some things that knowingly will require manual changes:
+
+    Complex hyperlinks with sentences as values rather
+    then a single word. Which requires a bit more complex
+    reStructuredText solutions than implemented here.
+
+    Spacing is not always perfect, but something that
+    can easily be changed when manually integrating the
+    docstrings in our type implementations.
+
 """
 
 import os
