@@ -1,0 +1,1038 @@
+#------------------------------------------------------------------------------
+# Table 1. Common fields for all refunds
+#------------------------------------------------------------------------------
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The currency code. You must specify the currency code that matches the
+#: currency code of the original payment unless you also specify the payment
+#: key.
+
+
+requestEnvelope.errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The code for the language in which errors are returned, which must be
+#: ``en_US``
+
+
+#------------------------------------------------------------------------------
+# Table 2. Refunds that apply to all receivers
+#------------------------------------------------------------------------------
+
+payKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The key used to create the payment that you want to refund
+
+
+trackingId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The tracking ID associated with the payment that you want to refund
+
+
+#------------------------------------------------------------------------------
+# Table 3. Additional fields for refunds of specific amounts to specific receivers
+#------------------------------------------------------------------------------
+
+receiverList.receiver(n).email
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The receiver's email address, where n is between 0 and 5 for a maximum of 6
+#: receivers
+
+
+receiverList.receiver(n).amount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Amount to refund from the receiver identified by email address
+
+
+#------------------------------------------------------------------------------
+# Table 4. Refunds that apply to a PayPal transaction associated with the payment 
+#------------------------------------------------------------------------------
+
+transactionId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: A PayPal transaction ID associated with the receiver whose payment you want
+#: to refund to the sender. Use field name characters exactly as shown.
+
+
+#------------------------------------------------------------------------------
+# RefundRequest Fields
+#------------------------------------------------------------------------------
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The currency code. You must specify the currency code used for
+#: the original payment. You do not need to specify this field if you use a
+#: ``payKey`` to refund a complete transaction.
+#:
+#: Allowable values are:
+#:
+#:
+#:     Australian Dollar – ``AUD``
+#:
+#:     Brazilian Real – ``BRL`` Note: The Real is supported as a payment
+#:     currency and currency balance only for Brazilian PayPal accounts.
+#:
+#:     Canadian Dollar – ``CAD``
+#:
+#:     Czech Koruna – ``CZK``
+#:
+#:     Danish Krone – ``DKK``
+#:
+#:     Euro – ``EUR``
+#:
+#:     Hong Kong Dollar – ``HKD``
+#:
+#:     Hungarian Forint – ``HUF``
+#:
+#:     Israeli New Sheqel – ``ILS``
+#:
+#:     Japanese Yen – ``JPY``
+#:
+#:     Malaysian Ringgit – ``MYR`` Note: The Ringgit is supported as a payment
+#:     currency and currency balance only for Malaysian PayPal accounts.
+#:
+#:     Mexican Peso – ``MXN``
+#:
+#:     Norwegian Krone – ``NOK``
+#:
+#:     New Zealand Dollar`` – NZD``
+#:
+#:     Philippine Peso – ``PHP``
+#:
+#:     Polish Zloty – ``PLN``
+#:
+#:     Pound Sterling`` – GBP``
+#:
+#:     Singapore Dollar – ``SGD``
+#:
+#:     Swedish Krona`` – SEK``
+#:
+#:     Swiss Franc – ``CHF``
+#:
+#:     Taiwan New Dollar – ``TWD``
+#:
+#:     Thai Baht`` – THB``
+#:
+#:     Turkish Lira – ``TRY`` Note: The Turkish Lira is supported as a payment
+#:     currency and currency balance only for Turkish PayPal accounts.
+#:
+#:     U.S. Dollar – ``USD``
+
+
+payKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The key used to create the payment that you want to refund. 
+
+
+receiverList
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:ReceiverList``
+#:
+#: (Optional) Information about the receivers of the payment that you want to
+#: refund; the payment is identified by payment key, tracking ID, or
+#: transaction ID. Specify each receiver to whom you want to issue a refund.
+#: You can specify the refund amount for specific receivers. If you do not
+#: specify any receivers, all receivers will be fully refunded if you specify
+#: the payment key or tracking ID; otherwise, only the affected receiver will
+#: be fully refunded if you specify the transaction ID.
+
+
+requestEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:requestEnvelope``
+#:
+#: (Required) Information common to each API operation, such as the language
+#: in which an error message is returned.
+
+
+transactionId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The PayPal transaction ID associated with the payment that you
+#: want to refund.
+
+
+trackingId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The tracking ID associated with the payment that you want to
+#: refund. 
+
+
+#------------------------------------------------------------------------------
+# ReceiverList Fields
+#------------------------------------------------------------------------------
+
+receiver
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:Receiver``
+#:
+#: (Required) Receiver is the party whose account is credited.
+
+
+#------------------------------------------------------------------------------
+# Receiver Fields
+#------------------------------------------------------------------------------
+
+amount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: (Required) Amount to be credited to the receiver's account.
+
+
+email
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Receiver's email address. 
+#:
+#: Maximum length: 127 characters
+
+
+invoiceId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) This fields is not used.
+#:
+#: Maximum length: 127 characters
+
+
+paymentType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) This field is not used.
+
+
+paymentSubType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) This field is not used. 
+
+
+phone
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:PhoneNumberType``
+#:
+#: (Optional) A type to specify the receiver's phone number. The
+#: ``PayRequest`` must pass either an email address or a phone number as the
+#: payment receiver.
+
+
+primary
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: (Optional) Whether this receiver is the primary receiver, which makes this
+#: a refund for a chained payment. You can specify at most one primary
+#: receiver. Omit this field for refunds for simple and parallel payments.
+#:
+#: Allowable values are:
+#:
+#:
+#:     ``true`` – Primary receiver
+#:
+#:     ``false`` – Secondary receiver (default)
+
+
+#------------------------------------------------------------------------------
+# PhoneNumberType Fields
+#------------------------------------------------------------------------------
+
+countryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Telephone country code. 
+
+
+phoneNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Telephone number. 
+
+
+extension
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Telephone extension. 
+
+
+#------------------------------------------------------------------------------
+# RequestEnvelope Fields
+#------------------------------------------------------------------------------
+
+detailLevel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DetailLevelCode``
+#:
+#: (Optional) Level of detail required by the client application for
+#: components. It is one of the following values:
+#:
+#:
+#:     ``ReturnAll`` – This value provides the maximum level of detail
+#:     (default).
+
+
+errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) RFC 3066 language in which error messages are returned; by
+#: default it is ``en_US``, which is the only language currently supported.
+
+
+#------------------------------------------------------------------------------
+# RefundResponse Fields
+#------------------------------------------------------------------------------
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The currency code represented by one of the following values:
+#:
+#:
+#:     Australian Dollar – ``AUD``
+#:
+#:     Brazilian Real – ``BRL`` Note: The Real is supported as a payment
+#:     currency and currency balance only for Brazilian PayPal accounts.
+#:
+#:     Canadian Dollar – ``CAD``
+#:
+#:     Czech Koruna – ``CZK``
+#:
+#:     Danish Krone – ``DKK``
+#:
+#:     Euro – ``EUR``
+#:
+#:     Hong Kong Dollar – ``HKD``
+#:
+#:     Hungarian Forint – ``HUF``
+#:
+#:     Israeli New Sheqel – ``ILS``
+#:
+#:     Japanese Yen – ``JPY``
+#:
+#:     Malaysian Ringgit – ``MYR`` Note: The Ringgit is supported as a payment
+#:     currency and currency balance only for Malaysian PayPal accounts.
+#:
+#:     Mexican Peso – ``MXN``
+#:
+#:     Norwegian Krone – ``NOK``
+#:
+#:     New Zealand Dollar`` – NZD``
+#:
+#:     Philippine Peso – ``PHP``
+#:
+#:     Polish Zloty – ``PLN``
+#:
+#:     Pound Sterling`` – GBP``
+#:
+#:     Singapore Dollar – ``SGD``
+#:
+#:     Swedish Krona`` – SEK``
+#:
+#:     Swiss Franc – ``CHF``
+#:
+#:     Taiwan New Dollar – ``TWD``
+#:
+#:     Thai Baht`` – THB``
+#:
+#:     Turkish Lira – ``TRY`` Note: The Turkish Lira is supported as a payment
+#:     currency and currency balance only for Turkish PayPal accounts.
+#:
+#:     U.S. Dollar – ``USD``
+
+
+refundInfoList
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:RefundInfoList``
+#:
+#: List of refunds associated with the payment.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the response
+#: acknowledgement status.
+
+
+#------------------------------------------------------------------------------
+# RefundInfoList Fields
+#------------------------------------------------------------------------------
+
+refundInfo
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:RefundInfo``
+#:
+#: Represents the refund attempt made to a receiver of a ``PayRequest``.
+
+
+#------------------------------------------------------------------------------
+# RefundInfo Fields
+#------------------------------------------------------------------------------
+
+encryptedRefundTransactionId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The PayPal transaction ID for this refund.
+#:
+#:
+#: Notes:
+#:     This ID is different than the transaction ID for the original payment.
+
+
+errorList
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:ErrorList``
+#:
+#: Information about why a refund failed.
+
+
+receiver
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``ap:Receiver``
+#:
+#: Information about the receiver of the refund.
+
+
+refundFeeAmount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: Amount of fees that have been refunded.
+
+
+refundGrossAmount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: Gross amount of the refund, including the total amount from this receiver
+#: and fees.
+
+
+refundHasBecomeFull
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: Whether you have refunded the total amount of the payment. 
+#:
+#: Possible values are:
+#:
+#:
+#:     ``true`` – Entire amount of the payment has been refunded
+#:
+#:     ``false`` – Entire amount of the payment has not been refunded
+#:
+#:
+#: Notes:
+#:     This field is only available when a partial refund has been requested.
+
+
+refundNetAmount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: The total amount of the refund from this receiver.
+
+
+refundStatus
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Status of the refund. It is one of the following values:
+#:
+#:
+#:     ``REFUNDED`` – Refund successfully completed
+#:
+#:     ``REFUNDED_PENDING`` – Refund awaiting transfer of funds; for example,
+#:     a refund paid by eCheck.
+#:
+#:     ``NOT_PAID`` – Payment was never made; therefore, it cannot be
+#:     refunded.
+#:
+#:     ``ALREADY_REVERSED_OR_REFUNDED`` – Request rejected because the refund
+#:     was already made, or the payment was reversed prior to this request.
+#:
+#:     ``NO_API_ACCESS_TO_RECEIVER`` – Request cannot be completed because you
+#:     do not have third-party access from the receiver to make the refund.
+#:
+#:     ``REFUND_NOT_ALLOWED`` – Refund is not allowed.
+#:
+#:     ``INSUFFICIENT_BALANCE`` – Request rejected because the receiver from
+#:     which the refund is to be paid does not have sufficient funds or the
+#:     funding source cannot be used to make a refund.
+#:
+#:     ``AMOUNT_EXCEEDS_REFUNDABLE`` – Request rejected because you attempted
+#:     to refund more than the remaining amount of the payment; call the
+#:     PaymentDetails API operation to determine the amount already refunded.
+#:
+#:     ``PREVIOUS_REFUND_PENDING`` – Request rejected because a refund is
+#:     currently pending for this part of the payment
+#:
+#:     ``NOT_PROCESSED`` – Request rejected because it cannot be processed at
+#:     this time
+#:
+#:     ``REFUND_ERROR`` – Request rejected because of an internal error
+#:
+#:     ``PREVIOUS_REFUND_ERROR ``– Request rejected because another part of
+#:     this refund caused an internal error.
+
+
+refundTransactionStatus
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The status of the refund transaction.
+#:
+#: Possible values are:
+#:
+#:
+#:     ``UNKNOWN`` – The status of the refund process is unknown.
+#:
+#:     ``COMPLETED`` – The refund process has been completed.
+
+
+totalOfAllRefunds
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: The total of all refunds actually paid; does not include pending amounts
+#:
+#:
+#: Notes:
+#:     This field is only available when a partial refund has been requested.
+
+
+#------------------------------------------------------------------------------
+# ErrorData Fields
+#------------------------------------------------------------------------------
+
+category
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorCategory``
+#:
+#: The location where the error occurred. 
+#:
+#: Possible values are: 
+#:
+#:
+#:     ``System`` – The system encountered errors; try again
+#:
+#:     ``Application`` – The application encountered errors; try again
+#:
+#:     ``Request`` – The request was incorrect
+
+
+domain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The domain to which this service belongs. 
+
+
+errorId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:long``
+#:
+#: A 6-digit number that uniquely identifies a particular error. 
+
+
+exceptionID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+message
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A description of the error. 
+
+
+parameter
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorParameter``
+#:
+#: Represents contextual information about the error. 
+
+
+severity
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorSeverity`` 
+#:
+#: The severity of the error encountered. 
+#:
+#: Possible values are:
+#:
+#:
+#:     ``Error`` – Processing of the request was interrupted
+#:
+#:     ``Warning`` – Processing of the request was completed
+
+
+subdomain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+#------------------------------------------------------------------------------
+# Receiver Fields
+#------------------------------------------------------------------------------
+
+amount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: Amount to be refunded to the receiver.
+
+
+email
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Receiver's email address. 
+#:
+#: Maximum length: 127 characters
+
+
+invoiceId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: This fields is not used.
+#:
+#: Maximum length: 127 characters
+
+
+paymentType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: This field is not used.
+
+
+paymentSubType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: This field is not used. 
+
+
+phone
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:PhoneNumberType``
+#:
+#: The receiver's phone number. 
+
+
+primary
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: Whether this receiver is the primary receiver, which makes this a refund
+#: for a chained payment. If this field is set to false, this is a refund for
+#: a simple or parallel payment.
+#:
+#: Possible values are:
+#:
+#:
+#:     ``true`` – Primary receiver (chained payment)
+#:
+#:     ``false`` – Secondary receiver (simple/parallel payment)
+
+
+#------------------------------------------------------------------------------
+# PhoneNumberType Response Fields
+#------------------------------------------------------------------------------
+
+countryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Telephone country code. 
+
+
+phoneNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Telephone number. 
+
+
+extension
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Telephone extension. 
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgement code. It is one of the following values:
+#:
+#:
+#:     ``Success`` – The operation completed successfully.
+#:
+#:     ``Failure`` – The operation failed.
+#:
+#:     ``SuccessWithWarning`` – The operation completed successfully; however,
+#:     there is a warning message.
+#:
+#:     ``FailureWithWarning ``– The operation failed with a warning message.
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Build number. It is used only by PayPal Merchant Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Correlation identifier. It is a 13-character, alphanumeric string (for
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
+#: Support.
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:datetime``
+#:
+#: Date on which the response was sent, for example: 
+#:
+#: ``2012-04-02T22:33:35.774-07:00``
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+#------------------------------------------------------------------------------
+# FaultMessage Fields
+#------------------------------------------------------------------------------
+
+error
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorData``
+#:
+#: Detailed error information.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the response
+#: acknowledgement status.
+
+
+#------------------------------------------------------------------------------
+# ErrorData Fields
+#------------------------------------------------------------------------------
+
+category
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorCategory``
+#:
+#: The location where the error occurred. 
+#:
+#: Possible values are: 
+#:
+#:
+#:     ``System`` – The system encountered errors; try again
+#:
+#:     ``Application`` – The application encountered errors; try again
+#:
+#:     ``Request`` – The request was incorrect
+
+
+domain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The domain to which this service belongs. 
+
+
+errorId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:long``
+#:
+#: A 6-digit number that uniquely identifies a particular error. 
+
+
+exceptionID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+message
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A description of the error. 
+
+
+parameter
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorParameter``
+#:
+#: Represents contextual information about the error. 
+
+
+severity
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorSeverity`` 
+#:
+#: The severity of the error encountered. 
+#:
+#: Possible values are:
+#:
+#:
+#:     ``Error`` – Processing of the request was interrupted
+#:
+#:     ``Warning`` – Processing of the request was completed
+
+
+subdomain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgement code. It is one of the following values:
+#:
+#:
+#:     ``Success`` – The operation completed successfully.
+#:
+#:     ``Failure`` – The operation failed.
+#:
+#:     ``SuccessWithWarning`` – The operation completed successfully; however,
+#:     there is a warning message.
+#:
+#:     ``FailureWithWarning ``– The operation failed with a warning message.
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Build number. It is used only by PayPal Merchant Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Correlation identifier. It is a 13-character, alphanumeric string (for
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
+#: Support.
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:datetime``
+#:
+#: Date on which the response was sent, for example: 
+#:
+#: ``2012-04-02T22:33:35.774-07:00``
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+#------------------------------------------------------------------------------
+# Using the payment key to refund an entire payment
+#------------------------------------------------------------------------------
+
+500000
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: There is a system error
+
+
+520002
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal error
+
+
+520003
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: User name/password is incorrect
+
+
+520006
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This call is not defined in the database
+
+
+520008
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: You do not have a verified ACH
+
+
+520009
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Account is restricted
+
+
+520010
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The account for the counter party is locked or inactive
+
+
+560011
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Because a complaint case exists on this transaction, only a refund of the
+#: full or full remaining amount of the transaction can be issued
+
+
+560016
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: You cannot do a partial refund on this transaction
+
+
+560018
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: You cannot refund this type of transaction
+
+
+570012
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Cannot do a full refund after a partial refund
+
+
+570013
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The partial refund amount must be less than or equal to the original
+#: transaction amount
+
+
+570014
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The partial refund amount must be less than or equal to the remaining
+#: amount
+
+
+570015
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This transaction has already been fully refunded
+
+
+570017
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: You are over the time limit to perform a refund on this transaction
+
+
+579051
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The tracking ID is invalid
+
+
+580001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request
+
+
+580022 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request parameter: payKey with value <value>
+
+
+580027
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The argument is unsupported
+
+
+589018
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The pay key is valid
+
+
+589023
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: If a fractional amount is rounded due to currency conversion, funds could
+#: be lost
+
+
+580029
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: A pay key, transaction ID, or tracking ID is missing 
+
+
+580030 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This transaction cannot be processed at this time. Please try again later.
+
+
+589036
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The currency code is missing or does not match the code in the payment
+#: request
+
+
+589037
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The refund's receiver was not part of the payment request
+
+
+589038
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The refund has to be both less than or equal to the original payment
+#: request and greater than zero
+
+
+589041
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: All receivers must give full refunds for this type of chained payment
+
+
+589052
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The transaction ID is invalid
+
+
+589061 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The receiver <value> is invalid for this refund
+
+

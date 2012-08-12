@@ -1,0 +1,592 @@
+#------------------------------------------------------------------------------
+# BMUpdateButton Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) BMUpdateButton
+
+
+HOSTEDBUTTONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The ID of the hosted button you want to modify.
+
+
+BUTTONTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The kind of button you want to update. It is one of the
+#: following values:
+#:
+#:
+#:     ``BUYNOW`` - Buy Now button
+#:
+#:     ``CART`` - Add to Cart button
+#:
+#:     ``GIFTCERTIFICATE`` - Gift Certificate button
+#:
+#:     ``SUBSCRIBE`` - Subscribe button
+#:
+#:     ``DONATE`` - Donate button
+#:
+#:     ``UNSUBSCRIBE`` - Unsubscribe button
+#:
+#:     ``VIEWCART`` - View Cart button
+#:
+#:     ``PAYMENTPLAN`` - Installment Plan button; since version 63.0
+#:
+#:     ``AUTOBILLING`` - Automatic Billing button; since version 63.0
+#:
+#:
+#: Notes:
+#:     You cannot change the kind of button after the button has been created.
+
+
+BUTTONCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The kind of button code to create. It is one of the following
+#: values:
+#:
+#:
+#:     ``HOSTED`` - A secure button stored on PayPal; default for all buttons
+#:     except View Cart and Unsubscribe
+#:
+#:     ``ENCRYPTED`` - An encrypted button, not stored on PayPal; default for
+#:     View Cart button
+#:
+#:     ``CLEARTEXT`` - An unencrypted button, not stored on PayPal; default
+#:     for Unsubscribe button Note: You cannot change the kind of button code
+#:     after after the button has been created.
+
+
+BUTTONSUBTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The use of button you want to create. It is one of the following
+#: values:
+#:
+#:
+#:     ``PRODUCTS`` - button is used to purchase products; default for Buy Now
+#:     and Add to Cart buttons
+#:
+#:     ``SERVICES`` - button is used to purchase services
+#:
+#:
+#: Notes:
+#:     You cannot change the button usage after after the button has been
+#:     created.
+
+
+L_BUTTONVARn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) HTML standard button variables 
+#:
+#: It is a list of variables, in which n is a digit between 0 and 999,
+#: inclusive; do not include leading zeros.
+#:
+#:
+#: Character length and limitations:
+#:     63 single-byte alphanumeric characters each
+
+
+L_TEXTBOXn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Text description for a menu item 
+#:
+#: It is a list of variables, in which n is a digit between 0 and 1,
+#: inclusive.
+
+
+BUTTONIMAGE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The kind of button image. It is one of the following values:
+#:
+#:
+#:     ``REG`` - regular; default
+#:
+#:     ``SML`` - small
+#:
+#:     ``CC`` - small button image with credit card logos; not applicable for
+#:     Unsubscribe or View Cart buttons Note: Specify either the kind of
+#:     button image or the URL.
+
+
+BUTTONIMAGEURL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The button's URL
+#:
+#:
+#: Notes:
+#:     Specify either the kind of button image or the URL.
+
+
+BUYNOWTEXT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The button text for a Buy Now button. It is one of the following
+#: values:
+#:
+#:
+#:     ``BUYNOW`` - button text is Buy Now; default
+#:
+#:     ``PAYNOW`` - button text is Pay Now
+
+
+SUBSCRIBETEXT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The button text for a Subscribe button. It is one of the
+#: following values:
+#:
+#:
+#:     ``BUYNOW`` - button text is Buy Now
+#:
+#:     ``SUBSCRIBE`` - button text is Subscribe; default
+
+
+BUTTONCOUNTRY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The country in which the transaction occurs. By default, it is
+#: the merchant's country of registration with PayPal.
+
+
+BUTTONLANGUAGE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The language in which to display the button text. It must be
+#: compatible with the country code.
+#:
+#:
+#: Character length and limitations:
+#:     2 single-byte alphanumeric characters
+
+
+#------------------------------------------------------------------------------
+# Option Details Fields
+#------------------------------------------------------------------------------
+
+OPTIONnNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The menu name
+#:
+#: It is one or more variables, in which n is a digit between 0 and 4,
+#: inclusive, for hosted buttons; otherwise, it is a digit between 0 and 9,
+#: inclusive.
+
+
+#------------------------------------------------------------------------------
+# Option Selection Details Fields
+#------------------------------------------------------------------------------
+
+L_OPTIONnSELECTx
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The menu item's name
+#:
+#: It is a list of variables for each ``None``, in which x is a digit between
+#: 0 and 9, inclusive
+
+
+L_OPTION0PRICEx
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The price associated with the first menu item
+#:
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
+#: between 0 and 9, inclusive
+#:
+#:
+#: Notes:
+#:     If you specify a price, you cannot set a button variable to ``amount``.
+
+
+OPTIONnTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The installment option type for an ``None``, which is one of the
+#: following values:
+#:
+#:
+#:     ``FULL`` - Payment in full
+#:
+#:     ``VARIABLE`` - Variable installments
+#:
+#:     ``EMI`` - Equal installments
+#:
+#:
+#: Notes:
+#:     Only available for Installment Plan buttons.
+
+
+#------------------------------------------------------------------------------
+# Installment Details
+#------------------------------------------------------------------------------
+
+L_OPTIONnBILLINGPERIOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The installment cycle unit, which is one of the following
+#: values:
+#:
+#:
+#:     ``NoBillingPeriodType`` - None (default)
+#:
+#:     ``Day``
+#:
+#:     ``Week``
+#:
+#:     ``SemiMonth``
+#:
+#:     ``Month``
+#:
+#:     ``Year``
+#:
+#:
+#: It is a list of variables for each ``None``, in which x is a digit between
+#: 0 and 4, inclusive
+
+
+L_OPTIONnBILLINGPFREQUENCY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The installment cycle frequency in units, e.g. if the billing
+#: frequency is ``2`` and the billing period is ``Month``, the billing cycle
+#: is every 2 months. The default billing frequency is ``1``.
+#:
+#: It is a list of variables for each ``None``, in which x is a digit between
+#: 0 and 4, inclusive
+
+
+L_OPTIONnTOTALBILLINGCYCLES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The total number of billing cycles, regardless of the duration
+#: of a cycle; ``1`` is the default
+#:
+#: It is a list of variables for each ``None``, in which x is a digit between
+#: 0 and 4, inclusive
+
+
+L_OPTIONnAMOUNTx
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The base amount to bill for the cycle.
+#:
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
+#: between 0 and 4, inclusive
+
+
+L_OPTIONnSHIPPINGAMOUNTx
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The shipping amount to bill for the cycle, in addition to the
+#: base amount.
+#:
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
+#: between 0 and 4, inclusive
+
+
+L_OPTIONnTAXAMOUNTx
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The tax amount to bill for the cycle, in addition to the base
+#: amount.
+#:
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
+#: between 0 and 4, inclusive
+
+
+#------------------------------------------------------------------------------
+# Button Language Options
+#------------------------------------------------------------------------------
+
+en
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``en`` - English; default
+
+
+de
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``de`` - German; default
+#:
+#:     ``en`` - English
+
+
+en
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``en`` - English; default
+#:
+#:     ``nl`` - Dutch
+#:
+#:     ``fr`` - French
+
+
+en
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``en`` - English; default
+#:
+#:     ``fr`` - French
+
+
+en
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``en`` - English; default
+#:
+#:     ``zh`` - Chinese
+
+
+fr
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``fr`` - French; default
+#:
+#:     ``en`` - English
+
+
+de
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``de`` - German; default
+#:
+#:     ``en`` - English
+
+
+zh
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``zh`` - Chinese; default
+#:
+#:     ``en`` - English
+
+
+it
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``it`` - Italian; default
+#:
+#:     ``en`` - English
+
+
+ja
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``ja`` - Japanese; default
+#:
+#:     ``en`` - English
+
+
+es
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``es`` - Spanish; default
+#:
+#:     ``en`` - English
+
+
+nl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``nl`` - Dutch; default
+#:
+#:     ``en`` - English
+
+
+pl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``pl`` - Polish; default
+#:
+#:     ``en`` - English
+
+
+es
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``es`` - Spanish; default
+#:
+#:     ``en`` - English
+
+
+de
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``de`` - German; default
+#:
+#:     ``fr`` - French
+#:
+#:     ``en`` - English
+
+
+en
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``en`` - English; default
+#:
+#:     ``fr`` - French
+#:
+#:     ``es`` - Spanish
+#:
+#:     ``zh`` - Chinese
+
+
+#------------------------------------------------------------------------------
+# BMUpdateButton Response Fields
+#------------------------------------------------------------------------------
+
+WEBSITECODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: HTML code for web pages
+
+
+EMAILLINK
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Code for email links and links in other documents that support external
+#: links
+
+
+HOSTEDBUTTONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ID of a PayPal hosted button
+
+
+#------------------------------------------------------------------------------
+# BMUpdateButton Response Fields
+#------------------------------------------------------------------------------
+
+10001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal Error
+
+
+11923
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11924
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11925
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11926
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11927
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11928
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11929
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11930
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11931
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11932
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11933
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11934
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11936
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11937
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11938
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11940
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11941
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11942
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11943
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11945
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11947
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11948
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+12210 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+13117 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+13118 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+13119 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+13120 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+

@@ -1,0 +1,62 @@
+#------------------------------------------------------------------------------
+# ManagePendingTransactionStatus Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Must be ManagePendingTransactionStatus.
+
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The transaction ID of the payment transaction. 
+
+
+ACTION
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The operation you want to perform on the transaction. It is one
+#: of the following values: 
+#:
+#:
+#:     ``Accept`` – Accepts the payment
+#:
+#:     ``Deny`` – Rejects the payment
+
+
+#------------------------------------------------------------------------------
+# ManagePendingTransactionStatus Response Fields
+#------------------------------------------------------------------------------
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The transaction ID of the transaction whose payment has been denied or
+#: accepted. 
+
+
+STATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Displays in the following message:
+#:
+#: "The Status of the transaction after running your action (accept/deny) is
+#: TransactionStatus." 
+#:
+#: TransactionStatus is one of the following values:
+#:
+#:
+#:     Pending
+#:
+#:     Processing
+#:
+#:     Completed
+#:
+#:     Denied
+#:
+#:     Reversed
+#:
+#:     Display Only
+#:
+#:     Partially Refunded
+#:
+#:     Created Refunded
+
+

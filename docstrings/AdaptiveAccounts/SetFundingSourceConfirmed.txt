@@ -1,0 +1,180 @@
+#------------------------------------------------------------------------------
+# SetFundingSourceConfirmed Request Fields
+#------------------------------------------------------------------------------
+
+accountId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The merchant account Id of the PayPal account to which the
+#: funding source was added in the AddPaymentCard or AddBankAccount request.
+#: You must specify either the ``accountId`` or ``mailAddress`` when making
+#: this request, but never both in the same request.
+
+
+emailAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The email address of the PayPal account to which the funding
+#: source was added in the AddPaymentCard or AddBankAccount request. You must
+#: specify either the ``accountId`` or ``mailAddress`` when making this
+#: request, but never both in the same request.
+
+
+fundingSourceKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The funding source key returned in the AddBankAccount or AddPaymentCard
+#: response.
+
+
+requestEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:RequestEnvelope``
+#:
+#: (Required) Information common to each API operation, such as the language
+#: in which an error message is returned.
+
+
+#------------------------------------------------------------------------------
+# RequestEnvelope Fields
+#------------------------------------------------------------------------------
+
+detailLevel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DetailLevelCode``
+#:
+#: (Optional) The level of detail required by the client application for
+#: component such as Item, Transaction. Possible values are:
+#:
+#:
+#:     ``ReturnAll`` – This value provides the maximum level of detail
+#:     (default)
+
+
+errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The RFC 3066 language in which error messages are returned; by
+#: default it is ``en_US``, which is the only language currently supported
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgment code. Possible values are:
+#:
+#:
+#:     ``Success`` – Operation completed successfully
+#:
+#:     ``Failure`` – Operation failed
+#:
+#:     ``Warning`` – warning
+#:
+#:     ``SuccessWithWarning`` – Operation completed successfully; however,
+#:     there is a warning message
+#:
+#:     ``FailureWithWarning`` – Operation failed with a warning message
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Build number; used only by Developer Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Correlation ID; used only by Developer Technical Support.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date on which the response was sent. The time is not supported.
+
+
+#------------------------------------------------------------------------------
+# SetFundingSourceConfirmed Errors
+#------------------------------------------------------------------------------
+
+500000 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Framework failure. Retry.
+
+
+520002 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal error
+
+
+520003 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid credentials.
+
+
+550001 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: User is not allowed to perform this action
+
+
+560022 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid header.
+
+
+560029 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The required <name> header is missing from the HTTP request.
+
+
+580001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request: 
+#:
+#:
+#:     PayPal account specified in the request is locked
+#:
+#:     PayPal account specified in the request is closed
+#:
+#:     Operation is not supported: PA_Replaceable_Value
+#:
+#:     Invalid request: PA_Replaceable_Value
+
+
+580022
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Request parameter is invalid: 
+#:
+#:
+#:     Expired createAccountKey
+#:
+#:     Invalid request parameter: PA_Replaceable_Value
+#:
+#:     Invalid request parameter: createAccountKey
+#:
+#:     Invalid request parameter: ipAddress
+
+
+580023 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The argument is inconsistent with the rest of the request
+#:
+#:
+#:     Account cannot be confirmed with the request parameter provided
+#:
+#:     Account associated with createAccountKey is different from the one
+#:     provided in the request
+
+
+580027 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The parameter is not supported.
+
+

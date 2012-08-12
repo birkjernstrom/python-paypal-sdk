@@ -1,0 +1,338 @@
+#------------------------------------------------------------------------------
+# DoNonReferencedCredit Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Must be DoNonReferencedCredit.
+
+
+AMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Total of order, including shipping, handling, and tax. Amount =
+#: NetAmount + ShippingAmount + TaxAmount
+#:
+#:
+#: Character length and limitations:
+#:     Must not exceed $10,000 USD in any currency. No currency symbol. Must
+#:     have 2 decimal places, decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
+
+
+NETAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Total amount of all items in this transaction.
+#:
+#:
+#: Character length and limitations:
+#:     Must not exceed $10,000 USD in any currency. No currency symbol. Must
+#:     have 2 decimal places, decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,). 
+#:
+#:
+#: Notes:
+#:      The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+
+
+TAXAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Sum of tax for all items in this order.
+#:
+#:
+#: Character length and limitations:
+#:     The value must be zero or greater and cannot exceed $10,000 USD in any
+#:     currency. No currency symbol. Must have 2 decimal places, decimal
+#:     separator must be a period (.), and the optional thousands separator
+#:     must be a comma (,).
+#:
+#:
+#: Notes:
+#:      The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+
+
+SHIPPINGAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Total shipping costs in this transaction.
+#:
+#:
+#: Character length and limitations:
+#:     Value must be zero or greater and cannot exceed $10,000 USD in any
+#:     currency. No currency symbol. Must have 2 decimal places, decimal
+#:     separator must be a period (.), and the optional thousands separator
+#:     must be a comma (,). The only valid currencies are AUD, CAD, EUR, GBP,
+#:     JPY, and USD.
+#:
+#:
+#: Notes:
+#:      The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+
+
+NOTE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Field used by merchant to record why this credit was issued to a
+#: buyer. It is similar to a "memo" field (freeform text or string field).
+
+
+CURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Currency code (default is USD).
+#:
+#:
+#: Notes:
+#:      The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+
+
+#------------------------------------------------------------------------------
+# Credit Card Details Type Fields
+#------------------------------------------------------------------------------
+
+CREDITCARDTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Type of credit card. For UK, only ``Maestro``, ``MasterCard``,
+#: ``Discover``, and ``Visa`` are allowable. For Canada, only ``MasterCard``
+#: and ``Visa`` are allowable and Interac debit cards are not supported. It is
+#: one of the following values:
+#:
+#:
+#:     ``Visa``
+#:
+#:     ``MasterCard``
+#:
+#:     ``Discover``
+#:
+#:     ``Amex``
+#:
+#:     ``Maestro``: See note.
+#:
+#:
+#: Character length and limitations:
+#:     Up to 10 single-byte alphabetic characters
+#:
+#:
+#: Notes:
+#:     If the credit card type is ``Maestro``, you must set ``CURRENCYCODE``
+#:     to ``GBP``. In addition, you must specify either ``STARTDATE`` or
+#:     ``ISSUENUMBER``.
+
+
+ACCT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Credit card number.
+#:
+#:
+#: Character length and limitations:
+#:     Numeric characters only with no spaces or punctuation. The string must
+#:     conform with modulo and length required by each credit card type.
+
+
+EXPDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Credit card expiration date. This field is required if you are using
+#: recurring payments with direct payments.
+#:
+#:
+#: Character length and limitations:
+#:     6 single-byte alphanumeric characters, including leading zero, in the
+#:     format MMYYYY
+
+
+CVV2
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Card Verification Value, version 2. Your Merchant Account settings
+#: determine whether this field is required. To comply with credit card
+#: processing regulations, you must not store this value after a transaction
+#: has been completed.
+#:
+#:
+#: Character length and limitations:
+#:     For Visa, MasterCard, and Discover, the value is exactly 3 digits. For
+#:     American Express, the value is exactly 4 digits.
+
+
+STARTDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Month and year that Maestro card was issued.
+#:
+#:
+#: Character length and limitations:
+#:     Must be 6 digits, including leading zero, in the format MMYYYY
+
+
+ISSUENUMBER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Issue number of Maestro card.
+#:
+#:
+#: Character length and limitations:
+#:     2 numeric digits maximum
+
+
+#------------------------------------------------------------------------------
+# Payer Name Type Fields
+#------------------------------------------------------------------------------
+
+SALUTATION
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's salutation.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+FIRSTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's first name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+MIDDLENAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's middle name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+LASTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's last name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+SUFFIX
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's suffix.
+#:
+#:
+#: Character length and limitations:
+#:     12 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# Payer Information Fields
+#------------------------------------------------------------------------------
+
+EMAIL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Email address of buyer.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte characters
+
+
+FIRSTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Buyer's first name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+LASTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Buyer's last name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# Address Fields
+#------------------------------------------------------------------------------
+
+STREET
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) First street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+STREET2
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Second street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+CITY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Name of city.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+STATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) State or province.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+COUNTRYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Country code. 
+#:
+#:
+#: Character length and limitations:
+#:     2 single-byte characters
+
+
+ZIP
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) U.S. ZIP code or other country-specific postal code.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+SHIPTOPHONENUM
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Phone number.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# DoNonReferencedCredit Response Fields
+#------------------------------------------------------------------------------
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Unique identifier of a transaction.
+#:
+#:
+#: Character length and limitations:
+#:     17 single-byte alphanumeric characters.
+
+
+CURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Currency code. 
+#:
+#:
+#: Notes:
+#:      The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+
+

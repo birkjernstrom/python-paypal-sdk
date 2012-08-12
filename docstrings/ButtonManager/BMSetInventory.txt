@@ -1,0 +1,424 @@
+#------------------------------------------------------------------------------
+# BMSetInventory Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) BMSetInventory
+
+
+HOSTEDBUTTONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The ID of the hosted button whose inventory you want to set.
+
+
+TRACKINV
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Whether to track inventory levels associated with the button. It
+#: is one of the following values:
+#:
+#:
+#:     ``0`` - do not track inventory
+#:
+#:     ``1`` - track inventory
+
+
+TRACKPNL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Whether to track the gross profit associated with inventory
+#: changes. It is one of the following values:
+#:
+#:
+#:     ``0`` - do not track the gross profit
+#:
+#:     ``1`` - track the gross profit
+#:
+#:
+#: Notes:
+#:     The gross profit is calculated as the price of the item less its cost,
+#:     multiplied by the change in the inventory level since the last call to
+#:     BMSetInventory.
+
+
+OPTIONNAMEINDEX
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Option index, which identifies the button. Option index 0 is the
+#: menu that contains the price if one exists; otherwise, it is the first menu
+#: without a price.
+#:
+#:
+#: Character length and limitations:
+#:     1 single-byte alphanumeric character
+
+
+SOLDOUTURL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The URL to which the buyer's browser is redirected when the
+#: inventory drops to 0.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte alphanumeric characters
+#:
+#:
+#: Notes:
+#:     Specifying a URL in this field also prevents a sale when the inventory
+#:     drops to 0; otherwise, sales can continue even when inventory is
+#:     unavailable.
+
+
+REUSEDIGITALDOWNLOADKEYS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Whether to reuse download keys:
+#:
+#:
+#:     ``0`` - do not reuse keys (default)
+#:
+#:     ``1`` - reuse keys
+#:
+#:
+#: Notes:
+#:     If you do not reuse the download keys, you must replenish the keys when
+#:     you sell out of the product being downloaded. 
+
+
+APPENDDIGITALDOWNLOADKEYS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Whether to append download keys:
+#:
+#:
+#:     ``0`` - do not append keys (default)
+#:
+#:     ``1`` - append keys
+#:
+#:
+#: Notes:
+#:     If you do not append the download keys, unused keys will be replaced..
+
+
+DIGITALDOWNLOADKEYS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) One or more digital download keys, up to a maximum of 1,000
+#: keys. 
+#:
+#: The variable n in the field name is a number between 0 and 999, inclusive,
+#: that specifies the key.
+#:
+#:
+#: Character length and limitations:
+#:     1,000 single-byte alphanumeric characters each.
+
+
+#------------------------------------------------------------------------------
+# Item Tracking Details Fields
+#------------------------------------------------------------------------------
+
+ITEMNUMBER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The ID for an item associated with this button
+
+
+ITEMQTY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The quantity you want to specify for the item associated with this button.
+#: Specify either the absolute quantity in this field or the change in
+#: quantity in the quantity delta field
+
+
+ITEMQTYDELTA
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The change in quantity you want to specify for the item associated with
+#: this button. Specify either the change in quantity in this field or the
+#: absolute quantity in the item quantity field
+
+
+ITEMALERT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The quantity of the item associated with this button below which
+#: PayPal sends you an email notification
+
+
+ITEMCOST
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The cost of the item associated with this button
+
+
+#------------------------------------------------------------------------------
+# Option Tracking Details Fields
+#------------------------------------------------------------------------------
+
+L_OPTIONNUMBERn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The menu item's ID for an option in a dropdown menu 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+
+
+L_OPTIONQTYn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The quantity you want to specify for the option associated with this menu
+#: item. Specify either the absolute quantity in this field or the change in
+#: quantity in the quantity delta field 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+
+
+L_OPTIONSELECTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The menu item's name in a dropdown menu 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+
+
+L_OPTIONQTYDELTAn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The change in quantity you want to specify for the option associated with
+#: this menu item. Specify either the change in quantity in this field or the
+#: absolute quantity in the quantity field 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+
+
+L_OPTIONALERTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The quantity of the option associated with this menu item below
+#: which PayPal sends you an email notification 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+
+
+L_OPTIONCOSTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The cost of the option associated with this menu item 
+#:
+#: It is a list of variables for each menu item, in which n is a digit between
+#: 0 and 9, inclusive.
+#:
+#: Limitations: Value must be a positive number, with no currency symbol. It
+#: must have two decimal places and the decimal separator must be a period
+#: (.). It may have an optional comma (,) for the thousands separator.
+
+
+#------------------------------------------------------------------------------
+# BMSetInventory Response Fields
+#------------------------------------------------------------------------------
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Transaction ID
+
+
+#------------------------------------------------------------------------------
+# BMSetInventory Errors
+#------------------------------------------------------------------------------
+
+10001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal Error
+
+
+11950
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11951
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11951
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11953
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11954
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11955
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11956
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11957
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11958
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11959
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11960
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11961
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11964
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11965
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11966
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11967
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11968
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11969
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11970
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11971
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11972
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11973
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11974
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11975
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11976
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11977
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11978
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11979
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11980
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11981
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11982
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11983
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11984
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11985
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11986
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Data
+
+
+11987
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11988
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11989
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+11990
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+
+12210 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid Argument
+
+

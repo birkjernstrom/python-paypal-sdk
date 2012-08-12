@@ -1,0 +1,734 @@
+#------------------------------------------------------------------------------
+# GetRecurringPaymentsProfileDetails Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Must be GetRecurringPaymentsProfileDetails.
+
+
+PROFILEID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Recurring payments profile ID returned in the
+#: ``CreateRecurringPaymentsProfile`` response. 19-character profile IDs are
+#: supported for compatibility with previous versions of the PayPal API.
+#:
+#:
+#: Character length and limitations:
+#:     14 single-byte alphanumeric characters
+
+
+#------------------------------------------------------------------------------
+# GetRecurringPaymentsProfileDetails Response Fields
+#------------------------------------------------------------------------------
+
+PROFILEID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Recurring payments profile ID returned in the
+#: ``CreateRecurringPaymentsProfile`` response.
+
+
+STATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Status of the recurring payment profile. It is one of the following values:
+#:
+#:
+#:     ``Active``
+#:
+#:     ``Pending``
+#:
+#:     ``Cancelled``
+#:
+#:     ``Suspended``
+#:
+#:     ``Expired``
+
+
+DESC
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Description of the recurring payment.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte alphanumeric characters
+
+
+AUTOBILLOUTAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Indicates whether you would like PayPal to automatically bill the
+#: outstanding balance amount in the next billing cycle. The outstanding
+#: balance is the total amount of any previously failed scheduled payments
+#: that have yet to be successfully paid. It is one of the following values:
+#:
+#:
+#:     ``NoAutoBill`` – PayPal does not automatically bill the outstanding
+#:     balance amount.
+#:
+#:     AddToNextBilling – PayPal automatically bills the outstanding balance
+#:     amount.
+
+
+MAXFAILEDPAYMENTS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Number of scheduled payments that can fail before the profile is
+#: automatically suspended. 
+#:
+#:
+#: Character length and limitations:
+#:     Number string representing an integer
+
+
+AGGREGATEAMOUNT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Total amount collected thus far for scheduled payments. 
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+
+
+AGGREGATEOPTIONALAMOUNT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Total amount collected thus far for optional payments. 
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+
+
+FINALPAYMENTDUEDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Final scheduled payment due date before the profile expires. 
+
+
+#------------------------------------------------------------------------------
+# Recurring Payments Profile Details Fields
+#------------------------------------------------------------------------------
+
+SUBSCRIBERNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Full name of the person receiving the product or service paid for by the
+#: recurring payment. If not present, the name in the buyer's PayPal account
+#: is used.
+#:
+#:
+#: Character length and limitations:
+#:     32 single-byte characters.
+
+
+PROFILESTARTDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date when billing for this profile begins.
+#:
+#: Must be a valid date, in UTC/GMT format.
+#:
+#:
+#: Notes:
+#:     The profile may take up to 24 hours for activation.
+
+
+PROFILEREFERENCE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The merchant's own unique reference or invoice number.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte alphanumeric characters.
+
+
+#------------------------------------------------------------------------------
+# Ship To AddressType Fields
+#------------------------------------------------------------------------------
+
+ADDRESSSTATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Status of street address on file with PayPal. It is one of the following
+#: values:
+#:
+#:
+#:     ``none``
+#:
+#:     ``Confirmed``
+#:
+#:     ``Unconfirmed``
+
+
+SHIPTONAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Person's name associated with this address.
+#:
+#:
+#: Character length and limitations:
+#:     32 single-byte characters
+
+
+SHIPTOSTREET
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: First street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+SHIPTOSTREET2
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Second street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+SHIPTOCITY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Name of city.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+SHIPTOSTATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: State or province. Required for U.S. addresses only.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+SHIPTOZIP
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: U.S. ZIP code or other country-specific postal code.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+SHIPTOCOUNTRYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Country code. 
+#:
+#:
+#: Character length and limitations:
+#:     2 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# Billing Period Details Fields
+#------------------------------------------------------------------------------
+
+BILLINGPERIOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Unit for billing during this subscription period. It is one of the
+#: following values:
+#:
+#:
+#:     ``Day``
+#:
+#:     ``Week``
+#:
+#:     ``SemiMonth``
+#:
+#:     ``Month``
+#:
+#:     ``Year``
+#:
+#:
+#: Notes:
+#:     The combination of ``BillingPeriod`` and ``BillingFrequency`` cannot
+#:     exceed one year.
+#:
+#:
+#: For ``SemiMonth``, billing is done on the 1st and 15th of each month.
+
+
+REGULARBILLINGPERIOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Unit for billing during this regular subscription period. It is one of the
+#: following values: 
+#:
+#:
+#:     ``Day``
+#:
+#:     ``Week``
+#:
+#:     ``SemiMonth``
+#:
+#:     ``Month``
+#:
+#:     ``Year``
+#:
+#:
+#: Notes:
+#:     The combination of ``RegularBillingPeriod`` and
+#:     ``RegularBillingFrequency`` cannot exceed one year.
+#:
+#:
+#: Available since API version: 53.0
+#:
+#: For ``SemiMonth``, billing is done on the 1st and 15th of each month.
+
+
+BILLINGFREQUENCY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Number of billing periods that make up one billing cycle. The combination
+#: of billing frequency and billing period must be less than or equal to one
+#: year. For example, if the billing cycle is ``Month``, the maximum value for
+#: billing frequency is 12. Similarly, if the billing cycle is ``Week``, the
+#: maximum value for billing frequency is 52.
+#:
+#:
+#: Notes:
+#:     If the billing period is ``SemiMonth``., the billing frequency must be
+#:     1.
+
+
+REGULARBILLINGFREQUENCY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Number of billing periods that make up one regular billing cycle.
+#:
+#: The combination of billing frequency and billing period must be less than
+#: or equal to one year. For example, if the billing cycle is ``Month``, the
+#: maximum value for billing frequency is 12. Similarly, if the billing cycle
+#: is ``Week``, the maximum value for billing frequency is 52.
+#:
+#:
+#: Notes:
+#:     If the billing period is ``SemiMonth``., the billing frequency must be
+#:     1.
+#:
+#:
+#: Available since API version: 53.0
+
+
+TOTALBILLINGCYCLES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Number of billing cycles for payment period (either the regular payment
+#: period or the trial period).
+#:
+#:
+#:     For the trial period, the value must be greater than 0.
+#:
+#:     For the regular payment period, if no value is specified or the value
+#:     is 0, the regular payment period continues until the profile is
+#:     canceled or deactivated.
+#:
+#:     For the regular payment period, if the value is greater than 0, the
+#:     regular payment period will expire after the trial period is finished
+#:     and continue at the billing frequency for ``TotalBillingCycles``
+#:     cycles.
+
+
+REGULARTOTALBILLINGCYCLES
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Number of billing cycles for the regular payment period.
+#:
+#:
+#:     For the regular payment period, if no value is specified or the value
+#:     is 0, the regular payment period continues until the profile is
+#:     canceled or deactivated.
+#:
+#:     For the regular payment period, if the value is greater than 0, the
+#:     regular payment period will expire after the trial period is finished
+#:     and continue at the billing frequency for ``RegularTotalBillingCycles``
+#:     cycles.
+#:
+#:
+#: Available since API version: 53.0
+
+
+AMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Billing amount for each billing cycle during this payment period. This
+#: amount does not include shipping and tax amounts.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). 
+#:
+#:
+#: Notes:
+#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must have
+#:     the same currency.
+
+
+REGULARAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Billing amount for each billing cycle during this regular payment period.
+#: This amount does not include shipping and tax amounts.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). 
+#:
+#:
+#: Notes:
+#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must have
+#:     the same currency.
+#:
+#:
+#: Available since API version: 53.0
+
+
+SHIPPINGAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Shipping amount for each billing cycle during this payment period.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+#:
+#:
+#: Notes:
+#:     All amounts in the request must have the same currency.
+
+
+REGULARSHIPPINGAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Shipping amount for each billing cycle during this regular payment period.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+#:
+#:
+#: Notes:
+#:     All amounts in the request must have the same currency.
+#:
+#:
+#: Available since API version: 53.0
+
+
+TAXAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Tax amount for each billing cycle during this payment period.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+#:
+#:
+#: Notes:
+#:     All amounts in the request must have the same currency.
+
+
+REGULARTAXAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Tax amount for each billing cycle during this regular payment period.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+#:
+#:
+#: Notes:
+#:     All amounts in the request must have the same currency.
+#:
+#:
+#: Available since API version: 53.0
+
+
+CURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Currency code (default is USD). 
+#:
+#:
+#: Character length and limitations:
+#:     3 single-byte characters
+
+
+REGULARCURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Currency code (default is USD). 
+#:
+#:
+#: Available since API version: 53.0
+
+
+#------------------------------------------------------------------------------
+# Recurring Payments Summary Details Fields
+#------------------------------------------------------------------------------
+
+NEXTBILLINGDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The next scheduled billing date, in YYYY-MM-DD format.
+
+
+NUMCYCYLESCOMPLETED
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The number of billing cycles completed in the current active subscription
+#: period. A billing cycle is considered completed when payment is collected
+#: or after retry attempts to collect payment for the current billing cycle
+#: have failed. 
+
+
+NUMCYCLESREMAINING
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The number of billing cycles remaining in the current active subscription
+#: period.
+
+
+OUTSTANDINGBALANCE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The current past due or outstanding balance for this profile.
+#:
+#:
+#: Character length and limitations:
+#:     Does not exceed $10,000 USD in any currency. No currency symbol.
+#:     Regardless of currency, decimal separator is a period (.), and the
+#:     optional thousands separator is a comma (,). Equivalent to nine
+#:     characters maximum for USD. 
+
+
+FAILEDPAYMENTCOUNT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The total number of failed billing cycles for this profile.
+
+
+LASTPAYMENTDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date of the last successful payment received for this profile, in
+#: YYYY-MM-DD format.
+
+
+LASTPAYMENTAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The amount of the last successful payment received for this profile.
+#:
+#:
+#: Character length and limitations:
+#:     Does not exceed $10,000 USD in any currency. No currency symbol.
+#:     Regardless of currency, decimal separator is a period (.), and the
+#:     optional thousands separator is a comma (,). Equivalent to nine
+#:     characters maximum for USD. 
+
+
+#------------------------------------------------------------------------------
+# Credit Card Details Fields
+#------------------------------------------------------------------------------
+
+CREDITCARDTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Type of credit card. Is one of the following values:
+#:
+#:
+#:     ``Visa``
+#:
+#:     ``MasterCard``
+#:
+#:     ``Discover``
+#:
+#:     ``Amex``
+#:
+#:     ``Maestro`` – See note.
+#:
+#:
+#: Character length and limitations:
+#:     Up to 10 single-byte alphabetic characters
+#:
+#:
+#: Notes:
+#:     If the credit card type is ``Maestro``, you must set the ``currencyId``
+#:     to ``GBP``. In addition, you must specify either ``StartMonth`` and
+#:     ``StartYear`` or ``IssueNumber``.
+
+
+ACCT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Credit card number. Only the last 4 digits of the credit card number are
+#: returned.
+#:
+#:
+#: Character length and limitations:
+#:     Numeric characters only with no spaces or punctuation. The string must
+#:     conform with modulo and length required by each credit card type.
+
+
+EXPDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Credit card expiration date. This field is required if you are using
+#: recurring payments with direct payments.
+#:
+#:
+#: Character length and limitations:
+#:     6 single-byte alphanumeric characters, including leading zero, in the
+#:     format MMYYYY
+
+
+STARTDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Month and year that Maestro card was issued.
+#:
+#:
+#: Character length and limitations:
+#:     Must be 6 digits, including leading zero, in the format MMYYYY
+
+
+ISSUENUMBER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Issue number of Maestro card.
+#:
+#:
+#: Character length and limitations:
+#:     2 numeric digits
+
+
+#------------------------------------------------------------------------------
+# Payer Info Fields
+#------------------------------------------------------------------------------
+
+EMAIL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Email address of buyer.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte characters
+
+
+FIRSTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Buyer's first name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+LASTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Buyer's last name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# Address Fields
+#------------------------------------------------------------------------------
+
+ADDRESSOWNER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: eBay company that maintains this address. It is one of the following
+#: values:
+#:
+#:
+#:     ``eBay````
+``
+#:
+#:     ``PayPal``
+
+
+ADDRESSSTATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Status of street address on file with PayPal. It is one of the following
+#: values:
+#:
+#:
+#:     ``none``
+#:
+#:     ``Confirmed``
+#:
+#:     ``Unconfirmed``
+
+
+SHIPTONAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Person's name associated with this address.
+#:
+#:
+#: Character length and limitations:
+#:     32 single-byte characters
+
+
+SHIPTOSTREET
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: First street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+SHIPTOSTREET2
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Second street address.
+#:
+#:
+#: Character length and limitations:
+#:     100 single-byte characters
+
+
+SHIPTOCITY
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Name of city.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+SHIPTOSTATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: State or province. Required for U.S. addresses only.
+#:
+#:
+#: Character length and limitations:
+#:     40 single-byte characters
+
+
+SHIPTOZIP
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: U.S. ZIP code or other country-specific postal code.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+SHIPTOCOUNTRYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Country code. 
+#:
+#:
+#: Character length and limitations:
+#:     2 single-byte characters
+
+
+SHIPTOPHONENUM
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Phone number.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+

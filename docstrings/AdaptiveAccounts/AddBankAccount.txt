@@ -1,0 +1,462 @@
+#------------------------------------------------------------------------------
+# AddBankAccount Request Fields
+#------------------------------------------------------------------------------
+
+accountHolderDateofBirth
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:date``
+#:
+#: (Optional) The date of birth of the account holder in YYYY-MM-DDZ format,
+#: for example 1970-01-01Z.
+
+
+accountId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The identification number of the PayPal account for which a bank
+#: account is added. You must specify either the ``accountId`` or
+#: ``emailAddress`` for this request.
+
+
+agencyNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) For the Brazil Agency Number. 
+
+
+bankAccountNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The account number (BBAN) of the bank account to be added.
+
+
+bankAccountType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:BankAccountType``
+#:
+#: (Optional) The type of bank account to be added. Allowable values are:
+#:
+#:
+#:     ``CHECKING``
+#:
+#:     ``SAVINGS``
+#:
+#:     ``BUSINESS_SAVINGS``
+#:
+#:     ``BUSINESS_CHECKINGS``
+#:
+#:     ``NORMAL``
+#:
+#:     ``UNKNOWN``
+
+
+bankCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The code that identifies the bank where the account is held.
+
+
+bankCountryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The country code. For allowable values, refer to Country Codes_.
+#: 
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+bankName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The default value is UNKNOWN.
+
+
+bankTransitNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The transit number of the bank.
+
+
+branchCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The branch code for the bank.
+
+
+branchLocation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The branch location.
+
+
+bsbNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The Bank/State/Branch number for the bank.
+
+
+clabe
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#:  CLABE represents the bank information for countries like Mexico.
+
+
+confirmationType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:ConfirmationType``
+#:
+#: (Required) Whether PayPal account holders are redirected to PayPal.com to
+#: confirm the payment card addition. When you pass NONE for this element, the
+#: addition is made without the account holder's explicit confirmation. If you
+#: pass WEB, a URL is returned.
+#:
+#: Allowable string values are:
+#:
+#:
+#:     WEB
+#:
+#:     NONE
+#:
+#:
+#: Notes:
+#:     ``ConfirmationType`` NONE requires advanced permission levels. You must
+#:     pass the createAccount key.
+
+
+controlDigit
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The control digits for the bank.
+
+
+emailAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The email address for the PayPal account. You must specify
+#: either the ``accountId`` or ``emailAddress`` for this request.
+
+
+iban
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The IBAN for the bank. 
+
+
+institionNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The institution number for the bank.
+
+
+partnerInfo
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The partner information for the bank.
+
+
+requestEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:RequestEnvelope``
+#:
+#: (Required) Information common to each API operation, such as the language
+#: in which an error message is returned.
+
+
+ribkey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The RIB key for the bank.
+
+
+routingNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The bank's routing number.
+
+
+sortCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The branch sort code.
+
+
+taxIdType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Tax id type of CNPJ or CPF, only supported for Brazil.
+
+
+taxIdNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Tax id number for Brazil.
+
+
+webOptionsType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:WebOptionsType``
+#:
+#: (Optional) Additional structure to define the URLs for the cancellation and
+#: return web flows.
+
+
+#------------------------------------------------------------------------------
+# WebOptionsType Fields
+#------------------------------------------------------------------------------
+
+cancelUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The URL to which bank account/payment card holders return when
+#: they cancel the bank account addition flow.
+
+
+cancelUrlDescription
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A description of the cancellation URL.
+
+
+returnUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The URL to which bank account/payment card holders return after
+#: they add the account or payment card.
+
+
+returnUrlDescription
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A description of the return URL.
+
+
+#------------------------------------------------------------------------------
+# RequestEnvelope Fields
+#------------------------------------------------------------------------------
+
+detailLevel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DetailLevelCode``
+#:
+#: (Optional) The level of detail required by the client application for
+#: component such as Item, Transaction. Possible values are:
+#:
+#:
+#:     ``ReturnAll`` – This value provides the maximum level of detail
+#:     (default)
+
+
+errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The RFC 3066 language in which error messages are returned; by
+#: default it is ``en_US``, which is the only language currently supported
+
+
+#------------------------------------------------------------------------------
+# AddBankAccount Response Fields
+#------------------------------------------------------------------------------
+
+execStatus
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Execution status for the request. Possible values are:
+#:
+#:
+#:     ``COMPLETED``
+#:
+#:     ``CREATED``
+#:
+#:     ``CREATED PENDING VERIFICATION``
+
+
+fundingSourceKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The key for the funding source to use in subsequent Adaptive Accounts API
+#: request messages.
+
+
+redirectURL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The URL to direct the PayPal account holder to redirection after the Add
+#: Bank Account web flow is completed.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the response
+#: acknowledgement status.
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgment code. Possible values are:
+#:
+#:
+#:     ``Success`` – Operation completed successfully
+#:
+#:     ``Failure`` – Operation failed
+#:
+#:     ``Warning`` – warning
+#:
+#:     ``SuccessWithWarning`` – Operation completed successfully; however,
+#:     there is a warning message
+#:
+#:     ``FailureWithWarning`` – Operation failed with a warning message
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Build number; used only by Developer Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Correlation ID; used only by Developer Technical Support.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date on which the response was sent. The time is not supported.
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+500000 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Framework failure. Retry.
+
+
+520002 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal error
+
+
+520003 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid credentials.
+
+
+550001 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: User is not allowed to perform this action
+
+
+560022 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid header.
+
+
+560029
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The required <name> header is missing from the HTTP request
+
+
+580001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request:
+#:
+#:
+#:     PA_Invalid_Currency
+#:
+#:     Maximum attempts of Random deposits reached
+#:
+#:     Invalid request parameter: bankAccountType
+#:
+#:     Invalid request parameter: accountNumber
+#:
+#:     Unsupported countryCode
+#:
+#:     Invalid request parameter: countryCode
+#:
+#:     Invalid input
+#:
+#:     Invalid request parameter: dateOfBirth
+#:
+#:     Missing required request parameter: countryCode
+#:
+#:     There are maximum number of bank accounts
+#:
+#:     The bank account is already associated with another PayPal account
+#:
+#:     Bank account is already a part of the end user PayPal account
+#:
+#:     AddBankAccount has been rejected
+#:
+#:     Invalid bank account information
+#:
+#:     More than one inactive bank account matches the routing number and the
+#:     account number
+#:
+#:     Invalid beneficiary ID
+#:
+#:     PayPal account specified in the request is locked
+#:
+#:     PayPal account specified in the request is closed
+#:
+#:     Operation is not supported: PA_Replaceable_Value
+#:
+#:     Invalid request: PA_Replaceable_Value
+
+
+580022 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Request parameter is invalid: 
+#:
+#:
+#:     Invalid request parameter: PA_Replaceable_Value
+#:
+#:     Expired createAccountKey
+#:
+#:     Invalid request parameter: ipAddressExpired createAccountKey
+#:
+#:     Invalid request parameter: createAccountKey
+
+
+580023 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The argument is inconsistent with the rest of the request.
+
+

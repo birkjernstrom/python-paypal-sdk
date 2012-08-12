@@ -1,0 +1,305 @@
+#------------------------------------------------------------------------------
+# TransactionSearch Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Must be TransactionSearch.
+
+
+STARTDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) The earliest transaction date at which to start the search.
+#:
+#:
+#: Character length and limitations:
+#:     No wildcards are allowed. The value must be in UTC/GMT.
+
+
+ENDDATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) The latest transaction date to be included in the search.
+#:
+#:
+#: Character length and limitations:
+#:     No wildcards are allowed. The value must be in UTC/GMT.
+
+
+EMAIL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by the buyer's email address.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte alphanumeric characters
+
+
+RECEIVER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by the receiver's email address. If the merchant account
+#: has only one email address, this is the primary email. It can also be a
+#: non-primary email address.
+
+
+RECEIPTID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by the PayPal Account Optional receipt ID. This field is
+#: not applicable to point-of-sale transactions.
+
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by the transaction ID. The returned results are from the
+#: merchant's transaction records.
+#:
+#:
+#: Character length and limitations:
+#:     19 single-byte characters maximum
+
+
+INVNUM
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by invoice identification key, as set by you for the
+#: original transaction. This field searches the records for items the
+#: merchant sells.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte characters maximum with no wildcards allowed
+
+
+ACCT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by credit card number, as set by you for the original
+#: transaction. This field searches the records for items the merchant sells.
+#: The field is not applicable to point-of-sale.
+#:
+#:
+#: Character length and limitations:
+#:     Must be at least 11 and no more than 25 single-byte numeric characters
+#:     maximum. Special punctuation, such as dashes or spaces, is ignored.
+#:
+#:
+#: Notes:
+#:     No wildcards are allowed.
+
+
+AUCTIONITEMNUMBER
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by auction item number of the purchased goods. This field
+#: is not applicable to point-of-sale.
+
+
+TRANSACTIONCLASS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by classification of transaction. Some kinds of possible
+#: classes of transactions are not searchable with this field. You cannot
+#: search for bank transfer withdrawals, for example. It is one of the
+#: following values:
+#:
+#:
+#:     ``All`` – All transaction classifications
+#:
+#:     ``Sent`` – Only payments sent
+#:
+#:     ``Received`` – Only payments received
+#:
+#:     ``MassPay`` – Only mass payments
+#:
+#:     ``MoneyRequest`` – Only money requests
+#:
+#:     ``FundsAdded`` – Only funds added to balance
+#:
+#:     ``FundsWithdrawn`` – Only funds withdrawn from balance
+#:
+#:     ``Referral`` – Only transactions involving referrals
+#:
+#:     ``Fee`` – Only transactions involving fees
+#:
+#:     ``Subscription`` – Only transactions involving subscriptions
+#:
+#:     ``Dividend`` – Only transactions involving dividends
+#:
+#:     ``Billpay`` – Only transactions involving BillPay Transactions
+#:
+#:     ``Refund`` – Only transactions involving funds
+#:
+#:     ``CurrencyConversions`` – Only transactions involving currency
+#:     conversions
+#:
+#:     ``BalanceTransfer`` – Only transactions involving balance transfers
+#:
+#:     ``Reversal`` – Only transactions involving BillPay reversals
+#:
+#:     ``Shipping`` – Only transactions involving UPS shipping fees
+#:
+#:     ``BalanceAffecting`` – Only transactions that affect the account
+#:     balance
+#:
+#:     ``ECheck`` – Only transactions involving eCheck
+
+
+AMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by transaction amount.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+#:
+#:
+#: Notes:
+#:     You must set the ``currencyID`` attribute to one of the 3-character
+#:     currency codes for any of the supported PayPal currencies. 
+
+
+CURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by 3-character, ISO 4217 currency code.
+
+
+STATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Search by transaction status. It is one of the following values:
+#:
+#:
+#:     ``Pending`` – The payment is pending. The specific reason the payment
+#:     is pending is returned by the ``GetTransactionDetails`` API
+#:     ``PendingReason`` field.
+#:
+#:     ``Processing`` – The payment is being processed.
+#:
+#:     ``Success`` – The payment has been completed and the funds have been
+#:     added successfully to your account balance.
+#:
+#:     ``Denied`` – You denied the payment. This happens only if the payment
+#:     was previously pending.
+#:
+#:     ``Reversed`` – A payment was reversed due to a chargeback or other type
+#:     of reversal. The funds have been removed from your account balance and
+#:     returned to the buyer.
+
+
+#------------------------------------------------------------------------------
+# Payer Name Fields
+#------------------------------------------------------------------------------
+
+SALUTATION
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's salutation.
+#:
+#:
+#: Character length and limitations:
+#:     20 single-byte characters
+
+
+FIRSTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's first name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+MIDDLENAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's middle name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+LASTNAME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's last name.
+#:
+#:
+#: Character length and limitations:
+#:     25 single-byte characters
+
+
+SUFFIX
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Buyer's suffix.
+#:
+#:
+#: Character length and limitations:
+#:     12 single-byte characters
+
+
+#------------------------------------------------------------------------------
+# TransactionSearch Response Fields
+#------------------------------------------------------------------------------
+
+L_TIMESTAMPn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Date and time in UTC/GMT that the transaction occurred.
+
+
+L_TIMEZONEn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Time zone of the transaction. The value is always ``GMT``.
+
+
+L_TYPEn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Type of the transaction. It is one of the following values: 
+#:
+#:
+#:     Currency Conversion (credit)
+#:
+#:     Currency Conversion (debit)
+#:
+#:     Payment
+#:
+#:     Recurring Payment
+
+
+L_EMAILn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Email address of either the buyer or the payment recipient (the "payee").
+#: If the payment amount is positive, this field is the recipient of the
+#: funds. If the payment is negative, this field is the paying buyer.
+
+
+L_NAMEn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Display name of the buyer.
+
+
+L_TRANSACTIONIDn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Merchant's transaction ID.
+
+
+L_STATUSn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The status of the transaction. 
+
+
+L_AMTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The total gross amount charged, including any profile shipping cost and
+#: taxes. 
+
+
+L_CURRENCYCODEn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: 3-character, ISO 4217 currency code.
+
+
+L_FEEAMTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The fee that PayPal charged for the transaction.
+
+
+L_NETAMTn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The net amount of the transaction.
+
+

@@ -1,0 +1,1110 @@
+#------------------------------------------------------------------------------
+# CreateAccount Request Fields
+#------------------------------------------------------------------------------
+
+accountType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The type of account to be created. Allowable values are:
+#:
+#:
+#:     ``Personal`` – Personal account
+#:
+#:     ``Premier`` – Premier account
+#:
+#:     ``Business`` – Business account
+
+
+address
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:AddressType``
+#:
+#: (Required) The address to be associated with the PayPal account.
+
+
+businessInfo
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:BusinessInfoType``
+#:
+#: This field is required for business account creation.
+
+
+citizenshipCountryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The code of the country to be associated with the account. For
+#: allowable values, refer to Country Codes_.
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+clientDetails
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Do not use this field.
+
+
+contactPhoneNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Phone number to be associated with the account.
+
+
+homePhoneNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Home phone number to be associated with the account.
+
+
+mobilePhoneNumber
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Mobile phone number to be associated with the account. You must
+#: specify a value to invoke the mobile confirmation option. 
+
+
+createAccountWebOptions
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:CreateAccountWebOptionsType``
+#:
+#: (Required) The URL to which the business redirects the PayPal user for
+#: PayPal account setup completion; also used for various other. configuration
+#: settings for the web flow.
+
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The three letter code for the currency to be associated with the
+#: account. 
+
+
+dateOfBirth
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:date``
+#:
+#: The date of birth of the person for whom the PayPal account is created.
+#: Required for Czech Republic, Japan, New Zealand, Israel, Switzerland,
+#: Sweden, Denmark, and Australia; otherwise optional. Use YYYY-MM-DDZ format;
+#: for example 1970-01-01Z. 
+
+
+emailAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Email address of person for whom the PayPal account is created. 
+
+
+name
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:NameType``
+#:
+#: (Required) The name of the person for whom the PayPal account is created.
+
+
+notificationURL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The URL to post instant payment notification (IPN) messages to
+#: regarding account creation. This URL supersedes the IPN notification URL
+#: set in the merchant profile. 
+#:
+#: Maximum string length: between 1 and 1024 characters of the pattern
+#: <[a-aZ-Z]+\://){1}\S+
+
+
+partnerFieldn
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A maximum of five fields for your own use, where n is a digit
+#: between ``1`` and ``5``, inclusive.
+
+
+perfermExtraVettingOnthisAccount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: (Optional) Whether to subject the account to extra vetting by PayPal before
+#: the account can be used. 
+
+
+taxId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Tax ID (equivalent to SSN in US). 
+#:
+#:
+#: Notes:
+#:      This is only supported for Brazil, which uses tax ID numbers such as
+#:     the CPF and CNPJ.
+
+
+preferredLanguageCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The code indicating the language to be associated with the
+#: account. What value is allowed depends on the country code passed in the
+#: ``countryCode`` parameter for the address. Examples:
+#:
+#:
+#:     Argentina (AR) – ``en_US, es_XC``
+#:
+#:     Australia (AU) – ``en_AU``
+#:
+#:     Austria (AT) – ``de_DE, en_US``
+#:
+#:     Brazil (BR) – ``en_US``
+#:
+#:     Canada (CA) – ``en_US, fr_XC``
+#:
+#:     China (CN) – ``en_US``
+#:
+#:     Czech Republic (CZ) – ``en_US``
+#:
+#:     Denmark (DK) – ``en_US``
+#:
+#:     France (FR) – ``fr_FR``
+#:
+#:     Germany (DE) – ``de_DE``
+#:
+#:     Israel (IL) – ``en_US``, ``he_IL``
+#:
+#:     Italy (IT) – ``it_IT``
+#:
+#:     Japan (JP) – ``ja_JP``
+#:
+#:     Malaysia (MY) – ``en_US``
+#:
+#:     Mexico (MX) – ``es_XC``
+#:
+#:     Netherlands (NL) – ``nl_NL``
+#:
+#:     New Zealand (NZ) – ``en_US``
+#:
+#:     Russian Federation (RU) – ``en_US``
+#:
+#:     Spain (ES) – ``es_ES``
+#:
+#:     Switzerland (CH) – ``de_DE``
+#:
+#:     Sweden (SE) – ``en_US``
+#:
+#:     United Kingdom (GB) – ``en_GB``
+#:
+#:     United States (US) – ``en_US``
+
+
+registrationType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) This attribute determines whether a key or a URL is returned for
+#: the redirect URL. Allowable value(s) currently supported:
+#:
+#:
+#:     ``Web`` – Returns a URL
+
+
+requestEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:RequestEnvelope``
+#:
+#: (Required) Information common to each API operation, such as the language
+#: in which an error message is returned.
+
+
+suppressWelcomeEmail
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: (Optional) Whether or not to suppress the PayPal welcome email.
+
+
+#------------------------------------------------------------------------------
+# AddressType Fields
+#------------------------------------------------------------------------------
+
+line1
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The street address.
+
+
+line2
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The second line of the address.
+#:
+#:
+#: Notes:
+#:     This field is required for Brazilian addresses.
+
+
+city
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The city.
+
+
+state
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The state code.
+
+
+postalCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The zip or postal code.
+
+
+countryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The country code. For allowable values, refer to Country Codes_.
+#: 
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+#------------------------------------------------------------------------------
+# BusinessInfoType Fields
+#------------------------------------------------------------------------------
+
+averageMonthlyVolume
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: The average monthly transaction volume of the business for which the PayPal
+#: account is created. Required for all countries except Japan and Australia. 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for Japan or Australia. 
+
+
+averagePrice
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: The average price per transaction. Required for all countries except Japan
+#: and Australia. 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for Japan or Australia. 
+
+
+businessAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:addressType``
+#:
+#: (Required) The address for the business for which the PayPal account is
+#: created.
+
+
+businessName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The name of the business for which the PayPal account is
+#: created.
+
+
+businessStakeholder
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:businessStakeholderType``
+#:
+#: (Optional) The stakeholders in the business.
+
+
+businessSubtype
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:businessSubtypeType``
+#:
+#: (Optional) The sub type of the business for which the PayPal account is
+#: created. Allowable values are:
+#:
+#:
+#:     ``ENTITY``
+#:
+#:     ``EMANATION````None``
+#:
+#:     ``ESTD_COMMONWEALTH``
+#:
+#:     ``ESTD_UNDER_STATE_TERRITORY``
+#:
+#:     ``ESTD_UNDER_FOREIGH_COUNTY``
+#:
+#:     ``INCORPORATED``
+#:
+#:     ``NON_INCORPORATED``
+
+
+businessType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:businessType``
+#:
+#: (Required) The type of the business for which the PayPal account is
+#: created. Allowable values are:
+#:
+#:
+#:     ``CORPORATION``
+#:
+#:     ``GOVERNMENT``
+#:
+#:     ``INDIVIDUAL``
+#:
+#:     ``NONPROFIT``
+#:
+#:     ``PARTNERSHIP``
+#:
+#:     ``PROPRIETORSHIP``
+#:
+#:
+#: Notes:
+#:     The WSDL lists additional business types, but the types above are the
+#:     only ones supported for this release.
+
+
+category
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:integer``
+#:
+#: The category describing the business for which the PayPal account is
+#: created, for example; 1004 for Baby. Required unless you specify
+#: ``merchantCategoryCode``. PayPal uses the industry standard Merchant
+#: Category Codes. Refer to the business' Association Merchant Category Code
+#: documentation for a list of codes.
+
+
+commercialRegistrationLocation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Official commercial registration location for the business for which the
+#: PayPal account is created. Required for Germany.
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+
+
+companyId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The identification number, equivalent to the tax ID in the United States,
+#: of the business for which the PayPal account is created. Optional for
+#: business accounts in: United States, United Kingdom, France, Spain, Italy,
+#: Netherlands, Sweden, and Denmark. Required for business accounts in the
+#: following countries: Canada, and some accounts in Australia and Germany, 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+
+
+customerServiceEmail
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The email address for the customer service department of the
+#: business.
+
+
+customerServicePhone
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The phone number for the customer service department of the business.
+#: Required for United States business accounts; otherwise, optional. 
+
+
+dateOfEstablishment
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:date``
+#:
+#: The date of establishment for the business. Optional for France business
+#: accounts and required for business accounts in the following countries:
+#: United States, United Kingdom, Canada, Germany, Spain, Italy, Netherlands,
+#: Czech Republic, Sweden, and Denmark.
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+
+
+disputeEmail
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The email address to contact to dispute charges.
+
+
+doingBusinessAs
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The business name being used if it is not the actual name of the
+#: business.
+
+
+establishmentCountryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The code of the country where the business was established. For
+#: allowable values, refer to Country Codes_.
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+establishmentState
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The state in which the business was established.
+
+
+incorporationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The incorporation identification number for the business.
+
+
+merchantCategoryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The category code for the business. state in which the business was
+#: established. Required unless you specify both ``category`` and
+#: ``subcategory``. PayPal uses the industry standard Merchant Category Codes.
+#: Refer to the business' Association Merchant Category Code documentation for
+#: a list of codes.
+
+
+percentageRevenueFromOnline
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:integer``
+#:
+#: The percentage of online sales for the business from 0 through 100.
+#: Required for business accounts in the following countries: United States,
+#: Canada, United Kingdom, France, Czech Republic, New Zealand, Switzerland,
+#: and Israel. 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+
+
+principlePlaceofBusinessd
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:AddressType``
+#:
+#: (Optional) The principle business address.
+
+
+registeredOfficeAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:AddressType``
+#:
+#: (Optional) The business address for the business registration.
+
+
+salesVenue
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:salesVenueType``
+#:
+#: The venue type for sales. Required for business accounts in all countries
+#: except Czech Republic and Australia. Allowable values are:
+#:
+#:
+#:     ``WEB``
+#:
+#:     ``EBAY``
+#:
+#:     ``OTHER_MARKETPLACE``
+#:
+#:     ``OTHER`` Note: Do not specify this field for Czech Republic or
+#:     Australia.
+
+
+salesVenueDesc
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A desccription of the sales venue. Required if ``salesVenue`` is ``OTHER``
+#: for all countries except Czech Republic and Australia. 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for Czech Republic or Australia. 
+
+
+subcategory
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:integer``
+#:
+#: The subcategory describing the business for which the PayPal account is
+#: created. Required unless you specify ``merchantCategoryCode``. PayPal uses
+#: the industry standard Merchant Category Codes. Refer to the business'
+#: Association Merchant Category Code documentation for a list of codes.
+
+
+vatCountryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The country for the VAT. Optional for business accounts in the following
+#: countries: United Kingdom, France, Germany, Spain, Italy, Netherlands,
+#: Switzerland, Sweden, and Denmark. For allowable values, refer to Country
+#: Codes_.
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+vatId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The VAT identification number of the business. Optional for business
+#: accounts in the following countries: United Kingdom, France, Germany,
+#: Spain, Italy, Netherlands, Switzerland, Sweeden, and Denmark. 
+#:
+#:
+#: Notes:
+#:     Do not specify this field for other countries. 
+
+
+webSite
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The URL for the website of the business in the following format:
+#: ``http://www.example.com_``. Required if the ``salesVenue`` is ``WEB``;
+#: otherwise optional. The URL must be to a hosted website.
+#:
+#:
+#: .. _http://www.example.com: http://www.example.com
+
+
+workPhone
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required)* The phone number for the business. Not required for businesses
+#: in Mexico.
+
+
+#------------------------------------------------------------------------------
+# BusinessStakeholderType Fields
+#------------------------------------------------------------------------------
+
+address
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:addressType``
+#:
+#: (Optional) The address of the stakeholder in the business for which the
+#: PayPal account is created.
+
+
+dateOfBirth
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:date``
+#:
+#: (Optional) The date of birth of the stakeholder in the business. Use
+#: YYYY-MM-DDZ format; for example 1970-01-01Z.
+
+
+fullLegalName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The legal name of the stakeholder in the business for which the
+#: PayPal account is created.
+
+
+name
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:NameType``
+#:
+#: (Optional) The name of the stakeholder in the business for which the PayPal
+#: account is created.
+
+
+role
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``aa:StakeholderRoleType``
+#:
+#: (Optional) The role of the stakeholder in the business for which the PayPal
+#: account is created. Allowable values are:
+#:
+#:
+#:     ``CHAIRMAN``
+#:
+#:     ``SECRETARY``
+#:
+#:     ``TREASURER``
+#:
+#:     ``BENEFICIAL_OWNER``
+#:
+#:     ``PRIMARY_CONTACT``
+#:
+#:     ``INDIVIDUAL_PARTNER``
+#:
+#:     ``NON_INDIVIDUAL_PARTNER``
+#:
+#:     ``PRIMARY_INDIVIDUAL_PARTNER``
+#:
+#:     ``DIRECTOR``
+#:
+#:     ``NO_BENEFICIAL_OWNER``
+
+
+countryCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#:  The country code. For allowable values, refer to 
+#:
+#: Country Codes_
+#:
+#: .
+#:
+#:
+#: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
+
+
+#------------------------------------------------------------------------------
+# CreateWebOptionsType Fields
+#------------------------------------------------------------------------------
+
+returnUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The URL to which PayPal returns the account holder after the
+#: account is created.
+
+
+returnUrlDescription
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A description of the return URL.
+
+
+showAddCreditCard
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: xs:boolean
+#:
+#: (Optional) Whether or not to show the Add Credit Card option.
+#:
+#:
+#:     ``true`` - show the option
+#:
+#:     ``false`` - do not show the option (default)
+
+
+showMobileConfirm
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: xs:boolean
+#:
+#: (Optional) Whether or not to show the mobile confirmation option.
+#:
+#:
+#:     ``true`` - show the option
+#:
+#:     ``false`` - do not show the option (default)
+#:
+#:
+#: Notes:
+#:     This option is only available for Australia, Canada, Spain, France,
+#:     United Kingdom, Italy, Malaysia, Singapore, and United States. 
+#:
+#:
+#: This option displays only if you specify a value for ``mobilePhoneNumber``
+#: in the CreateAccount request. 
+
+
+useMiniBrowser
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: xs:boolean
+#:
+#: (Optional) Whether or not to use the minibrowser flow. It is one of the
+#: following values:
+#:
+#:
+#:     ``true`` - use the minbrowser flow
+#:
+#:     ``false`` - use the traditional flow (default)
+#:
+#:
+#: Notes:
+#:     If you specify true for ``useMiniBrowser``, do not specify values for
+#:     ``returnUrl`` or ``returnUrlDescription`` as they are not used in the
+#:     minibrowser flow. 
+
+
+#------------------------------------------------------------------------------
+# NameType Fields
+#------------------------------------------------------------------------------
+
+salutation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A salutation for the account or payment card holder.
+
+
+firstName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) First name of the account or payment card holder.
+
+
+middleName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Middle name of the account or payment card holder.
+
+
+lastName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) Last name of the account or payment card holder.
+
+
+suffix
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A suffix for the account or payment card holder.
+
+
+#------------------------------------------------------------------------------
+# RequestEnvelope Fields
+#------------------------------------------------------------------------------
+
+detailLevel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DetailLevelCode``
+#:
+#: (Optional) The level of detail required by the client application for
+#: component such as Item, Transaction. Possible values are:
+#:
+#:
+#:     ``ReturnAll`` – This value provides the maximum level of detail
+#:     (default)
+
+
+errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The RFC 3066 language in which error messages are returned; by
+#: default it is ``en_US``, which is the only language currently supported
+
+
+#------------------------------------------------------------------------------
+# CreateAccount Response Fields
+#------------------------------------------------------------------------------
+
+accountId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The ID for the PayPal account. This is only for Premier and Business
+#: accounts.
+
+
+createAccountKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A unique key that identifies the account that was created.
+
+
+execStatus
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The status of the payment. Allowable values:
+#:
+#:
+#:     ``CREATED`` – The account creation is complete, no redirection for
+#:     approval necessary.
+#:
+#:     ``COMPLETED`` – The account creation request was successful (user
+#:     redirection for approval required).
+#:
+#:     ``CREATED PENDING VERIFICATION`` – The account creation is complete but
+#:     verification/approval process has not been completed.
+
+
+returnURL
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The URL to which you direct your customer's browser to create the account.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the response
+#: acknowledgement status.
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgment code. Possible values are:
+#:
+#:
+#:     ``Success`` – Operation completed successfully
+#:
+#:     ``Failure`` – Operation failed
+#:
+#:     ``Warning`` – warning
+#:
+#:     ``SuccessWithWarning`` – Operation completed successfully; however,
+#:     there is a warning message
+#:
+#:     ``FailureWithWarning`` – Operation failed with a warning message
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Build number; used only by Developer Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Correlation ID; used only by Developer Technical Support.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date on which the response was sent. The time is not supported.
+
+
+#------------------------------------------------------------------------------
+# CreateAccount Errors
+#------------------------------------------------------------------------------
+
+500000 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Framework failure. Retry.
+
+
+520002 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal error
+
+
+520003 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid credentials
+
+
+550001 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: User is not allowed to perform this action
+
+
+560022 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid header.
+
+
+560029
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The required <name> header is missing from the HTTP request
+
+
+580001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request: 
+#:
+#:
+#:     User has exceeded call limit set for the API
+#:
+#:     Personal account is not allowed for the country
+#:
+#:     Language not supported
+#:
+#:     <name>
+
+
+580022
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request parameter:
+#:
+#:
+#:     accountType
+#:
+#:     address
+#:
+#:     averageMonthlyVolume
+#:
+#:     averagePrice
+#:
+#:     city
+#:
+#:     countryCode
+#:
+#:     line1
+#:
+#:     line2
+#:
+#:     state
+#:
+#:     postalCode
+#:
+#:     state
+#:
+#:     businessStakeholder
+#:
+#:     businessSubtype
+#:
+#:     businessType
+#:
+#:     category
+#:
+#:     citizenshipCountryCode
+#:
+#:     city
+#:
+#:     commercialRegistrationLocation
+#:
+#:     companyId
+#:
+#:     contactPhoneNumber
+#:
+#:     currencyCode
+#:
+#:     customerServiceEmail
+#:
+#:     customerServicePhone
+#:
+#:     dateOfBirth
+#:
+#:     dateOfEstablishment
+#:
+#:     Account already exists for the specified email address
+#:
+#:     emailAddress
+#:
+#:     establishmentCountryCode
+#:
+#:     establishmentState
+#:
+#:     firstName
+#:
+#:     Interest Tax Id already exists
+#:
+#:     ipAddress
+#:
+#:     lastName
+#:
+#:     percentageRevenueFromOnline
+#:
+#:     preferredLanguageCode
+#:
+#:     returnUrl
+#:
+#:     salesVenue
+#:
+#:     salutation
+#:
+#:     sandboxEmailAddress
+#:
+#:     role
+#:
+#:     subCategory
+#:
+#:     vatId
+#:
+#:     website
+#:
+#:     workPhone
+
+
+580023 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The argument is inconsistent with the rest of the request
+
+
+580027 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The parameter is not supported
+
+
+580029 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: A required parameter is missing from the request: 
+#:
+#:
+#:     postalCode
+#:
+#:     state
+#:
+#:     businessStakeholder
+#:
+#:     city
+#:
+#:     countryCode
+#:
+#:     firstName
+#:
+#:     incorporationId
+#:
+#:     lastName
+#:
+#:     line1
+#:
+#:     postalCode
+#:
+#:     salesVenueDesc
+#:
+#:     state
+#:
+#:     mobilePhoneNumber
+
+

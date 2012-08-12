@@ -1,0 +1,765 @@
+#------------------------------------------------------------------------------
+# Table 1. Required preapproval fields
+#------------------------------------------------------------------------------
+
+endingDate
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Last date for which the preapproval is valid. It cannot be later than one
+#: year from the starting date. Contact PayPal if you do not want to specify
+#: an ending date. 
+
+
+startingDate
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: First date for which the preapproval is valid. It cannot be before today's
+#: date or after the ending date.
+
+
+maxTotalAmountOfAllPayments
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The preapproved maximum total amount of all payments. It cannot exceed
+#: $2,000 USD or its equivalent in other currencies. Contact PayPal if you do
+#: not want to specify a maximum amount. 
+
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The code for the currency in which the payment is made; you can specify
+#: only one currency, regardless of the number of receivers
+
+
+cancelUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: URL to redirect the sender's browser to after canceling the preapproval
+
+
+returnUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: URL to redirect the sender's browser to after the sender has logged into
+#: PayPal and confirmed the preapproval
+
+
+requestEnvelope.errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The code for the language in which errors are returned, which must be
+#: ``en_US``.
+
+
+#------------------------------------------------------------------------------
+# PreapprovalRequest Fields
+#------------------------------------------------------------------------------
+
+cancelUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The URL to which the sender's browser is redirected after the
+#: sender cancels the preapproval at paypal.com.
+#:
+#: Maximum length: 1024 characters
+
+
+clientDetails
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ClientDetailsType``
+#:
+#: (Required) Information about the sender.
+
+
+currencyCode
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The currency code. Allowable values are:
+#:
+#:
+#:     Australian Dollar – ``AUD``
+#:
+#:     Brazilian Real – ``BRL`` Note: The Real is supported as a payment
+#:     currency and currency balance only for Brazilian PayPal accounts.
+#:
+#:     Canadian Dollar – ``CAD``
+#:
+#:     Czech Koruna – ``CZK``
+#:
+#:     Danish Krone – ``DKK``
+#:
+#:     Euro – ``EUR``
+#:
+#:     Hong Kong Dollar – ``HKD``
+#:
+#:     Hungarian Forint – ``HUF``
+#:
+#:     Israeli New Sheqel – ``ILS``
+#:
+#:     Japanese Yen – ``JPY``
+#:
+#:     Malaysian Ringgit – ``MYR`` Note: The Ringgit is supported as a payment
+#:     currency and currency balance only for Malaysian PayPal accounts.
+#:
+#:     Mexican Peso – ``MXN``
+#:
+#:     Norwegian Krone – ``NOK``
+#:
+#:     New Zealand Dollar`` – NZD``
+#:
+#:     Philippine Peso – ``PHP``
+#:
+#:     Polish Zloty – ``PLN``
+#:
+#:     Pound Sterling`` – GBP``
+#:
+#:     Singapore Dollar – ``SGD``
+#:
+#:     Swedish Krona`` – SEK``
+#:
+#:     Swiss Franc – ``CHF``
+#:
+#:     Taiwan New Dollar – ``TWD``
+#:
+#:     Thai Baht`` – THB``
+#:
+#:     Turkish Lira – ``TRY`` Note: The Turkish Lira is supported as a payment
+#:     currency and currency balance only for Turkish PayPal accounts.
+#:
+#:     U.S. Dollar – ``USD``
+
+
+dateOfMonth
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:int``
+#:
+#: (Optional) The day of the month on which a monthly payment is to be made.
+#: Allowable values are numbers between 0 and 31. A number between 1 and 31
+#: indicates the date of the month. Specifying 0 indicates that payment can be
+#: made on any day of the month.
+
+
+dayOfWeek
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DayOfWeek``
+#:
+#: (Optional) The day of the week that a weekly payment is to be made. 
+#:
+#: Allowable values are:
+#:
+#:
+#:     ``NO_DAY_SPECIFIED``
+#:
+#:     ``SUNDAY``
+#:
+#:     ``MONDAY``
+#:
+#:     ``TUESDAY``
+#:
+#:     ``WEDNESDAY``
+#:
+#:     ``THURSDAY``
+#:
+#:     ``FRIDAY``
+#:
+#:     ``SATURDAY``
+
+
+endingDate
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:dateTime``
+#:
+#: (Optional) Last date for which the preapproval is valid. It cannot be later
+#: than one year from the starting date. 
+#:
+#:
+#: Notes:
+#:      You must specify a value unless you have specific permission from
+#:     PayPal to omit this value. 
+
+
+ipnNotificationUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The URL to which you want all IPN messages for this preapproval
+#: to be sent. This URL supersedes the IPN notification URL in your profile.
+#:
+#: Maximum length: 1024 characters
+
+
+maxAmountPerPayment
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: (Optional) The preapproved maximum amount per payment. It cannot exceed the
+#: preapproved maximum total amount of all payments. 
+
+
+maxNumberOfPayments
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:int``
+#:
+#: (Optional) The preapproved maximum number of payments. It cannot exceed the
+#: preapproved maximum total number of all payments. 
+
+
+maxNumberOfPaymentsPerPeriod
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:int``
+#:
+#: (Optional) The preapproved maximum number of all payments per period. You
+#: must specify a value unless you have specific permission from PayPal. 
+
+
+maxTotalAmountOfAllPayments
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:decimal``
+#:
+#: (Optional) The preapproved maximum total amount of all payments. It cannot
+#: exceed $2,000 USD or its equivalent in other currencies.
+#:
+#:
+#: Notes:
+#:      You must specify a value unless you have specific permission from
+#:     PayPal to omit this value. 
+
+
+memo
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) A note about the preapproval. 
+#:
+#: Maximum length: 1000 characters, including newline characters
+
+
+paymentPeriod
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The payment period. It is one of the following values:
+#:
+#:
+#:     ``NO_PERIOD_SPECIFIED``
+#:
+#:     ``DAILY`` – Each day
+#:
+#:     ``WEEKLY`` – Each week
+#:
+#:     ``BIWEEKLY`` – Every other week
+#:
+#:     ``SEMIMONTHLY`` – Twice a month
+#:
+#:     ``MONTHLY`` – Each month
+#:
+#:     ``ANNUALLY`` – Each year
+
+
+pinType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Whether a personal identification number (PIN) is required. It
+#: is one of the following values:
+#:
+#:
+#:     ``NOT_REQUIRED`` – A PIN is not required (default)
+#:
+#:     ``REQUIRED`` – A PIN is required; the sender must specify a PIN when
+#:     setting up the preapproval on PayPal
+
+
+requestEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:RequestEnvelope``
+#:
+#: (Required) Information common to each API operation, such as the language
+#: in which an error message is returned.
+
+
+returnUrl
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) The URL to which the sender's browser is redirected after the
+#: sender approves the preapproval on paypal.com.
+#:
+#: Maximum length: 1024 characters
+
+
+senderEmail
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) Sender's email address. If not specified, the email address of
+#: the sender who logs in to approve the request becomes the email address
+#: associated with the preapproval key.
+#:
+#: Maximum length: 127 characters
+
+
+startingDate
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:dateTime``
+#:
+#: (Required) First date for which the preapproval is valid. It cannot be
+#: before today's date or after the ending date.
+
+
+displayMaxTotalAmount
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:boolean``
+#:
+#: (Optional) Whether to display the maximum total amount of this preapproval.
+#: It is one of the following values:
+#:
+#:
+#:     ``TRUE`` – Display the amount
+#:
+#:     ``FALSE`` – Do not display the amount (default)
+
+
+feesPayer
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Optional) The payer of PayPal fees. Allowable values are:
+#:
+#:
+#:     ``SENDER`` – Sender pays all fees (for personal, implicit
+#:     simple/parallel payments; do not use for chained or unilateral
+#:     payments)
+#:
+#:     ``PRIMARYRECEIVER`` – Primary receiver pays all fees (chained payments
+#:     only)
+#:
+#:     ``EACHRECEIVER`` – Each receiver pays their own fee (default, personal
+#:     and unilateral payments)
+#:
+#:     ``SECONDARYONLY`` – Secondary receivers pay all fees (use only for
+#:     chained payments with one secondary receiver)
+
+
+#------------------------------------------------------------------------------
+# ClientDetails Fields 
+#------------------------------------------------------------------------------
+
+applicationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Your application's identification, such as the name of your
+#: application
+
+
+customerId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Your ID for this sender
+#:
+#: Maximum length: 127 characters
+
+
+customerType
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Your identification of the type of customer
+#:
+#: Maximum length: 127 characters
+
+
+deviceId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Sender's device ID, such as a mobile device's IMEI number or a
+#: web browser cookie. If a device ID was passed with the ``PayRequest``, use
+#: the same ID here.
+#:
+#: Maximum length: 127 characters
+
+
+geoLocation
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Sender's geographic location
+#:
+#:
+#: Character length and limitations:
+#:     Decimal format (``+x.y, -x.y``). For example,
+#:     ``+37.37727,-121.923068``.
+
+
+ipAddress
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Sender's IP address. If an IP address was passed with the
+#: PayRequest, use the same ID here.
+#:
+#:
+#: Character length and limitations:
+#:     IPv4 format (``0.0.0.0``). For example, ``173.0.88.3``. IPv6 addresses
+#:     are not currently supported.
+#:
+#:
+#: Notes:
+#:     The address must be publicly routable.
+
+
+model
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)A sub-identification of the application
+#:
+#: Maximum length: 127 characters
+
+
+partnerName
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string`` 
+#:
+#: (Optional)Your organization's name or ID
+#:
+#: Maximum length: 127 characters
+
+
+#------------------------------------------------------------------------------
+# RequestEnvelope Fields
+#------------------------------------------------------------------------------
+
+detailLevel
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:DetailLevelCode``
+#:
+#: (Optional) Level of detail required by the client application for
+#: components. It is one of the following values:
+#:
+#:
+#:     ``ReturnAll`` – This value provides the maximum level of detail
+#:     (default).
+
+
+errorLanguage
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: (Required) RFC 3066 language in which error messages are returned; by
+#: default it is ``en_US``, which is the only language currently supported.
+
+
+#------------------------------------------------------------------------------
+# PreapprovalResponse Fields
+#------------------------------------------------------------------------------
+
+preapprovalKey
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A preapproval key that identifies the preapproval requested. You can use
+#: this key in other Adaptive Payment requests to identify this preapproval.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the acknowledgement
+#: status.
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgement code. It is one of the following values:
+#:
+#:
+#:     ``Success`` – The operation completed successfully.
+#:
+#:     ``Failure`` – The operation failed.
+#:
+#:     ``SuccessWithWarning`` – The operation completed successfully; however,
+#:     there is a warning message.
+#:
+#:     ``FailureWithWarning ``– The operation failed with a warning message.
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Build number. It is used only by PayPal Merchant Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Correlation identifier. It is a 13-character, alphanumeric string (for
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
+#: Support.
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:datetime``
+#:
+#: Date on which the response was sent, for example: 
+#:
+#: ``2012-04-02T22:33:35.774-07:00``
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+#------------------------------------------------------------------------------
+# FaultMessage Fields
+#------------------------------------------------------------------------------
+
+error
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorData``
+#:
+#: Detailed error information.
+
+
+responseEnvelope
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ResponseEnvelope``
+#:
+#: Common response information, including a timestamp and the response
+#: acknowledgement status.
+
+
+#------------------------------------------------------------------------------
+# ErrorData Fields
+#------------------------------------------------------------------------------
+
+category
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorCategory``
+#:
+#: The location where the error occurred. 
+#:
+#: Possible values are: 
+#:
+#:
+#:     ``System`` – The system encountered errors; try again
+#:
+#:     ``Application`` – The application encountered errors; try again
+#:
+#:     ``Request`` – The request was incorrect
+
+
+domain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: The domain to which this service belongs. 
+
+
+errorId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:long``
+#:
+#: A 6-digit number that uniquely identifies a particular error. 
+
+
+exceptionID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+message
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: A description of the error. 
+
+
+parameter
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorParameter``
+#:
+#: Represents contextual information about the error. 
+
+
+severity
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:ErrorSeverity`` 
+#:
+#: The severity of the error encountered. 
+#:
+#: Possible values are:
+#:
+#:
+#:     ``Error`` – Processing of the request was interrupted
+#:
+#:     ``Warning`` – Processing of the request was completed
+
+
+subdomain
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This field is not used. 
+
+
+#------------------------------------------------------------------------------
+# ResponseEnvelope Fields
+#------------------------------------------------------------------------------
+
+ack
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``common:AckCode``
+#:
+#: Acknowledgement code. It is one of the following values:
+#:
+#:
+#:     ``Success`` – The operation completed successfully.
+#:
+#:     ``Failure`` – The operation failed.
+#:
+#:     ``SuccessWithWarning`` – The operation completed successfully; however,
+#:     there is a warning message.
+#:
+#:     ``FailureWithWarning ``– The operation failed with a warning message.
+
+
+build
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Build number. It is used only by PayPal Merchant Technical Support.
+
+
+correlationId
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:string``
+#:
+#: Correlation identifier. It is a 13-character, alphanumeric string (for
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
+#: Support.
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+timestamp
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: ``xs:datetime``
+#:
+#: Date on which the response was sent, for example: 
+#:
+#: ``2012-04-02T22:33:35.774-07:00``
+#:
+#:
+#: Notes:
+#:     You must log and store this data for every response you receive. PayPal
+#:     Technical Support uses the information to assist with reported issues.
+
+
+#------------------------------------------------------------------------------
+# Setting up a preapproval
+#------------------------------------------------------------------------------
+
+500000
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: There is a system error
+
+
+520002
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Internal error
+
+
+520003
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: User name/password is incorrect
+
+
+520006
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: This call is not defined in the database
+
+
+569016
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Preapproval PIN functionality is not enabled
+
+
+569018
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Preapproved payments have been disabled
+
+
+570026
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The starting date is too far in the future
+
+
+579038
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The date range between the start date and the end date is too wide
+
+
+579055
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The limit for total amount of all payments is above PayPal's limit
+
+
+580001
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Invalid request
+
+
+580022
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Account already exists
+
+
+580024
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The start date must be in the future
+
+
+580025
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The start date must be earlier than the end date
+
+
+580027
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The argument is unsupported
+
+
+580028
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The URL <value> is malformed
+
+
+589023
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: If a fractional amount is rounded due to currency conversion, funds could
+#: be lost
+
+
+589039
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The email address is invalid. It may not be registered in PayPal's system
+#: yet
+
+

@@ -1,0 +1,418 @@
+#------------------------------------------------------------------------------
+# DoCapture Request Fields
+#------------------------------------------------------------------------------
+
+METHOD
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Must be ``DoCapture``.
+
+
+AUTHORIZATIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Authorization identification number of the payment you want to
+#: capture. This is the transaction ID returned from
+#: ``DoExpressCheckoutPayment``, ``DoDirectPayment``, or ``CheckOut``. For
+#: point-of-sale transactions, this is the transaction ID returned by the
+#: ``CheckOut`` call when the payment action is ``Authorization``. 
+#:
+#:
+#: Character length and limitations:
+#:     19 single-byte characters maximum
+
+
+AMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Amount to capture.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,).
+
+
+CURRENCYCODE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) A 3-character currency code (default is USD). 
+
+
+COMPLETETYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Required) Indicates whether or not this is your last capture. It is one of
+#: the following values: 
+#:
+#:
+#:     ``Complete`` – This is the last capture you intend to make.
+#:
+#:     ``NotComplete`` – You intend to make additional captures.
+#:
+#:
+#: Notes:
+#:     If ``Complete``, any remaining amount of the original authorized
+#:     transaction is automatically voided and all remaining open
+#:     authorizations are voided.
+
+
+INVNUM
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Your invoice number or other identification number that is
+#: displayed to you and to the buyer in their transaction history. The value
+#: is recorded only if the authorization you are capturing is an Express
+#: Checkout order authorization.
+#:
+#:
+#: Character length and limitations:
+#:     127 single-byte alphanumeric characters
+#:
+#:
+#: Notes:
+#:     This value on ``DoCapture`` overwrites a value previously set on
+#:     ``DoAuthorization``.
+
+
+NOTE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) An informational note about this settlement that is displayed to
+#: the buyer in email and in their transaction history.
+#:
+#:
+#: Character length and limitations:
+#:     255 single-byte characters
+
+
+SOFTDESCRIPTOR
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) Per transaction description of the payment that is passed to the
+#: buyer's credit card statement.
+#:
+#: If you provide a value in this field, the full descriptor displayed on the
+#: buyer's statement has the following format:
+#:
+#: ``<PP * | PAYPAL *><Merchant descriptor as set in the Payment Receiving
+#: Preferences><1 space><soft descriptor>``
+#:
+#:
+#:     Alphanumeric characters
+#:
+#:     - (dash)
+#:
+#:     * (asterisk)
+#:
+#:     . (period)
+#:
+#:     {space}
+#:
+#:     The PayPal prefix toggle is set to PAYPAL * in PayPal's administration
+#:     tools.
+#:
+#:     The merchant descriptor set in the Payment Receiving Preferences is set
+#:     to EBAY.
+#:
+#:     The soft descriptor is passed in as JanesFlowerGifts LLC.
+#:
+#:
+#: Character length and limitations:
+#:     The soft descriptor can contain only the following characters:
+#:
+#:
+#: If you pass any other characters (such as ","), PayPal returns an error
+#: code.
+#:
+#: The soft descriptor does not include the phone number, which can be toggled
+#: between your customer service number and PayPal's Customer Service number.
+#:
+#: The maximum length of the soft descriptor is 22 characters. Of this, the
+#: PayPal prefix uses either 4 or 8 characters of the data format. Thus, the
+#: maximum length of the soft descriptor information that you can pass in this
+#: field is:
+#:
+#: ``22 - len(<PP * | PAYPAL *>) - len(<Descriptor set in Payment Receiving
+#: Preferences> + 1)``
+#:
+#: For example, assume the following conditions:
+#:
+#: The resulting descriptor string on the credit card is: 
+#:
+#: ``PAYPAL *EBAY JanesFlow``
+
+
+#------------------------------------------------------------------------------
+# Merchant Store Details Fields
+#------------------------------------------------------------------------------
+
+STOREID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Identifier of the merchant store at which the refund is given. This field
+#: is required for point-of-sale transactions. 
+#:
+#:
+#: Character length and limitations:
+#:     50 single-byte characters
+#:
+#:
+#: Available since API version: 82.0
+
+
+TERMINALID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: (Optional) ID of the terminal.
+#:
+#:
+#: Character length and limitations:
+#:     50 single-byte characters
+#:
+#:
+#: Available since API version: 82.0
+
+
+#------------------------------------------------------------------------------
+# DoCapture Response Fields
+#------------------------------------------------------------------------------
+
+AUTHORIZATIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Authorization identification number you specified in the request.
+#:
+#: Character length and limits: 19 single-byte characters maximum
+
+
+#------------------------------------------------------------------------------
+# Payment Information Fields
+#------------------------------------------------------------------------------
+
+TRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Unique transaction ID of the payment.
+#:
+#:
+#: Character length and limitations:
+#:     17 single-byte characters
+
+
+PARENTTRANSACTIONID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Parent or related transaction identification number. This field is
+#: populated for the following transaction types:
+#:
+#:
+#:     Reversal. Capture of an authorized transaction.
+#:
+#:     Reversal. Reauthorization of a transaction.
+#:
+#:     Capture of an order. The value of ``ParentTransactionID`` is the
+#:     original ``OrderID``.
+#:
+#:     Authorization of an order. The value of ``ParentTransactionID`` is the
+#:     original ``OrderID``.
+#:
+#:     Capture of an order authorization.
+#:
+#:     Void of an order. The value of ``ParentTransactionID`` is the original
+#:     ``OrderID``.
+#:
+#:
+#: Character length and limitations:
+#:     16 digits
+#:
+#:
+#: Only authorization of an order and capture of an order authorization apply
+#: to point-of-sale transactions.
+
+
+RECEIPTID
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Receipt identification number. 
+#:
+#: Empty for point-of-sale transactions.
+#:
+#:
+#: Character length and limitations:
+#:     16 digits 
+
+
+TRANSACTIONTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The type of transaction. It is one of the following values:
+#:
+#:
+#:     ``cart``
+#:
+#:     ``express-checkout``
+#:
+#:
+#: Character length and limitations:15 single-byte characters
+
+
+PAYMENTTYPE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Indicates whether the payment is instant or delayed. It is one of the
+#: following values:
+#:
+#:
+#:     ``none``
+#:
+#:     ``echeck``
+#:
+#:     ``instant``
+#:
+#:
+#: Character length and limitations:
+#:     7 single-byte characters
+
+
+ORDERTIME
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Time/date stamp of payment. For example: ``2006-08-15T17:23:15Z``
+
+
+AMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: The final amount charged, including any shipping and taxes from your
+#: Merchant Profile. Shipping and taxes do not apply to point-of-sale
+#: transactions.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). Equivalent to 9 characters
+#:     maximum for USD. 
+
+
+FEEAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: PayPal fee amount charged for the transaction.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). Equivalent to 9 characters
+#:     maximum for USD. 
+
+
+SETTLEAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Amount deposited in your PayPal account after a currency conversion.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). Equivalent to 9 characters
+#:     maximum for USD. 
+
+
+TAXAMT
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Tax charged on the transaction.
+#:
+#:
+#: Character length and limitations:
+#:     Value is a positive number which cannot exceed $10,000 USD in any
+#:     currency. It includes no currency symbol. It must have 2 decimal
+#:     places, the decimal separator must be a period (.), and the optional
+#:     thousands separator must be a comma (,). Equivalent to 9 characters
+#:     maximum for USD. 
+
+
+EXCHANGERATE
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Exchange rate if a currency conversion occurred. Relevant only if your are
+#: billing in their non-primary currency. If the customer chooses to pay with
+#: a currency other than the non-primary currency, the conversion occurs in
+#: the buyer's account.
+#:
+#:
+#: Character length and limitations:
+#:     A decimal that does not exceed 17 characters, including decimal point
+
+
+PAYMENTSTATUS
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#: Status of the payment. It is one of the following values:
+#:
+#:
+#:     ``None`` – No status
+#:
+#:     ``Canceled-Reversal`` – This means a reversal has been canceled. For
+#:     example, you won a dispute with the customer, and the funds for the
+#:     transaction that was reversed have been returned to you.
+#:
+#:     ``Completed`` – The payment has been completed, and the funds have been
+#:     added successfully to your account balance. This is the only value
+#:     status for point-of-sale transactions.
+#:
+#:     ``Denied`` – You denied the payment. This happens only if the payment
+#:     was previously pending because of possible reasons described for the
+#:     ``PendingReason`` element.
+#:
+#:     ``Expired`` – The authorization period for this payment has been
+#:     reached.
+#:
+#:     ``Failed`` – The payment has failed. This happens only if the payment
+#:     was made from your customer's bank account.
+#:
+#:     ``Pending`` – The payment is pending. See the PendingReason field for
+#:     more information.
+#:
+#:     ``Refunded`` – You refunded the payment.
+#:
+#:     ``Reversed`` – A payment was reversed due to a chargeback or other type
+#:     of reversal. The funds have been removed from your account balance and
+#:     returned to the buyer. The reason for the reversal is specified in the
+#:     ``ReasonCode`` element.
+#:
+#:     ``Processed`` – A payment has been accepted.
+#:
+#:     ``Voided`` – An authorization for this transaction has been voided.
+#:
+#:
+#: Notes:
+#:     In a successful DoCapture response for a point-of-sale authorization,
+#:     the only value value is ``Completed``. 
+
+
+PENDINGREASON
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#:
+#:     ``none``: – No pending reason.
+#:
+#:     ``address`` – The payment is pending because your customer did not
+#:     include a confirmed shipping address and your Payment Receiving
+#:     Preferences is set such that you want to manually accept or deny each
+#:     of these payments. To change your preference, go to the ``Preferences``
+#:     section of your ``Profile``.
+#:
+#:     ``echeck`` – The payment is pending because it was made by an eCheck
+#:     that has not yet cleared.
+#:
+#:     ``intl`` –The payment is pending because you hold a non-U.S. account
+#:     and do not have a withdrawal mechanism. You must manually accept or
+#:     deny this payment from your ``Account Overview``.
+#:
+#:     ``multi-currency`` – You do not have a balance in the currency sent,
+#:     and you do not have your ``Payment Receiving Preferences`` set to
+#:     automatically convert and accept this payment. You must manually accept
+#:     or deny this payment.
+#:
+#:     ``verify`` – The payment is pending because you are not yet verified.
+#:     You must verify your account before you can accept this payment.
+#:
+#:     ``other`` – The payment is pending for a reason other than those listed
+#:     above. For more information, contact PayPal Customer Service.
+#:
+#:
+#: Notes:
+#:     ``PendingReason`` is returned in the response only if ``PaymentStatus``
+#:     is ``Pending``. This field does not apply to capturing point-of-sale
+#:     authorizations, which do not create pending payments.
+#:
+#:
+#: Reason the payment is pending. It is one of the following values:
+
+
