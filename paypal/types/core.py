@@ -91,11 +91,28 @@ class BaseType(object):
             setattr(self, k, v)
 
     def validate(self):
-        pass
+        fields = self.get_fields()
+        for name, field in fields.iteritems():
+            self.validate_field(name, field)
+        return True
+
+    def validate_field(self, name, field):
+        def raise_validation_exception(name, value):
+            message = 'Invalid value given for field %s: %s'
+            raise ValueError(message % (name, value))
+
+        value = getattr(self, field.get_attribute_name(), None)
+        if value is not None or field.required:
+            if not field.validate(value):
+                raise_validation_exception(value)
+
+            local_func_name = 'validate_field_%s' % name
+            local_validation = getattr(self, local_func_name, None)
+            if local_validation and not local_validation(value):
+                raise_validation_exception(name, value)
 
     def to_dict(self):
         ret = {}
-        print 'RUN %s.to_dict()' % (self)
         fields = self.get_fields()
         for name, field in fields.iteritems():
             value = getattr(self, name)
@@ -190,19 +207,6 @@ class Field(object):
             local_sanitization = getattr(instance, local_func_name, None)
             if local_sanitization:
                 value = local_sanitization(value)
-
-        def raise_validation_exception(name, value):
-            message = 'Invalid value given for field %s: %s'
-            raise ValueError(message % (field_name, value))
-
-        if not is_none or self.required:
-            if not self.validate(value):
-                raise_validation_exception(field_name, value)
-
-            local_func_name = 'validate_field_%s' % field_name
-            local_validation = getattr(instance, local_func_name, None)
-            if local_validation and not local_validation(value):
-                raise_validation_exception(field_name, value)
 
         attribute = self.get_attribute_name()
         setattr(instance, attribute, value)
@@ -541,7 +545,7 @@ class MoneyField(NumericField):
     def initialize(self,
                    min=None,
                    max=None,
-                   unsigned=False,
+                   unsigned=True,
                    precision=2):
         self.min = Money(min, precision=precision) if min else None
         self.max = Money(max, precision=precision) if max else None
