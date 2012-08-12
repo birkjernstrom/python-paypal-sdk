@@ -19,6 +19,7 @@ easily detecting once changes have been made to the API.
 
 """
 
+import os
 import sys
 import urllib2
 from BeautifulSoup import BeautifulSoup
@@ -72,10 +73,39 @@ def generate_documentation_url(service, method):
     return base % ALL_URLS[service][method]
 
 
-def get_documentation_html(url):
+def get_cached_documentation(filename):
+    if not os.path.isfile(filename):
+        return None
+
+    with open(filename, 'r') as f:
+        return f.read()
+
+
+def cache_documentation(filename, documentation):
+    dirname = os.path.dirname(filename)
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
+    with open(filename, 'w') as f:
+        f.write(documentation)
+
+
+def get_documentation_html(service, method, cache_directory=None):
+    filename = None
+    if cache_directory:
+        filename = '%s/%s/%s.txt' % (cache_directory, service, method)
+        filename = os.path.abspath(os.path.join(os.getcwd(), filename))
+        documentation = get_cached_documentation(filename)
+        if documentation:
+            return documentation
+
+    url = generate_documentation_url(service, method)
     f = urllib2.urlopen(url)
     documentation = f.read()
     f.close()
+
+    if filename:
+        cache_documentation(filename, documentation)
     return documentation
 
 
@@ -358,9 +388,8 @@ def scrape_type_group(tag):
         scrape_type(row)
 
 
-def scrape_documentation(service, method):
-    url = generate_documentation_url(service, method)
-    documentation = get_documentation_html(url)
+def scrape_documentation(service, method, cache_directory=None):
+    documentation = get_documentation_html(service, method, cache_directory)
     soup = BeautifulSoup(documentation)
 
     groups = soup.findAll('table', {'id': lambda v: v != 'logo-box'})
@@ -373,12 +402,18 @@ def scrape_documentation(service, method):
 
 def main(argc, argv):
     try:
-        service, method = argv[1:]
+        service, method = argv[1:3]
     except ValueError:
-        print 'Usage: %s <API Service> <API Method Name>' % argv[0]
+        print ('Usage: %s <API Service> <API Method Name> '
+               '<Cache Directory (Optional)>') % argv[0]
         return 1
 
-    scrape_documentation(service, method)
+    try:
+        cache_directory = argv[3]
+    except IndexError:
+        cache_directory = None
+
+    scrape_documentation(service, method, cache_directory=cache_directory)
     return 0
 
 
