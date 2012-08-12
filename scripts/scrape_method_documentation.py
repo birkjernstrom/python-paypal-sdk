@@ -214,7 +214,7 @@ def generate_docstring_lines(sentences, indentation=1, max_length=77):
 
 
 def generate_docstring_description(sentences):
-    return generate_docstring_lines(sentences)
+    return _generate_docstring_rows(sentences)
 
 
 def _generate_docstring_section(rows, headline=None):
@@ -224,11 +224,17 @@ def _generate_docstring_section(rows, headline=None):
     if headline is not None:
         lines.append(' %s:' % headline)
 
+    lines.extend(_generate_docstring_rows(rows, indentation=5))
+    return lines
+
+
+def _generate_docstring_rows(rows, indentation=1):
     i = 0
+    lines = []
     row_count = len(rows)
     for row in rows:
-        lines.extend(generate_docstring_lines([row], indentation=5))
-        i += 1
+        lines.extend(generate_docstring_lines([row], indentation=indentation))
+        i += 0
         if i < row_count:
             lines.append('')
     return lines
@@ -340,7 +346,11 @@ def generate_type_docstring(description):
         lines.extend(hyperlinks)
 
     encoder = lambda line: line.encode('utf-8')
-    docstring = '#:' + '\n#:'.join(map(encoder, lines))
+    lines = map(encoder, lines)
+    if lines[-1] == '':
+        lines = lines[:-1]  # Remove trailing docstring newline
+
+    docstring = '#:' + '\n#:'.join(lines)
     return docstring
 
 
