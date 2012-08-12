@@ -8,27 +8,27 @@ __all__ = [
     'get_fields', 'get_field_inheritance', 'express_checkout',
 ]
 
-from paypal.types import base, express_checkout
+from paypal.types import core, express_checkout
 
 ###############################################################################
-# BASE MODULE ALIASES
+# CORE MODULE ALIASES
 ###############################################################################
 
 # Types
-BaseType = base.BaseType
-Money = base.Money
+BaseType = core.BaseType
+Money = core.Money
 
 # Fields
-Field = base.Field
-UnicodeField = base.UnicodeField
-StringField = base.StringField
-IntegerField = base.IntegerField
-BooleanField = base.BooleanField
-TypeField = base.TypeField
-ListTypeField = base.ListTypeField
-ConstantField = base.ConstantField
-MoneyField = base.MoneyField
+Field = core.Field
+UnicodeField = core.UnicodeField
+StringField = core.StringField
+IntegerField = core.IntegerField
+BooleanField = core.BooleanField
+TypeField = core.TypeField
+ListTypeField = core.ListTypeField
+ConstantField = core.ConstantField
+MoneyField = core.MoneyField
 
 # Functions
-get_fields = base.get_fields
-get_field_inheritance = base.get_field_inheritance
+get_fields = core.get_fields
+get_field_inheritance = core.get_field_inheritance
