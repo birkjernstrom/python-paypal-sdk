@@ -1,32 +1,30 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoReferenceTransaction Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be DoReferenceTransaction.
 
 
 REFERENCEID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) A transaction ID from a previous purchase, such as a credit card
-#: charge using the ``DoDirectPayment`` API, or a billing agreement ID.
+#: (Required) A transaction ID from a previous purchase, such as a credit
+#: card charge using the ``DoDirectPayment`` API, or a billing agreement
+#: ID.
 
 
 PAYMENTACTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) How you want to obtain payment. It is one of the following
-#: values: 
+#: values:
 #:
 #:
-#:     ``Authorization`` – This payment is a basic authorization subject to
-#:     settlement with PayPal Authorization and Capture.
+#:     ``Authorization`` – This payment is a basic authorization subject
+#:     to settlement with PayPal Authorization and Capture.
 #:
-#:     ``Sale`` – This is a final sale for which you are requesting payment.
+#:     ``Sale`` – This is a final sale for which you are requesting
+#:     payment.
 
 
 IPADDRESS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) IP address of the buyer's browser.
 #:
 #:
@@ -36,21 +34,21 @@ IPADDRESS
 #:
 #:
 #: Notes:
-#:     PayPal records this IP addresses as a means to detect possible fraud.
+#:     PayPal records this IP addresses as a means to detect possible
+#:     fraud.
 
 
 REQCONFIRMSHIPPING
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Whether you require that the buyer's shipping address on file with PayPal
-#: be a confirmed address. You must have permission from PayPal to not require
-#: a confirmed address. It is one of the following values:
+#: Whether you require that the buyer's shipping address on file with
+#: PayPal be a confirmed address. You must have permission from PayPal to
+#: not require a confirmed address. It is one of the following values:
 #:
 #:
 #:     ``0`` – You do not require that the buyer's shipping address be a
 #:     confirmed address.
 #:
-#:     ``1`` – You require that the buyer's shipping address be a confirmed
-#:     address.
+#:     ``1`` – You require that the buyer's shipping address be a
+#:     confirmed address.
 #:
 #:
 #: Character length and limitations:
@@ -63,10 +61,9 @@ REQCONFIRMSHIPPING
 
 
 RETURNFMFDETAILS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Flag to indicate whether you want the results returned by Fraud
-#: Management Filters. By default, you do not receive this information. It is
-#: one of the following values:
+#: (Optional) Flag to indicate whether you want the results returned by
+#: Fraud Management Filters. By default, you do not receive this
+#: information. It is one of the following values:
 #:
 #:
 #:     ``0`` – Do not receive FMF details (default)
@@ -75,12 +72,12 @@ RETURNFMFDETAILS
 
 
 SOFTDESCRIPTOR
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Per transaction description of the payment that is passed to the
-#: consumer's credit card statement.
+#: (Optional) Per transaction description of the payment that is passed to
+#: the consumer's credit card statement.
 #:
-#: If the API request provides a value for the soft descriptor field, the full
-#: descriptor displayed on the buyer's statement has the following format:
+#: If the API request provides a value for the soft descriptor field, the
+#: full descriptor displayed on the buyer's statement has the following
+#: format:
 #:
 #: ``<PP * | PAYPAL *><Merchant descriptor as set in the Payment Receiving
 #: Preferences><1 space><soft descriptor>``
@@ -98,35 +95,34 @@ SOFTDESCRIPTOR
 #:
 #:     {space}
 #:
-#:     The PayPal prefix toggle is set to PAYPAL * in PayPal's administration
-#:     tools.
+#:     The PayPal prefix toggle is set to PAYPAL * in PayPal's
+#:     administration tools.
 #:
-#:     The merchant descriptor set in the Payment Receiving Preferences is set
-#:     to EBAY.
+#:     The merchant descriptor set in the Payment Receiving Preferences is
+#:     set to EBAY.
 #:
 #:     The soft descriptor is passed in as JanesFlowerGifts LLC
 #:
 #:
 #: If you use any other characters (such as ","), PayPal returns an error
-#: code. The soft descriptor does not include the phone number, which can be
-#: toggled between the merchant's customer service number and PayPal's
-#: customer service number. The maximum length of the total soft descriptor is
-#: 22 characters. Of this, the PayPal prefix uses either 4 or 8 characters
-#: shown in the data format. Thus, the maximum length of the soft descriptor
-#: passed in the API request is:
+#: code. The soft descriptor does not include the phone number, which can
+#: be toggled between the merchant's customer service number and PayPal's
+#: customer service number. The maximum length of the total soft
+#: descriptor is 22 characters. Of this, the PayPal prefix uses either 4
+#: or 8 characters shown in the data format. Thus, the maximum length of
+#: the soft descriptor passed in the API request is:
 #:
-#: ``22 - len(<PP * | PAYPAL *>) - len(<Descriptor set in Payment Receiving
-#: Preferences> + 1)``
+#: ``22 - len(<PP * | PAYPAL *>) - len(<Descriptor set in Payment
+#: Receiving Preferences> + 1)``
 #:
 #: For example, assume the following conditions:
 #:
-#: The resulting descriptor string on the credit card would be: 
+#: The resulting descriptor string on the credit card would be:
 #:
 #: ``PAYPAL *EBAY JanesFlow``
 
 
 PAYMENTREQUEST_n_PAYMENTREASON
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Indicates the type of transaction. It is one of the following values:
 #:
 #:
@@ -135,12 +131,11 @@ PAYMENTREQUEST_n_PAYMENTREASON
 #:     ``Refund`` – Identifies the transaction as a refund.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Ship To Address Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 SHIPTONAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Person's name associated with this shipping address. It is required if
 #: using a shipping address.
 #:
@@ -150,7 +145,6 @@ SHIPTONAME
 
 
 SHIPTOSTREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: First street address. It is required if using a shipping address.
 #:
 #:
@@ -159,7 +153,6 @@ SHIPTOSTREET
 
 
 SHIPTOSTREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Second street address.
 #:
 #:
@@ -168,7 +161,6 @@ SHIPTOSTREET2
 
 
 SHIPTOCITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Name of city. It is required if using a shipping address.
 #:
 #:
@@ -177,7 +169,6 @@ SHIPTOCITY
 
 
 SHIPTOSTATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: State or province. It is required if using a shipping address.
 #:
 #:
@@ -186,7 +177,6 @@ SHIPTOSTATE
 
 
 SHIPTOZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: U.S. ZIP code or other country-specific postal code. It is required if
 #: using a U.S. shipping address; may be required for other countries.
 #:
@@ -196,7 +186,6 @@ SHIPTOZIP
 
 
 SHIPTOCOUNTRY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Country code. It is required if using a shipping address.
 #:
 #:
@@ -205,7 +194,6 @@ SHIPTOCOUNTRY
 
 
 SHIPTOPHONENUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Phone number.
 #:
 #:
@@ -213,60 +201,57 @@ SHIPTOPHONENUM
 #:     20 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) The total cost of the transaction to the buyer. If shipping cost
-#: and tax charges are known, include them in this value. If not, this value
-#: should be the current subtotal of the order. If the transaction includes
-#: one or more one-time purchases, this field must be equal to the sum of the
-#: purchases. Set this field to ``0`` if the transaction does not include a
-#: one-time purchase such as when you set up a billing agreement for a
-#: recurring payment that is not immediately charged. When the field is set to
-#: ``0``, purchase-specific fields are ignored.
+#: (Required) The total cost of the transaction to the buyer. If shipping
+#: cost and tax charges are known, include them in this value. If not,
+#: this value should be the current subtotal of the order. If the
+#: transaction includes one or more one-time purchases, this field must be
+#: equal to the sum of the purchases. Set this field to ``0`` if the
+#: transaction does not include a one-time purchase such as when you set
+#: up a billing agreement for a recurring payment that is not immediately
+#: charged. When the field is set to ``0``, purchase-specific fields are
+#: ignored.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) A 3-character currency code (default is USD). 
+#: (Optional) A 3-character currency code (default is USD).
 
 
 ITEMAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Sum of cost of all items in this order.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     ``ITEMAMT`` is required if you specify ``None``.
+#:     ``ITEMAMT`` is required if you specify ``L_AMTn``.
 
 
 SHIPPINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Total shipping costs for this order.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
@@ -275,15 +260,14 @@ SHIPPINGAMT
 
 
 HANDLINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Total handling costs for this order.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
@@ -292,24 +276,22 @@ HANDLINGAMT
 
 
 TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Sum of tax for all items in this order.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     ``TAXAMT`` is required if you specify ``None``
+#:     ``TAXAMT`` is required if you specify ``L_TAXAMTn``
 
 
 DESC
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Description of items the buyer is purchasing. 
+#: (Optional) Description of items the buyer is purchasing.
 #:
 #:
 #: Character length and limitations:
@@ -317,14 +299,13 @@ DESC
 #:
 #:
 #: Notes:
-#:     The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:     The value you specify is available only if the transaction includes
+#:     a purchase. This field is ignored if you set up a billing agreement
+#:     for a recurring payment that is not immediately charged.
 
 
 CUSTOM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) A free-form field for your own use. 
+#: (Optional) A free-form field for your own use.
 #:
 #:
 #: Character length and limitations:
@@ -332,13 +313,12 @@ CUSTOM
 #:
 #:
 #: Notes:
-#:     The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:     The value you specify is available only if the transaction includes
+#:     a purchase. This field is ignored if you set up a billing agreement
+#:     for a recurring payment that is not immediately charged.
 
 
 INVNUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Your own invoice or tracking number.
 #:
 #:
@@ -347,15 +327,14 @@ INVNUM
 #:
 #:
 #: Notes:
-#:     The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:     The value you specify is available only if the transaction includes
+#:     a purchase. This field is ignored if you set up a billing agreement
+#:     for a recurring payment that is not immediately charged.
 
 
 BUTTONSOURCE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) An identification code for use by third-party applications to
-#: identify transactions.
+#: (Optional) An identification code for use by third-party applications
+#: to identify transactions.
 #:
 #:
 #: Character length and limitations:
@@ -363,10 +342,10 @@ BUTTONSOURCE
 
 
 NOTIFYURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Your URL for receiving Instant Payment Notification (IPN) about
-#: this transaction. If you do not specify this value in the request, the
-#: notification URL from your Merchant Profile is used, if one exists.
+#: (Optional) Your URL for receiving Instant Payment Notification (IPN)
+#: about this transaction. If you do not specify this value in the
+#: request, the notification URL from your Merchant Profile is used, if
+#: one exists.
 #:
 #:
 #: Character length and limitations:
@@ -374,17 +353,16 @@ NOTIFYURL
 #:
 #:
 #: Notes:
-#:     The notify URL applies only to ``DoExpressCheckoutPayment``. This value
-#:     is ignored when set in ``SetExpressCheckout`` or
+#:     The notify URL applies only to ``DoExpressCheckoutPayment``. This
+#:     value is ignored when set in ``SetExpressCheckout`` or
 #:     ``GetExpressCheckoutDetails``.
 
 
 RECURRING
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ns:RecurringFlagType``
 #:
 #: (Optional) Flag to indicate a recurring transaction. It is one of the
-#: following values: 
+#: following values:
 #:
 #:
 #:     Any value other than ``Y`` – This is not a recurring transaction
@@ -395,21 +373,20 @@ RECURRING
 #:
 #: Notes:
 #:     To pass ``Y`` in this field, you must have established a billing
-#:     agreement with the buyer specifying the amount, frequency, and duration
-#:     of the recurring payment.
+#:     agreement with the buyer specifying the amount, frequency, and
+#:     duration of the recurring payment.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Details Item Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_ITEMCATEGORYn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Indicates whether the item is digital or physical. For digital goods, this
-#: field is required and you must set it to ``Digital`` to get the best rates.
-#: These parameters must be ordered sequentially beginning with 0 (for example
-#: ``L_ITEMCATEGORY0``, ``L_ITEMCATEGORY1``). It is one of the following
-#: values: 
+#: Indicates whether the item is digital or physical. For digital goods,
+#: this field is required and you must set it to ``Digital`` to get the
+#: best rates. These parameters must be ordered sequentially beginning
+#: with 0 (for example ``L_ITEMCATEGORY0``, ``L_ITEMCATEGORY1``). It is
+#: one of the following values:
 #:
 #:
 #:     ``Digital``
@@ -417,14 +394,13 @@ L_ITEMCATEGORYn
 #:     ``Physical``
 #:
 #:
-#: This field is introduced in version 69.0. 
+#: This field is introduced in version 69.0.
 
 
 L_NAMEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Item name. This field is required when you pass a value for ``None``. These
-#: parameters must be ordered sequentially beginning with 0 (for example
-#: ``L_NAME0``, ``L_NAME1``).
+#: Item name. This field is required when you pass a value for
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm``. These parameters must be ordered
+#: sequentially beginning with 0 (for example ``L_NAME0``, ``L_NAME1``).
 #:
 #:
 #: Character length and limitations:
@@ -432,8 +408,7 @@ L_NAMEn
 
 
 L_DESCn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item description. 
+#: (Optional) Item description.
 #:
 #:
 #: Character length and limitations:
@@ -444,26 +419,24 @@ L_DESCn
 
 
 L_AMTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Cost of item. This field is required when you pass a value for ``None``.
-#: These parameters must be ordered sequentially beginning with 0 (for example
-#: ``L_AMT0``, ``L_AMT1``).
+#: Cost of item. This field is required when you pass a value for
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm``. These parameters must be ordered
+#: sequentially beginning with 0 (for example ``L_AMT0``, ``L_AMT1``).
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     If you specify a value for ``None``, you must specify a value for
+#:     If you specify a value for ``L_AMTn``, you must specify a value for
 #:     ``ITEMAMT``.
 
 
 L_NUMBERn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Item number. These parameters must be ordered sequentially
 #: beginning with 0 (for example ``L_NUMBER0``, ``L_NUMBER1``).
 #:
@@ -473,10 +446,9 @@ L_NUMBERn
 
 
 L_QTYn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Item quantity. This field is required when you pass a value for ``None``.
-#: These parameters must be ordered sequentially beginning with 0 (for example
-#: ``L_QTY0``, ``L_QTY1``).
+#: Item quantity. This field is required when you pass a value for
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm``. These parameters must be ordered
+#: sequentially beginning with 0 (for example ``L_QTY0``, ``L_QTY1``).
 #:
 #:
 #: Character length and limitations:
@@ -484,24 +456,23 @@ L_QTYn
 
 
 L_TAXAMTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item sales tax. These parameters must be ordered sequentially
-#: beginning with 0 (for example ``L_TAXAMT0``, ``L_TAXAMT1``).
+#: (Optional) Item sales tax. These parameters must be ordered
+#: sequentially beginning with 0 (for example ``L_TAXAMT0``,
+#: ``L_TAXAMT1``).
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Ebay Item Payment Details Item Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_EBAYITEMNUMBERn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Auction item number. These parameters must be ordered
 #: sequentially beginning with 0 (for example ``L_EBAYITEMNUMBER0``,
 #: ``L_EBAYITEMNUMBER1``).
@@ -510,29 +481,26 @@ L_EBAYITEMNUMBERn
 
 
 L_EBAYITEMAUCTIONTXNIDn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Auction transaction identification number. These parameters must
-#: be ordered sequentially beginning with 0 (for example
+#: (Optional) Auction transaction identification number. These parameters
+#: must be ordered sequentially beginning with 0 (for example
 #: ``L_EBAYITEMAUCTIONTXNID0``, ``L_EBAYITEMAUCTIONTXNID1``).
 #:
 #: Character length: 255 single-byte characters
 
 
 L_EBAYITEMORDERIDn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Auction order identification number. These parameters must be
-#: ordered sequentially beginning with 0 (for example ``L_EBAYITEMORDERID0``,
-#: ``L_EBAYITEMORDERID1``).
+#: (Optional) Auction order identification number. These parameters must
+#: be ordered sequentially beginning with 0 (for example
+#: ``L_EBAYITEMORDERID0``, ``L_EBAYITEMORDERID1``).
 #:
 #: Character length: 64 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Reference Credit Card Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 CREDITCARDTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Type of credit card. Is one of the following values:
 #:
 #:
@@ -552,51 +520,48 @@ CREDITCARDTYPE
 #:
 #:
 #: Notes:
-#:     If the credit card type is ``Maestro``, you must set ``CURRENCYCODE``
-#:     to ``GBP``. In addition, you must specify either ``STARTDATE`` or
-#:     ``ISSUENUMBER``.
+#:     If the credit card type is ``Maestro``, you must set
+#:     ``CURRENCYCODE`` to ``GBP``. In addition, you must specify either
+#:     ``STARTDATE`` or ``ISSUENUMBER``.
 #:
 #:
-#: For UK, only ``Maestro``, ``MasterCard``, ``Discover``, and ``Visa`` are
-#: allowable. For Canada, only ``MasterCard`` and ``Visa`` are allowable.
-#: Interac debit cards are not supported.
+#: For UK, only ``Maestro``, ``MasterCard``, ``Discover``, and ``Visa``
+#: are allowable. For Canada, only ``MasterCard`` and ``Visa`` are
+#: allowable. Interac debit cards are not supported.
 
 
 ACCT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Credit card number.
 #:
 #:
 #: Character length and limitations:
-#:     Numeric characters only with no spaces or punctuation. The string must
-#:     conform with modulo and length required by each credit card type.
+#:     Numeric characters only with no spaces or punctuation. The string
+#:     must conform with modulo and length required by each credit card
+#:     type.
 
 
 EXPDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Credit card expiration date. This field is required if you are using
 #: recurring payments with direct payments.
 #:
 #:
 #: Character length and limitations:
-#:     6 single-byte alphanumeric characters, including leading zero, in the
-#:     format MMYYYY
+#:     6 single-byte alphanumeric characters, including leading zero, in
+#:     the format MMYYYY
 
 
 CVV2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Card Verification Value, version 2. To comply with credit card
-#: processing regulations, you must not store this value after a transaction
-#: has been completed.
+#: (Optional) Card Verification Value, version 2. To comply with credit
+#: card processing regulations, you must not store this value after a
+#: transaction has been completed.
 #:
 #:
 #: Character length and limitations:
-#:     For Visa, MasterCard, and Discover, the value is exactly 3 digits. For
-#:     American Express, the value is exactly 4 digits. 
+#:     For Visa, MasterCard, and Discover, the value is exactly 3 digits.
+#:     For American Express, the value is exactly 4 digits.
 
 
 STARTDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Month and year that Maestro card was issued.
 #:
 #:
@@ -605,7 +570,6 @@ STARTDATE
 
 
 ISSUENUMBER
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Issue number of Maestro card.
 #:
 #:
@@ -613,12 +577,11 @@ ISSUENUMBER
 #:     2 numeric digits maximum.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payer Information Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 EMAIL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Email address of buyer.
 #:
 #:
@@ -627,7 +590,6 @@ EMAIL
 
 
 FIRSTNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Buyer's first name.
 #:
 #:
@@ -636,7 +598,6 @@ FIRSTNAME
 
 
 LASTNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Buyer's last name.
 #:
 #:
@@ -644,12 +605,11 @@ LASTNAME
 #:     25 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Address Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 STREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) First street address.
 #:
 #:
@@ -658,7 +618,6 @@ STREET
 
 
 STREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Second street address.
 #:
 #:
@@ -667,7 +626,6 @@ STREET2
 
 
 CITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Name of city.
 #:
 #:
@@ -676,7 +634,6 @@ CITY
 
 
 STATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) State or province.
 #:
 #:
@@ -685,14 +642,12 @@ STATE
 
 
 COUNTRYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Country code. 
+#: (Optional) Country code.
 #:
 #: Character limit: 2 single-byte characters
 
 
 ZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) U.S. ZIP code or other country-specific postal code.
 #:
 #:
@@ -701,39 +656,34 @@ ZIP
 
 
 SHIPTOPHONENUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Phone number.
 #:
 #: Character length and limit: 20 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoReferenceTransaction Response Fields for Express Checkout
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 AVSCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Address Verification System response code. 
+#: Address Verification System response code.
 #:
-#: Character limit: 1 single-byte alphanumeric character 
+#: Character limit: 1 single-byte alphanumeric character
 
 
 CVV2MATCH
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Result of the CVV2 check by PayPal.
 
 
 BILLINGAGREEMENTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Billing agreement identifier returned if the value of ``ReferenceID`` in
-#: the request is a billing agreement identification number.
+#: Billing agreement identifier returned if the value of ``ReferenceID``
+#: in the request is a billing agreement identification number.
 
 
 L_FMFfilterIDn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter ID, including the filter type (``PENDING``, ``REPORT``, or
-#: ``DENY)``, the filter ID, and the entry number, n, starting from 0. Filter
-#: ID is one of the following values:
+#: ``DENY)``, the filter ID, and the entry number, n, starting from 0.
+#: Filter ID is one of the following values:
 #:
 #:
 #:     ``1`` - AVS No Match
@@ -772,15 +722,13 @@ L_FMFfilterIDn
 
 
 L_FMFfilterNAMEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter name, including the filter type (``PENDING``, ``REPORT``, or
 #: ``DENY)``, the filter NAME, and the entry number, n, starting from 0.
 
 
 PAYMENTADVICECODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Response code from the processor when a recurring transaction is declined.
-#: For details on the meanings of the codes, see
+#: Response code from the processor when a recurring transaction is
+#: declined. For details on the meanings of the codes, see
 #: ``https://merchant.paypal.com/us/cgi-bin/?&cmd=_render-content&content_ID=..._``
 #: .
 #:
@@ -790,12 +738,11 @@ PAYMENTADVICECODE
 #: .. _https://merchant.paypal.com/us/cgi-bin/?&amp;cmd=_render-content&amp;content_ID=...: https://merchant.paypal.com/us/cgi-bin/?&cmd=_render-content&content_ID=merchant/cc_compliance_error_codes
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Information Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Unique transaction ID of the payment.
 #:
 #:
@@ -804,7 +751,6 @@ TRANSACTIONID
 
 
 PARENTTRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Parent or related transaction identification number. This value in this
 #: field is for the following transaction types:
 #:
@@ -816,13 +762,13 @@ PARENTTRANSACTIONID
 #:     Capture of an order – The value of ``ParentTransactionID`` is the
 #:     original ``OrderID``.
 #:
-#:     Authorization of an order – The value of ``ParentTransactionID`` is the
-#:     original ``OrderID``.
+#:     Authorization of an order – The value of ``ParentTransactionID`` is
+#:     the original ``OrderID``.
 #:
 #:     Capture of an order authorization.
 #:
-#:     Void of an order – The value of ``ParentTransactionID`` is the original
-#:     ``OrderID``.
+#:     Void of an order – The value of ``ParentTransactionID`` is the
+#:     original ``OrderID``.
 #:
 #:
 #: Character length and limitations:
@@ -830,7 +776,6 @@ PARENTTRANSACTIONID
 
 
 RECEIPTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Receipt identification number
 #:
 #:
@@ -839,8 +784,7 @@ RECEIPTID
 
 
 TRANSACTIONTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The type of transaction. It is one of the following values: 
+#: The type of transaction. It is one of the following values:
 #:
 #:
 #:     ``cart``
@@ -852,7 +796,6 @@ TRANSACTIONTYPE
 
 
 PAYMENTTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Indicates whether the payment is instant or delayed. It is one of the
 #: following values:
 #:
@@ -869,8 +812,7 @@ PAYMENTTYPE
 
 
 ORDERTIME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Time/date stamp of payment, 
+#: Time/date stamp of payment,
 #:
 #:
 #: Character length and limitations:
@@ -879,7 +821,6 @@ ORDERTIME
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The final amount charged, including any shipping and taxes from your
 #: Merchant Profile.
 #:
@@ -887,57 +828,52 @@ AMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: A 3-character currency code. 
+#: A 3-character currency code.
 
 
 FEEAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: PayPal fee amount charged for the transaction.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 SETTLEAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Amount deposited in your PayPal account after a currency conversion.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Tax charged on the transaction.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 EXCHANGERATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Exchange rate if a currency conversion occurred. Relevant only if your are
-#: billing in their non-primary currency. If the buyer chooses to pay with a
-#: currency other than the non-primary currency, the conversion occurs in the
-#: buyer's account.
+#: Exchange rate if a currency conversion occurred. Relevant only if your
+#: are billing in their non-primary currency. If the buyer chooses to pay
+#: with a currency other than the non-primary currency, the conversion
+#: occurs in the buyer's account.
 #:
 #:
 #: Character length and limitations:
@@ -946,43 +882,42 @@ EXCHANGERATE
 
 
 PAYMENTSTATUS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Status of the payment. It is one of the following values: 
+#: Status of the payment. It is one of the following values:
 #:
 #:
 #:     ``None`` – No status
 #:
-#:     ``Canceled-Reversal``– A reversal has been canceled, for example, when
-#:     you win a dispute and the funds for the reversal have been returned to
-#:     you.
+#:     ``Canceled-Reversal``– A reversal has been canceled, for example,
+#:     when you win a dispute and the funds for the reversal have been
+#:     returned to you.
 #:
-#:     ``Completed`` – The payment has been completed, and the funds have been
-#:     added successfully to your account balance.
+#:     ``Completed`` – The payment has been completed, and the funds have
+#:     been added successfully to your account balance.
 #:
-#:     ``Denied`` – You denied the payment. This happens only if the payment
-#:     was previously pending because of possible reasons described for the
-#:     ``PendingReason`` element.
+#:     ``Denied`` – You denied the payment. This happens only if the
+#:     payment was previously pending because of possible reasons
+#:     described for the ``PendingReason`` element.
 #:
 #:     ``Expired`` – The authorization period for this payment has been
 #:     reached.
 #:
-#:     ``Failed`` – The payment has failed. This happens only if the payment
-#:     was made from your buyer's bank account.
+#:     ``Failed`` – The payment has failed. This happens only if the
+#:     payment was made from your buyer's bank account.
 #:
-#:     ``In-Progress`` – The transaction has not terminated, for example, an
-#:     authorization may be awaiting completion.
+#:     ``In-Progress`` – The transaction has not terminated, for example,
+#:     an authorization may be awaiting completion.
 #:
 #:     ``Partially-Refunded`` – The payment has been partially refunded.
 #:
-#:     ``Pending`` – The payment is pending. See the ``PendingReason`` field
-#:     for more information.
+#:     ``Pending`` – The payment is pending. See the ``PendingReason``
+#:     field for more information.
 #:
 #:     ``Refunded`` – You refunded the payment.
 #:
-#:     ``Reversed`` – A payment was reversed due to a chargeback or other type
-#:     of reversal. The funds have been removed from your account balance and
-#:     returned to the buyer. The reason for the reversal is specified in the
-#:     ``ReasonCode`` element.
+#:     ``Reversed`` – A payment was reversed due to a chargeback or other
+#:     type of reversal. The funds have been removed from your account
+#:     balance and returned to the buyer. The reason for the reversal is
+#:     specified in the ``ReasonCode`` element.
 #:
 #:     ``Processed`` – A payment has been accepted.
 #:
@@ -990,80 +925,79 @@ PAYMENTSTATUS
 
 
 PENDINGREASON
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The reason the payment is pending. It is one of the following values:
 #:
 #:
 #:     ``none`` – No pending reason.
 #:
-#:     ``address`` – The payment is pending because your buyer did not include
-#:     a confirmed shipping address and your Payment Receiving Preferences is
-#:     set such that you want to manually accept or deny each of these
-#:     payments. To change your preference, go to the ``Preferences`` section
-#:     of your ``Profile``.
+#:     ``address`` – The payment is pending because your buyer did not
+#:     include a confirmed shipping address and your Payment Receiving
+#:     Preferences is set such that you want to manually accept or deny
+#:     each of these payments. To change your preference, go to the
+#:     ``Preferences`` section of your ``Profile``.
 #:
 #:     ``authorization`` – The payment is pending because it has been
 #:     authorized but not settled. You must capture the funds first.
 #:
-#:     ``echeck`` – The payment is pending because it was made by an eCheck
-#:     that has not yet cleared.
+#:     ``echeck`` – The payment is pending because it was made by an
+#:     eCheck that has not yet cleared.
 #:
-#:     ``intl`` – The payment is pending because you hold a non-U.S. account
-#:     and do not have a withdrawal mechanism. You must manually accept or
-#:     deny this payment from your ``Account Overview``.
+#:     ``intl`` – The payment is pending because you hold a non-U.S.
+#:     account and do not have a withdrawal mechanism. You must manually
+#:     accept or deny this payment from your ``Account Overview``.
 #:
-#:     ``multi-currency`` – You do not have a balance in the currency sent,
-#:     and you do not have your ``Payment Receiving Preferences`` set to
-#:     automatically convert and accept this payment. You must manually accept
-#:     or deny this payment.
+#:     ``multi-currency`` – You do not have a balance in the currency
+#:     sent, and you do not have your ``Payment Receiving Preferences``
+#:     set to automatically convert and accept this payment. You must
+#:     manually accept or deny this payment.
 #:
-#:     ``order`` – The payment is pending because it is part of an order that
-#:     has been authorized but not settled.
+#:     ``order`` – The payment is pending because it is part of an order
+#:     that has been authorized but not settled.
 #:
-#:     ``paymentreview`` – The payment is pending while it is being reviewed
-#:     by PayPal for risk.
+#:     ``paymentreview`` – The payment is pending while it is being
+#:     reviewed by PayPal for risk.
 #:
-#:     ``unilateral`` – The payment is pending because it was made to an email
-#:     address that is not yet registered or confirmed.
+#:     ``unilateral`` – The payment is pending because it was made to an
+#:     email address that is not yet registered or confirmed.
 #:
-#:     ``verify`` –The payment is pending because you are not yet verified.
-#:     You must verify your account before you can accept this payment.
+#:     ``verify`` –The payment is pending because you are not yet
+#:     verified. You must verify your account before you can accept this
+#:     payment.
 #:
-#:     ``other`` – The payment is pending for a reason other than those listed
-#:     above. For more information, contact PayPal Customer Service.
+#:     ``other`` – The payment is pending for a reason other than those
+#:     listed above. For more information, contact PayPal Customer
+#:     Service.
 #:
 #:
 #: Notes:
-#:     ``PendingReason`` is returned in the response only if ``PaymentStatus``
-#:     is ``Pending``.
+#:     ``PendingReason`` is returned in the response only if
+#:     ``PaymentStatus`` is ``Pending``.
 
 
 REASONCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The reason for a reversal if the transaction type is reversal. It is one of
-#: the following values: 
+#: The reason for a reversal if the transaction type is reversal. It is
+#: one of the following values:
 #:
 #:
 #:     ``none`` – No reason code.
 #:
-#:     ``chargeback`` – A reversal has occurred on this transaction due to a
-#:     chargeback by your buyer.
+#:     ``chargeback`` – A reversal has occurred on this transaction due to
+#:     a chargeback by your buyer.
 #:
-#:     ``guarantee`` – A reversal has occurred on this transaction due to your
-#:     buyer triggering a money-back guarantee.
+#:     ``guarantee`` – A reversal has occurred on this transaction due to
+#:     your buyer triggering a money-back guarantee.
 #:
-#:     ``buyer-complaint`` – A reversal has occurred on this transaction due
-#:     to a complaint about the transaction from your buyer.
+#:     ``buyer-complaint`` – A reversal has occurred on this transaction
+#:     due to a complaint about the transaction from your buyer.
 #:
-#:     ``refund`` – A reversal has occurred on this transaction because you
-#:     have given the buyer a refund.
+#:     ``refund`` – A reversal has occurred on this transaction because
+#:     you have given the buyer a refund.
 #:
-#:     ``other`` – A reversal has occurred on this transaction due to a reason
-#:     not listed above.
+#:     ``other`` – A reversal has occurred on this transaction due to a
+#:     reason not listed above.
 
 
 PROTECTIONELIGIBILITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Prior to version 64.4, the kind of seller protection in force for the
 #: transaction. It is one of the following values:
 #:
@@ -1074,12 +1008,11 @@ PROTECTIONELIGIBILITY
 #:     ``PartiallyEligible`` – Merchant is protected by PayPal's Seller
 #:     Protection Policy for Item Not Received.
 #:
-#:     ``Ineligible`` – Merchant is not protected under the Seller Protection
-#:     Policy.
+#:     ``Ineligible`` – Merchant is not protected under the Seller
+#:     Protection Policy.
 
 
 PROTECTIONELIGIBILITYTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Since version 64.4, the kind of seller protection in force for the
 #: transaction. It is one of the following values:
 #:
@@ -1087,26 +1020,24 @@ PROTECTIONELIGIBILITYTYPE
 #:     ``Eligible`` – Merchant is protected by PayPal's Seller Protection
 #:     Policy for both Unauthorized Payment and Item Not Received.
 #:
-#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's Seller
-#:     Protection Policy for Item Not Received.
+#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's
+#:     Seller Protection Policy for Item Not Received.
 #:
 #:     ``UnauthorizedPaymentEligible`` – Merchant is protected by PayPal's
 #:     Seller Protection Policy for Unauthorized Payment.
 #:
-#:     ``Ineligible`` – Merchant is not protected under the Seller Protection
-#:     Policy.
+#:     ``Ineligible`` – Merchant is not protected under the Seller
+#:     Protection Policy.
 #:
 #:
 #: Available since API version: 64.4
 
 
 STOREID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Store ID as entered in the transaction
 
 
 TERMINALID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Terminal ID as entered in the transaction
 
 

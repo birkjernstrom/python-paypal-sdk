@@ -1,14 +1,13 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetUserAgreement Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 countryCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The code for the country in which the user account is located.
-#: You do not need to provide this country code if you are passing the
-#: createAccount key. Allowable values are:
+#: (Optional) The code for the country in which the user account is
+#: located. You do not need to provide this country code if you are
+#: passing the createAccount key. Allowable values are:
 #:
 #:
 #:     Australia – ``AU``
@@ -41,35 +40,33 @@ countryCode
 
 
 createAccountKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The key returned for this account in the CreateAccountResponse
-#: message in the createAccountKey field. If you specify this key, do not pass
-#: a country code or language code. Doing so will result in an error.
+#: (Optional) The key returned for this account in the
+#: CreateAccountResponse message in the createAccountKey field. If you
+#: specify this key, do not pass a country code or language code. Doing so
+#: will result in an error.
 
 
 languageCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The code indicating the language to be used for the agreement.
+#: (Optional) The code indicating the language to be used for the
+#: agreement.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:RequestEnvelope``
 #:
-#: (Required) Information common to each API operation, such as the language
-#: in which an error message is returned.
+#: (Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) The level of detail required by the client application for
@@ -81,38 +78,35 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported
+#: (Required) The RFC 3066 language in which error messages are returned;
+#: by default it is ``en_US``, which is the only language currently
+#: supported
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetUserAgreement Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 agreement
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: This is the text of the actual PayPal user agreement.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
 #: acknowledgement status.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgment code. Possible values are:
@@ -131,46 +125,38 @@ ack
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; used only by Developer Technical Support.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The date on which the response was sent. The time is not supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetUserAgreement Errors
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 520002
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error
 
 
 520003
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Username/Password is incorrect
 
 
 550005
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The application ID does not exist
 
 
 550006
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The application is not authorized for the App caller
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Request parameter is invalid:
 #:
 #:
@@ -188,7 +174,6 @@ timestamp
 
 
 580029
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Required parameter is missing in the request:
 #:
 #:
@@ -198,7 +183,6 @@ timestamp
 
 
 580001
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid request:
 #:
 #:
@@ -228,12 +212,10 @@ timestamp
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Account already exists
 
 
 580029
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Required parameter is missing in the request:
 #:
 #:

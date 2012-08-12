@@ -276,11 +276,21 @@ def parse_type_docstring_choices(tag, sections):
         sections['choices'].append(choice.strip())
 
 
-def generate_docstring_lines(sentences, indentation=1, max_length=77):
+def generate_docstring_lines(sentences, indentation=1, max_length=73):
+    """Generate docstring lines which do not exceed the maximum
+    character length.
+
+    Per default the character limit is 73 due to the fact that two
+    bytes are always prepended ('#:') and four characters is the
+    docstring indentation in our implementation of PayPal types.
+    Thus six characters are reserved in the allowed 79 character
+    limit set by PEP8.
+    """
     def generate_line(words, indentation):
         row = ' '.join(words)
         indentation = ' ' * indentation
-        return '%s%s' % (indentation, row)
+        line = '%s%s' % (indentation, row)
+        return line.rstrip()
 
     doclines, line = [], []
     current_line_length = 0
@@ -375,7 +385,8 @@ def parse_docstring_sections(description):
         # tag with the codeph class - like the type name itself.
         code_references = node('samp', 'codeph')
         for reference in code_references:
-            reference.replaceWith('``%s``' % reference.string)
+            value = normalize_text(reference.findAll(text=True))
+            reference.replaceWith('``%s``' % value)
 
         if node_name == 'p':
             # Sanitize paragraph
@@ -463,7 +474,6 @@ def scrape_type(tag):
 
     # Print the type name along with the generated docstring
     print '%s' % type_name
-    print '#' + '~' * 78
     print docstring
     print '\n'
 
@@ -473,7 +483,7 @@ def scrape_type_group(tag):
     if group_name:
         # Print group name header
         group_name = normalize_text(group_name.findAll(text=True))
-        separator = '#' + '-' * 78
+        separator = '#' + '-' * 74
         print '%s\n# %s\n%s\n' % (separator, group_name, separator)
 
     tbody = tag.find('tbody')

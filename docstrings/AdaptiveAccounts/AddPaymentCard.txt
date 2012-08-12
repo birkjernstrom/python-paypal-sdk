@@ -1,9 +1,8 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # AddPaymentCard Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 accountId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The identification number of the PayPal account for which a
@@ -12,7 +11,6 @@ accountId
 
 
 billingAddress
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:AddressType``
 #:
 #: (Optional) The element ``AddressType``. See AddressType Fields_.
@@ -22,21 +20,18 @@ billingAddress
 
 
 cardNumber
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The credit card number.
 
 
 cardOwnerDateOfBirth
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:date``
 #:
 #: (Optional) The date of birth of the card holder.
 
 
 cardType
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:CardTypeType``
 #:
 #: (Required) The type of card to be added. Allowable values are:
@@ -70,22 +65,20 @@ cardType
 
 
 cardVerificationNumber
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: The verification code for the card. This paramater is generally required
-#: for calls where ``confirmationType`` is set to NONE. With the appropriate
-#: account review, this parameter can be optional.
+#: The verification code for the card. This paramater is generally
+#: required for calls where ``confirmationType`` is set to NONE. With the
+#: appropriate account review, this parameter can be optional.
 
 
 confirmationType
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:ConfirmationType``
 #:
-#: (Required) Whether PayPal account holders are redirected to PayPal.com to
-#: confirm the payment card addition. When you pass NONE for this element, the
-#: addition is made without the account holder's explicit confirmation. If you
-#: pass WEB, a URL is returned.
+#: (Required) Whether PayPal account holders are redirected to PayPal.com
+#: to confirm the payment card addition. When you pass NONE for this
+#: element, the addition is made without the account holder's explicit
+#: confirmation. If you pass WEB, a URL is returned.
 #:
 #: Allowable string values are:
 #:
@@ -96,21 +89,19 @@ confirmationType
 #:
 #:
 #: Notes:
-#:     ``ConfirmationType`` NONE requires advanced permission levels. You must
-#:     pass the createAccount key and the cardVerificationNumber.
+#:     ``ConfirmationType`` NONE requires advanced permission levels. You
+#:     must pass the createAccount key and the cardVerificationNumber.
 
 
 createAccountKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: The createaccount key returned in the ``CreateAccount`` response. This
-#: parameter is required for calls where the ``confirmationType`` is set to
-#: NONE.
+#: parameter is required for calls where the ``confirmationType`` is set
+#: to NONE.
 
 
 emailAddress
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The email address for the PayPal account. You must specify
@@ -118,63 +109,56 @@ emailAddress
 
 
 expirationDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:CardDateType``
 #:
-#: (Optional) The element containing the expiration date for the payment card.
-#: 
+#: (Optional) The element containing the expiration date for the payment
+#: card.
 
 
 issueNumber
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The 2-digit issue number for Switch, Maestro, and Solo cards.
+#: (Optional) The 2-digit issue number for Switch, Maestro, and Solo
+#: cards.
 
 
 nameOnCard
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:Nametype``
 #:
-#: (Required) The element containing the name of the card holder. 
+#: (Required) The element containing the name of the card holder.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:RequestEnvelope``
 #:
-#: (Required) Information common to each API operation, such as the language
-#: in which an error message is returned. 
+#: (Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
 startDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:CardDateType``
 #:
-#: (Optional) The element containing the start date for the payment card. 
+#: (Optional) The element containing the start date for the payment card.
 
 
 webOptions
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:WebOptionsType``
 #:
-#: (Optional) Additional structure to define the URLs for the cancelation and
-#: return web flows. 
+#: (Optional) Additional structure to define the URLs for the cancelation
+#: and return web flows.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # AddressType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 line1
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The street address.
 
 
 line2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The second line of the address.
@@ -185,100 +169,88 @@ line2
 
 
 city
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The city.
 
 
 state
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The state code.
 
 
 postalCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The zip or postal code.
 
 
 countryCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The country code. For allowable values, refer to Country Codes_.
-#: 
+#: (Required) The country code. For allowable values, refer to Country
+#: Codes_.
 #:
 #:
 #: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # NameType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 salutation
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) A salutation for the account or payment card holder.
 
 
 firstName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) First name of the account or payment card holder.
 
 
 middleName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) Middle name of the account or payment card holder.
 
 
 lastName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) Last name of the account or payment card holder.
 
 
 suffix
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) A suffix for the account or payment card holder.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # CardDateType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 month
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:integer``
 #:
 #: (Optional) The month of expiration.
 
 
 year
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:integer``
 #:
 #: (Required) The year of expiration.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) The level of detail required by the client application for
@@ -290,19 +262,18 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported
+#: (Required) The RFC 3066 language in which error messages are returned;
+#: by default it is ``en_US``, which is the only language currently
+#: supported
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # AddPaymentCard Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 execStatus
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Excution status for the request. Possible values are:
@@ -316,39 +287,35 @@ execStatus
 
 
 fundingSourceKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: The funding source key returned by the AddBankAccount response.
 
 
 redirectURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: The URL to send the PayPal account holder to after the AddPaymentCard web
-#: flow is completed.
+#: The URL to send the PayPal account holder to after the AddPaymentCard
+#: web flow is completed.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
 #: acknowledgement status. See SetFundingSourceConfirmed API
-#: OperationSetFundingSourceConfirmed RequestSetFundingSourceConfirmed Request
-#: FieldsResponseEnvelope Fields_
+#: OperationSetFundingSourceConfirmed RequestSetFundingSourceConfirmed
+#: Request FieldsResponseEnvelope Fields_
 #:
 #:
 #: .. _SetFundingSourceConfirmed API OperationSetFundingSourceConfirmed RequestSetFundingSourceConfirmed Request FieldsResponseEnvelope Fields: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACSetFundingSourceConfirmedAPI
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgment code. Possible values are:
@@ -367,57 +334,47 @@ ack
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; used only by Developer Technical Support.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The date on which the response was sent. The time is not supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # AddPaymentCard Errors
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 500000 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Framework failure. Retry.
 
 
 520002 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error
 
 
 520003 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid credentials.
 
 
 550001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: User is not allowed to perform this action
 
 
 560022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid header.
 
 
 560029 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The required <name> header is missing from the HTTP request
 
 
 580001
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Invalid request: 
+#: Invalid request:
 #:
 #:
 #:     Card is already added to some other account
@@ -440,8 +397,7 @@ timestamp
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Request parameter is invalid: 
+#: Request parameter is invalid:
 #:
 #:
 #:     Invalid request parameter: billingAddress
@@ -484,18 +440,17 @@ timestamp
 
 
 580023 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The argument is inconsistent with the rest of the request
 #:
 #:
-#:     Country of billing address must match country of account holder address
+#:     Country of billing address must match country of account holder
+#:     address
 #:
 #:     Account associated with createAccountKey is different from the one
 #:     provided in the request
 
 
 580027 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The parameter is not supported
 #:
 #:
@@ -505,8 +460,7 @@ timestamp
 
 
 580029 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Required parameter is missing in the request: 
+#: Required parameter is missing in the request:
 #:
 #:
 #:     Missing required request parameter: firstName

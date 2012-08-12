@@ -1,9 +1,8 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) Levelof detail required by the client application for
@@ -15,38 +14,34 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) RFC3066 language in which error messages are returned; by
 #: default itis ``en_US``, which is the only language currentlysupported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetInvoiceDetailsRequest Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 invoiceID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) IDof the invoice to retrieve.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:requestEnvelope``
 #:
-#: (Required) Informationcommon to each API operation, such as the language in
-#: which an errormessage is returned.
+#: (Required) Informationcommon to each API operation, such as the
+#: language in which an errormessage is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgementcode. It is one of the following values:
@@ -56,55 +51,52 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completedsuccessfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completedsuccessfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failedwith a warning message.
+#:     ``FailureWithWarning ``– The operation failedwith a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number.It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlationidentifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``)that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``)that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Dateon which the response was sent, for example: 
+#: Dateon which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetInvoiceDetailsResponse Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Commonresponse information, including a timestamp and the response
@@ -112,109 +104,96 @@ responseEnvelope
 
 
 invoice
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: ID of thecreated invoice.
 
 
 invoiceDetails
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:InvoiceDetailsType``
 #:
 #: Detailsabout the invoice status and state change dates.
 
 
 paymentDetails
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:PaymentDetailsType``
 #:
 #: Paymentdetails about the invoice.
 
 
 refundDetails
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:PaymentRefundDetailsType``
 #:
 #: Therequested invoice refund details.
 
 
 invoiceURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: URL locationwhere merchants view the invoice details.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # InvoiceType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 merchantEmail
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Merchantemail address.
 
 
 payerEmail
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Payer emailaddress.
 
 
 number
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Uniqueidentifier for the invoice.
 
 
 merchantInfo
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:BusinessInfoType``
 #:
 #: Companycontact information of the merchant company sending the invoice.
 
 
 itemList
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:InvoiceItemListType``
 #:
 #: Listof items included in this invoice.
 
 
 currencyCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Currencyused for all invoice item amounts and totals.
 
 
 invoiceDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Dateon which the invoice is enabled.
 
 
 dueDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Dateon which the invoice payment is due.
 
 
 paymentTerms
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:PaymentTermsType``
 #:
-#: Termsby which the invoice payment is due. It is one of the followingvalues:
-#: 
+#: Termsby which the invoice payment is due. It is one of the
+#: followingvalues:
 #:
 #:
-#:     ``DueOnReceipt`` – Payment isdue when the payer receives the invoice.
+#:     ``DueOnReceipt`` – Payment isdue when the payer receives the
+#:     invoice.
 #:
 #:     ``DueOnDateSpecified`` – Payment is due on thedate specified in the
 #:     invoice.
@@ -229,252 +208,219 @@ paymentTerms
 
 
 discountPercent
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
 #: Discountpercent applied to the invoice.
 
 
 discountAmount
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
-#: Discountamount applied to the invoice, if any. If ``discountPercent`` is
-#: provided, ``discountAmount`` isignored.
+#: Discountamount applied to the invoice, if any. If ``discountPercent``
+#: is provided, ``discountAmount`` isignored.
 
 
 terms
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Generalterms for the invoice.
 
 
 note
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Note tothe payer company.
 
 
 merchantMemo
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Memo forbookkeeping that is private to the merchant.
 
 
 billingInfo
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:BusinessInfoType``
 #:
 #: Billinginformation for the payer.
 
 
 shippingInfo
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:BusinessInfoType``
 #:
 #: Shippinginformation for the payer.
 
 
 shippingAmount
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
 #: Cost ofshipping.
 
 
 shippingTaxName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Name ofthe applicable tax on shipping cost.
 
 
 shippingTaxRate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
 #: Rate ofthe applicable tax on shipping cost.
 
 
 logoURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Externalimage URL of the invoice logo, if any.
 
 
 referrerCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build Notification(BN) code for tracking transactions with a particular
 #: partner.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # InvoiceDetailsType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 status
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:StatusType``
 #:
 #: Statusof the invoice.
 
 
 totalAmount
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
 #: Totalamount of the invoice (cost of items, shipping, and tax, less any
-#: discount).The invoicing system sets this field and ignores any changes made
-#: byAPI callers.
+#: discount).The invoicing system sets this field and ignores any changes
+#: made byAPI callers.
 
 
 origin
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:OriginType``
 #:
 #: Indicateswhether the invoice was created by the website or an API call.
 
 
 createdDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Datewhen the invoice was created.
 
 
 createdBy
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Accountthat created the invoice.
 
 
 canceledDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
-#: Datewhen the invoice was canceled, if canceled. 
+#: Datewhen the invoice was canceled, if canceled.
 
 
 canceledByActor
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:ActorType``
 #:
 #: Actorwho canceled the invoice.
 
 
 canceledBy
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Accountthat canceled the invoice.
 
 
 lastUpdatedDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
-#: Datewhen the invoice was last updated. 
+#: Datewhen the invoice was last updated.
 
 
 lastUpdatedBy
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: Accountthat last edited the invoice. 
+#: Accountthat last edited the invoice.
 
 
 firstSentDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Datewhen the invoice was first sent.
 
 
 lastSentDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Datewhen the invoice was last sent.
 
 
 lastSentBy
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Accountthat last sent the invoice.
 
 
 paidDate
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
-#: Datewhen the invoice was paid, if paid. 
+#: Datewhen the invoice was paid, if paid.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PaymentDetailsType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 viaPayPal
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:boolean``
 #:
-#: Returns ``True`` ifthe invoice was paid by PayPal. 
+#: Returns ``True`` ifthe invoice was paid by PayPal.
 #:
 #: 
 td>
 
 
-
 paypalPayment
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:PayPalPaymentDetailsType``
 #:
-#: PayPalpayment details about the invoice. 
+#: PayPalpayment details about the invoice.
 
 
 otherPayment
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:OtherPaymentDetailsType``
 #:
 #: Offlinepayment details about the invoice.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PayPalPaymentDetailsType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 transactionID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: TransactionID of the PayPal payment.
 
 
 date
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: Datewhen the invoice was paid.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # OtherPaymentDetailsType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 method
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``inv:PaymentMethodsType``
 #:
-#: (Optional) Methodthat can be used to mark an invoice as paid when the payer
-#: paysoffline. It is one of the following values:
+#: (Optional) Methodthat can be used to mark an invoice as paid when the
+#: payer paysoffline. It is one of the following values:
 #:
 #:
 #:     ``BankTransfer`` –Payment is made by a bank transfer.
@@ -495,49 +441,44 @@ method
 
 
 note
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) Optionalnote associated with the payment. 
+#: (Optional) Optionalnote associated with the payment.
 
 
 date
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:dateTime``
 #:
 #: (Required) Datewhen the invoice was paid.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # FaultMessage Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 error
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorData``
 #:
 #: Detailederror information.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Commonresponse information, including a timestamp and the response
 #: acknowledgementstatus.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ErrorData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 category
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorCategory``
 #:
-#: Thelocation where the error occurred. 
+#: Thelocation where the error occurred.
 #:
-#: Possible values are: 
+#: Possible values are:
 #:
 #:
 #:     ``System`` – The system encountered errors;try again
@@ -548,43 +489,37 @@ category
 
 
 domain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: The domainto which this service belongs. 
+#: The domainto which this service belongs.
 
 
 errorId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:long``
 #:
-#: A 6-digitnumber that uniquely identifies a particular error. 
+#: A 6-digitnumber that uniquely identifies a particular error.
 
 
 exceptionID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
 message
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: A descriptionof the error. 
+#: A descriptionof the error.
 
 
 parameter
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorParameter``
 #:
-#: Representscontextual information about the error. 
+#: Representscontextual information about the error.
 
 
 severity
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ``common:ErrorSeverity`` 
+#: ``common:ErrorSeverity``
 #:
-#: Theseverity of the error encountered. 
+#: Theseverity of the error encountered.
 #:
 #: Possible values are:
 #:
@@ -595,16 +530,14 @@ severity
 
 
 subdomain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgementcode. It is one of the following values:
@@ -614,94 +547,84 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completedsuccessfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completedsuccessfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failedwith a warning message.
+#:     ``FailureWithWarning ``– The operation failedwith a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number.It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlationidentifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``)that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``)that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Dateon which the response was sent, for example: 
+#: Dateon which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 520002
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error.
 
 
 520005
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Authentication failed. API credentials areincorrect.
 
 
 520009
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Account is restricted.
 
 
 550026
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Partner did not create the invoice but attemptedto access or modify it; a
-#: merchant's invoice can be accessed ormodified only by the partner who
+#: Partner did not create the invoice but attemptedto access or modify it;
+#: a merchant's invoice can be accessed ormodified only by the partner who
 #: created it.
 
 
 550027
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Merchant cannot access or modify an invoicethey did not create; an invoice
-#: can only be accessed or modifiedby the party who created it.
+#: Merchant cannot access or modify an invoicethey did not create; an
+#: invoice can only be accessed or modifiedby the party who created it.
 
 
 570058
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid token.
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: This error code corresponds to validationerror messages that deal with
-#: errors of supplied parameters. 
+#: errors of supplied parameters.
 
 
 580047
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invoice does not exist.
 
 

@@ -1,69 +1,61 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SetPaymentOptionsRequest Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 payKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: 
-(Required) The pay key that identifies the payment for which you want to
-#: set payment options. This is the pay key returned in the ``PayResponse``
-#: message.
+(Required) The pay key that identifies the payment for which you want
+#: to set payment options. This is the pay key returned in the
+#: ``PayResponse`` message.
 
 
 displayOptions
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:DisplayOptions``
 #:
 #: (Optional) Specifies display items in payment flows and emails.
 
 
 initiatingEntitity
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:InitiatingEntity``
 #:
 #: (Optional) The PayPal financial partner that is initiating the payment.
-#: Financial partners must first be set up in the Admin tool before they can
-#: use the PayPal APIs.
+#: Financial partners must first be set up in the Admin tool before they
+#: can use the PayPal APIs.
 
 
 shippingAddressId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) Sender's shipping address ID.
 
 
 senderOptions
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:SenderOptions``
 #:
 #: (Optional) Specifies information to be provided by the sender.
 
 
 receiverOptions
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:ReceiverOptions``
 #:
 #: (Optional) Specifies information about each receiver.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:requestEnvelope``
 #:
 #: 
-(Required) Information common to each API operation, such as the language
-#: in which an error message is returned.
+(Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DisplayOptions Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 emailHeaderImageUrl
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The URL of the image that displays in the in the header of
@@ -72,60 +64,55 @@ emailHeaderImageUrl
 
 
 emailMarketingImageUrl
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The URL of the image that displays in the in customer emails.
-#: The URL cannot exceed 1,024 characters. The image dimensions are 80 pixels
-#: high x 530 pixels wide.
+#: (Optional) The URL of the image that displays in the in customer
+#: emails. The URL cannot exceed 1,024 characters. The image dimensions
+#: are 80 pixels high x 530 pixels wide.
 
 
 headerImageUrl
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The URL of an image that displays in the header of a payment
-#: page. If set, it overrides the header image URL specified in your account's
-#: Profile. The URL cannot exceed 1,024 characters. The image dimensions are
-#: 90 pixels high x 750 pixels wide.
+#: page. If set, it overrides the header image URL specified in your
+#: account's Profile. The URL cannot exceed 1,024 characters. The image
+#: dimensions are 90 pixels high x 750 pixels wide.
 
 
 businessName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The business name to display. The name cannot exceed 128
-#: characters. 
+#: characters.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # InitiatingEntity Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 institutionCustomer
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:InstitutionCustomer``
 #:
 #: (Optional) Details about the party that initiated this payment. This
-#: payment is made by the API caller on behalf of the initiating party. The
-#: initiating party can be an institution or a customer of the institution.
-#: The initiating party must be set up by PayPal Merchant Services.
+#: payment is made by the API caller on behalf of the initiating party.
+#: The initiating party can be an institution or a customer of the
+#: institution. The initiating party must be set up by PayPal Merchant
+#: Services.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Institution Customer Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 countryCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The two-character country code of the home country of the end
-#: consumer
+#: (Required) The two-character country code of the home country of the
+#: end consumer
 
 
 displayName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The full name of the consumer as known by the institution.
@@ -134,16 +121,15 @@ displayName
 
 
 email
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) The email address of the consumer as known by the institution.
+#: (Optional) The email address of the consumer as known by the
+#: institution.
 #:
 #: Maximum length: 127 characters
 
 
 firstName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The first name of the consumer as known by the institution.
@@ -152,7 +138,6 @@ firstName
 
 
 institutionCustomerId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The unique identifier assigned to the consumer by the
@@ -162,7 +147,6 @@ institutionCustomerId
 
 
 institutionId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The unique identifier assigned to the institution.
@@ -171,7 +155,6 @@ institutionId
 
 
 lastName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The last name of the consumer as known by the institution.
@@ -179,183 +162,163 @@ lastName
 #: Maximum length: 64 characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SenderOptions Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 requireShippingAddressSelection
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:boolean``
 #:
 #: (Optional) If ``true``, require the sender to select a shipping address
-#: during the embedded payment flow; default is ``false``. 
+#: during the embedded payment flow; default is ``false``.
 
 
 referrerCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) A code that identifies the partner associated with this
-#: transaction. 
+#: transaction.
 #:
 #: Maximum length: 32 characters.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ReceiverOptions Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 description
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) A description you want to associate with the payment. This
-#: overrides the value of the memo in Pay API for each receiver. If this is
-#: not specified the value in the memo will be used.
+#: overrides the value of the memo in Pay API for each receiver. If this
+#: is not specified the value in the memo will be used.
 #:
 #: Maximum length: 1000 characters
 
 
 customId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) An external reference or identifier you want to associate with
-#: the payment. 
+#: (Optional) An external reference or identifier you want to associate
+#: with the payment.
 #:
 #: Maximum length: 1000 characters
 
 
 invoiceData
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:InvoiceData``
 #:
 #: (Optional) Item information for the payment, which could appear on an
-#: invoice. 
+#: invoice.
 
 
 receiver
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:ReceiverIdentifier``
 #:
 #: (Optional) Receiver ID associated with these options.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # InvoiceData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 item
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ap:InvoiceItem``
 #:
-#: (Optional) Any number of items associated with the payment. 
+#: (Optional) Any number of items associated with the payment.
 
 
 totalTax
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
-#: (Optional) Total tax associated with the payment. 
+#: (Optional) Total tax associated with the payment.
 
 
 totalShipping
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
-#: (Optional) Total shipping charge associated with the payment. 
+#: (Optional) Total shipping charge associated with the payment.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # InvoiceItem Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 name
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) Name of item. 
+#: (Optional) Name of item.
 
 
 identifier
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) External reference to item or item ID. 
+#: (Optional) External reference to item or item ID.
 
 
 price
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
-#: (Optional) Total of item line. 
+#: (Optional) Total of item line.
 
 
 itemPrice
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:decimal``
 #:
-#: (Optional) Price of an individual item. 
+#: (Optional) Price of an individual item.
 
 
 itemCount
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:int``
 #:
-#: (Optional) Item quantity. 
+#: (Optional) Item quantity.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ReceiverIdentifier Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 email
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) Receiver's email address. 
+#: (Optional) Receiver's email address.
 #:
 #: Maximum length: 127 characters
 
 
 phone
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:PhoneNumberType``
 #:
-#: (Optional) Receiver's phone number. 
+#: (Optional) Receiver's phone number.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PhoneNumberType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 countryCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) Telephone country code. 
+#: (Required) Telephone country code.
 
 
 phoneNumber
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) Telephone number. 
+#: (Required) Telephone number.
 
 
 extension
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Optional) Telephone extension. 
+#: (Optional) Telephone extension.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) Level of detail required by the client application for
@@ -367,19 +330,18 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported.
+#: default it is ``en_US``, which is the only language currently
+#: supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgement code. It is one of the following values:
@@ -389,77 +351,74 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completed successfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completed successfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failed with a warning message.
+#:     ``FailureWithWarning ``– The operation failed with a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number. It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlation identifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Date on which the response was sent, for example: 
+#: Date on which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # FaultMessage Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 error
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorData``
 #:
 #: Detailed error information.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
 #: acknowledgement status.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ErrorData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 category
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorCategory``
 #:
-#: The location where the error occurred. 
+#: The location where the error occurred.
 #:
-#: Possible values are: 
+#: Possible values are:
 #:
 #:
 #:     ``System`` – The system encountered errors; try again
@@ -470,43 +429,37 @@ category
 
 
 domain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: The domain to which this service belongs. 
+#: The domain to which this service belongs.
 
 
 errorId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:long``
 #:
-#: A 6-digit number that uniquely identifies a particular error. 
+#: A 6-digit number that uniquely identifies a particular error.
 
 
 exceptionID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
 message
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: A description of the error. 
+#: A description of the error.
 
 
 parameter
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorParameter``
 #:
-#: Represents contextual information about the error. 
+#: Represents contextual information about the error.
 
 
 severity
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ``common:ErrorSeverity`` 
+#: ``common:ErrorSeverity``
 #:
-#: The severity of the error encountered. 
+#: The severity of the error encountered.
 #:
 #: Possible values are:
 #:
@@ -517,16 +470,14 @@ severity
 
 
 subdomain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgement code. It is one of the following values:
@@ -536,99 +487,93 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completed successfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completed successfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failed with a warning message.
+#:     ``FailureWithWarning ``– The operation failed with a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number. It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlation identifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``) that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``) that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Date on which the response was sent, for example: 
+#: Date on which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Specifying Invoice data example
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 520002
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error
 
 
 520003 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Authentication failed. API credentials are incorrect. 
+#: Authentication failed. API credentials are incorrect.
 
 
 550001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: User is not allowed to perform this action
 
 
 550001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: This payment request must be authorized by the sender
 
 
 540031 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: You do not have permission to set these payment options
 
 
 540031 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: You do not have permission to set these payment options
 #:
-#: Operation is not permitted because the credentials do not match those of
-#: the initial operation 
+#: Operation is not permitted because the credentials do not match those
+#: of the initial operation
 
 
 580001
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid request: <value>
 
 
 580022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #:
 #:     Invalid request parameter: payKey with value <value>
 #:
 #:     payKey <value> has already been used to make a payment
 #:
-#:     displayOptions has already been set and cannot be set multiple times
+#:     displayOptions has already been set and cannot be set multiple
+#:     times
 #:
-#:     initiationEntity has already been set and cannot be set multiple times
+#:     initiationEntity has already been set and cannot be set multiple
+#:     times
 #:
 #:     Invalid Request Parameter: institutionId with value <value>
 #:
@@ -636,7 +581,6 @@ timestamp
 
 
 580022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #:
 #:     Invalid request parameter: <value>
 #:
@@ -670,11 +614,11 @@ timestamp
 #:
 #:     Invalid request parameter: <value> <value> is duplicated
 #:
-#:     Invalid request parameter: <value> <value> cannot be negative or zero
+#:     Invalid request parameter: <value> <value> cannot be negative or
+#:     zero
 
 
 580027
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #:
 #:     Currently the system does not accept the currency <value>
 #:
@@ -686,7 +630,6 @@ timestamp
 
 
 580028
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The URL <value> is malformed
 
 

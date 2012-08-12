@@ -1,14 +1,12 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Callback Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be ``Callback``.
 
 
 TOKEN
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) A timestamped token, the value of which was returned by
 #: ``SetExpressCheckout`` response.
 #:
@@ -18,13 +16,11 @@ TOKEN
 
 
 CURRENCYCODE 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) The three-character currency code for the transaction from the
-#: Express Checkout API. Default: USD
+#: (Required) The three-character currency code for the transaction from
+#: the Express Checkout API. Default: USD
 
 
 LOCALECODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Locale of pages displayed by PayPal during Express Checkout.
 #:
 #: The following two-character country codes are supported by PayPal:
@@ -65,15 +61,16 @@ LOCALECODE
 #:     ``US`` – United States
 #:
 #:     The following 5-character codes are also supported for languages in
-#:     specific countries: ``da_DK`` – Danish (for Denmark only)  ``he_IL`` –
-#:     Hebrew (all)  ``id_ID`` – Indonesian (for Indonesia only)  ``jp_JP`` –
-#:     Japanese (for Japan only)  ``no_NO`` – Norwegian (for Norway only) 
-#:     ``pt_BR`` – Brazilian Portuguese (for Portugal and Brazil only) 
-#:     ``ru_RU`` – Russian (for Lithuania, Latvia, and Ukraine only) 
-#:     ``sv_SE`` – Swedish (for Sweden only)  ``th_TH`` – Thai (for Thailand
-#:     only)  ``tr_TR`` – Turkish (for Turkey only)  ``zh_CN`` – Simplified
-#:     Chinese (for China only)  ``zh_HK`` – Traditional Chinese (for Hong
-#:     Kong only)  ``zh_TW`` – Traditional Chinese (for Taiwan only)
+#:     specific countries: ``da_DK`` – Danish (for Denmark only)
+#:     ``he_IL`` – Hebrew (all)  ``id_ID`` – Indonesian (for Indonesia
+#:     only)  ``jp_JP`` – Japanese (for Japan only)  ``no_NO`` – Norwegian
+#:     (for Norway only)  ``pt_BR`` – Brazilian Portuguese (for Portugal
+#:     and Brazil only)  ``ru_RU`` – Russian (for Lithuania, Latvia, and
+#:     Ukraine only)  ``sv_SE`` – Swedish (for Sweden only)  ``th_TH`` –
+#:     Thai (for Thailand only)  ``tr_TR`` – Turkish (for Turkey only)
+#:     ``zh_CN`` – Simplified Chinese (for China only)  ``zh_HK`` –
+#:     Traditional Chinese (for Hong Kong only)  ``zh_TW`` – Traditional
+#:     Chinese (for Taiwan only)
 #:
 #:     ``da_DK`` – Danish (for Denmark only)
 #:
@@ -103,14 +100,13 @@ LOCALECODE
 #:
 #:
 #: Character length and limitations:
-#:     Any two-character country code. 
+#:     Any two-character country code.
 #:
 #:
 #: Any other value will default to US.
 
 
 L_NAMEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Item name from the Express Checkout API.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
@@ -118,7 +114,6 @@ L_NAMEn
 
 
 L_NUMBERn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Item number from the Express Checkout API.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
@@ -126,7 +121,6 @@ L_NUMBERn
 
 
 L_DESCn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Item description from the Express Checkout API.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
@@ -134,7 +128,6 @@ L_DESCn
 
 
 L_AMTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Item unit price from the Express Checkout API.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
@@ -142,7 +135,6 @@ L_AMTn
 
 
 L_QTYn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Item unit quantity from the Express Checkout API.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
@@ -150,43 +142,38 @@ L_QTYn
 
 
 L_ITEMWEIGHTVALUEn L_ITEMWEIGHTUNITn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The weight of the item. You can pass this data to the shipping carrier as
-#: is without having to make an additional database query.
+#: The weight of the item. You can pass this data to the shipping carrier
+#: as is without having to make an additional database query.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
 #: example, ``L_ITEMWEIGHTVALUE0``, ``L_ITEMWEIGHTVALUE1``).
 
 
 L_ITEMHEIGHTVALUEn L_ITEMHEIGHTUNITn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The height of the item. You can pass this data to the shipping carrier as
-#: is without having to make an additional database query.
+#: The height of the item. You can pass this data to the shipping carrier
+#: as is without having to make an additional database query.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
 #: example, ``L_ITEMHEIGHTVALUE0``, ``ITEMHEIGHTVALUE1``).
 
 
 L_ITEMWIDTHVALUEn L_ITEMWIDTHUNITn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The width of the item. You can pass this data to the shipping carrier as is
-#: without having to make an additional database query..
+#: The width of the item. You can pass this data to the shipping carrier
+#: as is without having to make an additional database query..
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
 #: example, ``L_ITEMWIDTHVALUE0``, ``L_ITEMWIDTHVALUE1``).
 
 
 L_ITEMLENGTHVALUEn L_ITEMLENGTHUNITn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The length of the item. You can pass this data to the shipping carrier as
-#: is without having to make an additional database query.
+#: The length of the item. You can pass this data to the shipping carrier
+#: as is without having to make an additional database query.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
 #: example, ``ITEMLENGTHVALUE0``, ``ITEMLENGTHVALUE1``).
 
 
 SHIPTOSTREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: First street address. Required if using a shipping address.
 #:
 #:
@@ -195,7 +182,6 @@ SHIPTOSTREET
 
 
 SHIPTOSTREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Second street address.
 #:
 #:
@@ -204,7 +190,6 @@ SHIPTOSTREET2
 
 
 SHIPTOCITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Name of city. Required if using a shipping address.
 #:
 #:
@@ -213,7 +198,6 @@ SHIPTOCITY
 
 
 SHIPTOSTATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: State or province. Required if using a shipping address.
 #:
 #:
@@ -222,9 +206,8 @@ SHIPTOSTATE
 
 
 SHIPTOZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: U.S. ZIP code or other country-specific postal code. Required if using a
-#: U.S. shipping address; may be required for other countries.
+#: U.S. ZIP code or other country-specific postal code. Required if using
+#: a U.S. shipping address; may be required for other countries.
 #:
 #:
 #: Character length and limitations:
@@ -232,40 +215,35 @@ SHIPTOZIP
 
 
 SHIPTOCOUNTRY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Country code. Required if using a shipping address.
 #:
 #: Character limit: 2 single-byte characters.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Callback Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) The method sent to the PayPal server. The value is always
 #: ``CallbackResponse``.
 
 
 CURRENCYCODE 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) The three-character currency code for the transaction from the
-#: Express Checkout API.
+#: (Required) The three-character currency code for the transaction from
+#: the Express Checkout API.
 
 
 OFFERINSURANCEOPTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Indicates whether or not PayPal should display insurance in a
-#: drop-down list on the Review page. When the value is ``true``, PayPal
-#: displays the drop-down with the associated amount and the string ``'Yes'``.
-#: 
+#: (Optional) Indicates whether or not PayPal should display insurance in
+#: a drop-down list on the Review page. When the value is ``true``, PayPal
+#: displays the drop-down with the associated amount and the string
+#: ``'Yes'``.
 
 
 L_SHIPPINGOPTIONNAMEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Is the internal/system name of a shipping option, such as Air,
-#: Ground, or Expedited. 
+#: (Required) Is the internal/system name of a shipping option, such as
+#: Air, Ground, or Expedited.
 #:
 #: These parameters must be ordered sequentially beginning with 0 (for
 #: example, ``L_SHIPPINGOPTIONNAME0``, ``L_SHIPPINGOPTIONNAME1``).
@@ -276,11 +254,10 @@ L_SHIPPINGOPTIONNAMEn
 
 
 L_SHIPPINGOPTIONLABELn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) The label for the shipping option as displayed to the buyer.
 #: Examples: Air: Next Day, Expedited: 3-5 days, Ground: 5-7 days. These
-#: labels can be localized based on the buyer's locale, which is a part of the
-#: callback request.
+#: labels can be localized based on the buyer's locale, which is a part of
+#: the callback request.
 #:
 #: These parameters must be ordered sequentially beginning with ``0 ``(for
 #: example, ``L_SHIPPINGALABEL0``, ``L_SHIPPINGLABEL1``).
@@ -291,64 +268,62 @@ L_SHIPPINGOPTIONLABELn
 
 
 L_SHIPPINGOPTIONAMOUNTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Is the amount for this shipping option. 
+#: (Required) Is the amount for this shipping option.
 #:
 #: These parameters must be ordered sequentially beginning with ``0`` (for
 #: example, ``L_SHIPPINGAMOUNT0``,`` L_SHIPPINGAMOUNT1``).
 #:
 #:
 #: Notes:
-#:     Character length and limitations: Must not exceed $10,000 USD in any
-#:     currency. No currency symbol. Regardless of currency, decimal separator
-#:     must be a period (.), and the optional thousands separator must be a
-#:     comma (,). Equivalent to nine characters maximum for USD.
+#:     Character length and limitations: Must not exceed $10,000 USD in
+#:     any currency. No currency symbol. Regardless of currency, decimal
+#:     separator must be a period (.), and the optional thousands
+#:     separator must be a comma (,). Equivalent to nine characters
+#:     maximum for USD.
 
 
 L_SHIPPINGOPTIONISDEFAULT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) The option that is selected by default for the buyer and is also
-#: reflected in the "default" total.
+#: (Required) The option that is selected by default for the buyer and is
+#: also reflected in the "default" total.
 
 
 L_TAXAMTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) New tax amount based on this shipping option and the shipping
-#: address.
+#: (Optional) New tax amount based on this shipping option and the
+#: shipping address.
 #:
 #:
 #: Notes:
-#:     Character length and limitations: Must not exceed $10,000 USD in any
-#:     currency. No currency symbol. Regardless of currency, decimal separator
-#:     must be a period (.), and the optional thousands separator must be a
-#:     comma (,). Equivalent to nine characters maximum for USD.
+#:     Character length and limitations: Must not exceed $10,000 USD in
+#:     any currency. No currency symbol. Regardless of currency, decimal
+#:     separator must be a period (.), and the optional thousands
+#:     separator must be a comma (,). Equivalent to nine characters
+#:     maximum for USD.
 
 
 L_INSURANCEAMOUNTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) New insurance amount based on this shipping option and the
 #: shipping address.
 #:
 #:
 #: Notes:
-#:     Character length and limitations: Must not exceed $10,000 USD in any
-#:     currency. No currency symbol. Regardless of currency, decimal separator
-#:     must be a period (.), and the optional thousands separator must be a
-#:     comma (,). Equivalent to nine characters maximum for USD.
+#:     Character length and limitations: Must not exceed $10,000 USD in
+#:     any currency. No currency symbol. Regardless of currency, decimal
+#:     separator must be a period (.), and the optional thousands
+#:     separator must be a comma (,). Equivalent to nine characters
+#:     maximum for USD.
 
 
 OFFERINSURANCEOPTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Indicates whether or not PayPal should display insurance in a
-#: drop-down list on the Review page. When the value is ``true``, PayPal
-#: displays the drop-down with the associated amount and the string ``'Yes'``.
+#: (Optional) Indicates whether or not PayPal should display insurance in
+#: a drop-down list on the Review page. When the value is ``true``, PayPal
+#: displays the drop-down with the associated amount and the string
+#: ``'Yes'``.
 
 
 NO_SHIPPING_OPTION_DETAILS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) If you do not ship to the buyer's shipping address, set this
 #: field to 1. The value of ``CALLBACKVERSION`` in ``SetExpressCheckout``
-#: request must be 61.0 or greater. 
+#: request must be 61.0 or greater.
 #:
 #:
 #: Character length and limitations:

@@ -1,14 +1,12 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoExpressCheckoutPayment Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be DoExpressCheckoutPayment.
 
 
 TOKEN
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) The timestamped token value that was returned in the
 #: ``SetExpressCheckout`` response and passed in the
 #: ``GetExpressCheckoutDetails`` request.
@@ -19,18 +17,18 @@ TOKEN
 
 
 PAYMENTACTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) How you want to obtain payment. It is one of the following
 #: values:
 #:
 #:
-#:     ``Authorization`` – This payment is a basic authorization subject to
-#:     settlement with PayPal Authorization and Capture.
+#:     ``Authorization`` – This payment is a basic authorization subject
+#:     to settlement with PayPal Authorization and Capture.
 #:
 #:     ``Order`` – This payment is an order authorization subject to
 #:     settlement with PayPal Authorization and Capture.
 #:
-#:     ``Sale`` – This is a final sale for which you are requesting payment.
+#:     ``Sale`` – This is a final sale for which you are requesting
+#:     payment.
 #:
 #:
 #: Character length and limitations:
@@ -40,16 +38,16 @@ PAYMENTACTION
 #: Notes:
 #:     You cannot set this value to ``Sale`` in the ``SetExpressCheckout``
 #:     request and then change this value to ``Authorization`` in the
-#:     ``DoExpressCheckoutPayment`` request. 
+#:     ``DoExpressCheckoutPayment`` request.
 #:
 #:
-#: This field is deprecated. Use ``None`` instead. 
+#: This field is deprecated. Use ``PAYMENTREQUEST_n_PAYMENTACTION``
+#: instead.
 
 
 PAYERID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Unique PayPal buyer account identification number as returned in
-#: the ``GetExpressCheckoutDetails`` response
+#: (Required) Unique PayPal buyer account identification number as
+#: returned in the ``GetExpressCheckoutDetails`` response
 #:
 #:
 #: Character length and limitations:
@@ -57,10 +55,9 @@ PAYERID
 
 
 RETURNFMFDETAILS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Flag to indicate whether you want the results returned by Fraud
-#: Management Filters. By default, you do not receive this information. It is
-#: one of the following values: 
+#: (Optional) Flag to indicate whether you want the results returned by
+#: Fraud Management Filters. By default, you do not receive this
+#: information. It is one of the following values:
 #:
 #:
 #:     ``0`` – Do not receive FMF details (default).
@@ -69,8 +66,7 @@ RETURNFMFDETAILS
 
 
 GIFTMESSAGE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The gift message the buyer entered on the PayPal pages. 
+#: (Optional) The gift message the buyer entered on the PayPal pages.
 #:
 #:
 #: Character length and limitations:
@@ -78,9 +74,8 @@ GIFTMESSAGE
 
 
 GIFTRECEIPTENABLE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Whether the buyer selected a gift receipt on the PayPal pages.
-#: It is one of the following values: 
+#: (Optional) Whether the buyer selected a gift receipt on the PayPal
+#: pages. It is one of the following values:
 #:
 #:
 #:     ``true`` – The buyer selected a gift message.
@@ -89,9 +84,8 @@ GIFTRECEIPTENABLE
 
 
 GIFTWRAPNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Return the gift wrap name only if the buyer selected the gift
-#: option on the PayPal pages. 
+#: (Optional) Return the gift wrap name only if the buyer selected the
+#: gift option on the PayPal pages.
 #:
 #:
 #: Character length and limitations:
@@ -99,22 +93,20 @@ GIFTWRAPNAME
 
 
 GIFTWRAPAMOUNT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Amount only if the buyer selected the gift option on the PayPal
-#: pages. 
+#: (Optional) Amount only if the buyer selected the gift option on the
+#: PayPal pages.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 BUYERMARKETINGEMAIL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The buyer email address opted in by the buyer on the PayPal
-#: pages. 
+#: pages.
 #:
 #:
 #: Character length and limitations:
@@ -122,15 +114,14 @@ BUYERMARKETINGEMAIL
 
 
 SURVEYQUESTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Survey question on the PayPal pages. 
+#: (Optional) Survey question on the PayPal pages.
 #:
 #: Limitations: 50 single-byte characters
 
 
 SURVEYCHOICESELECTED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Survey response that the buyer selected on the PayPal pages. 
+#: (Optional) Survey response that the buyer selected on the PayPal pages.
+#:
 #:
 #:
 #: Character length and limitations:
@@ -138,7 +129,6 @@ SURVEYCHOICESELECTED
 
 
 BUTTONSOURCE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Identification code for use by third-party applications to
 #: identify transactions.
 #:
@@ -147,142 +137,138 @@ BUTTONSOURCE
 #:     32 single-byte alphanumeric characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Details Type Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTREQUEST_n_AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The total cost of the transaction to the buyer. If shipping cost (not
 #: applicable to digital goods) and tax charges are known, include them in
 #: this value. If not, this value should be the current sub-total of the
 #: order. If the transaction includes one or more one-time purchases, this
-#: field must be equal to the sum of the purchases. Set this field to 0 if the
-#: transaction does not include a one-time purchase such as when you set up a
-#: billing agreement for a recurring payment that is not immediately charged.
-#: When the field is set to 0, purchase-specific fields are ignored. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive;
-#: except for digital goods, which supports single payments only. For digital
-#: goods, the following must be true:
+#: field must be equal to the sum of the purchases. Set this field to 0 if
+#: the transaction does not include a one-time purchase such as when you
+#: set up a billing agreement for a recurring payment that is not
+#: immediately charged. When the field is set to 0, purchase-specific
+#: fields are ignored. You can specify up to 10 payments, where n is a
+#: digit between 0 and 9, inclusive; except for digital goods, which
+#: supports single payments only. For digital goods, the following must be
+#: true:
 #:
 #:
 #:     total cost > 0
 #:
-#:     total cost <= total cost passed in the call to ``SetExpressCheckout``
+#:     total cost <= total cost passed in the call to
+#:     ``SetExpressCheckout``
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: ``AMT`` is deprecated since version 63.0. Use ``PAYMENTREQUEST_0_AMT``
-#: instead. 
+#: instead.
 
 
 PAYMENTREQUEST_n_CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) A 3-character currency code. Default: USD. 
+#: (Optional) A 3-character currency code. Default: USD.
 #:
 #: You can specify up to 10 payments, where n is a digit between 0 and 9,
 #: inclusive.
 #:
 #: ``CURRENCYCODE`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_CURRENCYCODE`` instead. 
+#: ``PAYMENTREQUEST_0_CURRENCYCODE`` instead.
 
 
 PAYMENTREQUEST_n_ITEMAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Sum of cost of all items in this order. For digital goods, this field is
-#: required. PayPal recommends that you pass the same value in the call to
-#: ``DoExpressCheckoutPayment`` that you passed in the call to
+#: Sum of cost of all items in this order. For digital goods, this field
+#: is required. PayPal recommends that you pass the same value in the call
+#: to ``DoExpressCheckoutPayment`` that you passed in the call to
 #: ``SetExpressCheckout``. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive; except for digital goods, which supports
-#: single payments only.
+#: digit between 0 and 9, inclusive; except for digital goods, which
+#: supports single payments only.
 #:
 #:
 #: Notes:
-#:     ``None`` is required if you specify ``None``.
+#:     ``PAYMENTREQUEST_n_ITEMAMT`` is required if you specify
+#:     ``L_PAYMENTREQUEST_n_AMTm``.
 #:
 #:
-#:  Character length and limitations: Value is a positive number which cannot
-#: exceed $10,000 USD in any currency. It includes no currency symbol. It must
-#: have 2 decimal places, the decimal separator must be a period (.), and the
-#: optional thousands separator must be a comma (,).
+#:  Character length and limitations: Value is a positive number which
+#: cannot exceed $10,000 USD in any currency. It includes no currency
+#: symbol. It must have 2 decimal places, the decimal separator must be a
+#: period (.), and the optional thousands separator must be a comma (,).
 #:
 #: ``ITEMAMT`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_ITEMAMT`` instead. 
+#: ``PAYMENTREQUEST_0_ITEMAMT`` instead.
 
 
 PAYMENTREQUEST_n_SHIPPINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Total shipping costs for this order. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive.
+#: (Optional) Total shipping costs for this order. You can specify up to
+#: 10 payments, where n is a digit between 0 and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     If you specify a value for ``PAYMENTREQUEST_n_SHIPPINGAMT``, you must
-#:     also specify a value for ``PAYMENTREQUEST_n_ITEMAMT``.
+#:     If you specify a value for ``PAYMENTREQUEST_n_SHIPPINGAMT``, you
+#:     must also specify a value for ``PAYMENTREQUEST_n_ITEMAMT``.
 #:
 #:
 #: ``SHIPPINGAMT`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPPINGAMT`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPPINGAMT`` instead.
 
 
 PAYMENTREQUEST_n_INSURANCEAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Total shipping insurance costs for this order. The value must be
-#: a non-negative currency amount or ``null`` if insurance options are
-#: offered. You can specify up to 10 payments, where n is a digit between 0
-#: and 9, inclusive.
+#: (Optional) Total shipping insurance costs for this order. The value
+#: must be a non-negative currency amount or ``null`` if insurance options
+#: are offered. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive.
 #:
 #: ``INSURANCEAMT`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_INSURANCEAMT`` instead. 
+#: ``PAYMENTREQUEST_0_INSURANCEAMT`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 PAYMENTREQUEST_n_SHIPDISCAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Shipping discount for this order, specified as a negative
-#: number. You can specify up to 10 payments, where n is a digit between 0 and
-#: 9, inclusive.
+#: number. You can specify up to 10 payments, where n is a digit between 0
+#: and 9, inclusive.
 #:
 #: ``SHIPPINGDISCAMT`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPPINGDISCAMT`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPPINGDISCAMT`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a negative number. It includes no currency symbol. It must
-#:     have 2 decimal places, the decimal separator must be a period (.), and
-#:     the optional thousands separator must be a comma (,). 
+#:     have 2 decimal places, the decimal separator must be a period (.),
+#:     and the optional thousands separator must be a comma (,).
 
 
 PAYMENTREQUEST_n_INSURANCEOPTIONOFFERED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Indicates whether insurance is available as an option the buyer
-#: can choose on the PayPal Review page. You can specify up to 10 payments,
-#: where n is a digit between 0 and 9, inclusive. Is one of the following
-#: values:
+#: (Optional) Indicates whether insurance is available as an option the
+#: buyer can choose on the PayPal Review page. You can specify up to 10
+#: payments, where n is a digit between 0 and 9, inclusive. Is one of the
+#: following values:
 #:
 #:
-#:     ``true`` – The Insurance option displays the string ``'Yes'`` and the
-#:     insurance amount. If ``true``, the total shipping insurance for this
-#:     order must be a positive number.
+#:     ``true`` – The Insurance option displays the string ``'Yes'`` and
+#:     the insurance amount. If ``true``, the total shipping insurance for
+#:     this order must be a positive number.
 #:
 #:     ``false`` – The Insurance option displays ``'No'``.
 #:
@@ -292,21 +278,20 @@ PAYMENTREQUEST_n_INSURANCEOPTIONOFFERED
 
 
 PAYMENTREQUEST_n_HANDLINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Total handling costs for this order. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive.
+#: (Optional) Total handling costs for this order. You can specify up to
+#: 10 payments, where n is a digit between 0 and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     If you specify a value for ``PAYMENTREQUEST_n_HANDLINGAMT``, you must
-#:     also specify a value for ``PAYMENTREQUEST_n_ITEMAMT``.
+#:     If you specify a value for ``PAYMENTREQUEST_n_HANDLINGAMT``, you
+#:     must also specify a value for ``PAYMENTREQUEST_n_ITEMAMT``.
 #:
 #:
 #: ``HANDLINGAMT`` is deprecated since version 63.0. Use
@@ -314,21 +299,21 @@ PAYMENTREQUEST_n_HANDLINGAMT
 
 
 PAYMENTREQUEST_n_TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Sum of tax for all items in this order. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive; except for digital
-#: goods, which supports single payments only.
+#: (Optional) Sum of tax for all items in this order. You can specify up
+#: to 10 payments, where n is a digit between 0 and 9, inclusive; except
+#: for digital goods, which supports single payments only.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     ``None`` is required if you specify ``None``
+#:     ``PAYMENTREQUEST_n_TAXAMT`` is required if you specify
+#:     ``L_PAYMENTREQUEST_n_TAXAMTm``
 #:
 #:
 #: ``TAXAMT`` is deprecated since version 63.0. Use
@@ -336,10 +321,10 @@ PAYMENTREQUEST_n_TAXAMT
 
 
 PAYMENTREQUEST_n_DESC
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Description of items the buyer is purchasing. You can specify up
-#: to 10 payments, where n is a digit between 0 and 9, inclusive; except for
-#: digital goods, which supports single payments only.
+#: (Optional) Description of items the buyer is purchasing. You can
+#: specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive; except for digital goods, which supports single payments
+#: only.
 #:
 #:
 #: Character length and limitations:
@@ -347,17 +332,16 @@ PAYMENTREQUEST_n_DESC
 #:
 #:
 #: Notes:
-#:      The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:      The value you specify is available only if the transaction
+#:     includes a purchase. This field is ignored if you set up a billing
+#:     agreement for a recurring payment that is not immediately charged.
 #:
 #:
-#: ``DESC`` is deprecated since version 63.0. Use ``PAYMENTREQUEST_0_DESC``
-#: instead.
+#: ``DESC`` is deprecated since version 63.0. Use
+#: ``PAYMENTREQUEST_0_DESC`` instead.
 
 
 PAYMENTREQUEST_n_CUSTOM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) A free-form field for your own use. You can specify up to 10
 #: payments, where n is a digit between 0 and 9, inclusive.
 #:
@@ -367,9 +351,9 @@ PAYMENTREQUEST_n_CUSTOM
 #:
 #:
 #: Notes:
-#:      The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:      The value you specify is available only if the transaction
+#:     includes a purchase. This field is ignored if you set up a billing
+#:     agreement for a recurring payment that is not immediately charged.
 #:
 #:
 #: ``CUSTOM`` is deprecated since version 63.0. Use
@@ -377,10 +361,9 @@ PAYMENTREQUEST_n_CUSTOM
 
 
 PAYMENTREQUEST_n_INVNUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Your own invoice or tracking number.You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive; except for digital
-#: goods, which supports single payments only.
+#: payments, where n is a digit between 0 and 9, inclusive; except for
+#: digital goods, which supports single payments only.
 #:
 #:
 #: Character length and limitations:
@@ -388,9 +371,9 @@ PAYMENTREQUEST_n_INVNUM
 #:
 #:
 #: Notes:
-#:     The value you specify is available only if the transaction includes a
-#:     purchase. This field is ignored if you set up a billing agreement for a
-#:     recurring payment that is not immediately charged. 
+#:     The value you specify is available only if the transaction includes
+#:     a purchase. This field is ignored if you set up a billing agreement
+#:     for a recurring payment that is not immediately charged.
 #:
 #:
 #: ``INVNUM`` is deprecated since version 63.0. Use
@@ -398,15 +381,16 @@ PAYMENTREQUEST_n_INVNUM
 
 
 PAYMENTREQUEST_n_NOTIFYURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Your URL for receiving Instant Payment Notification (IPN) about
-#: this transaction. If you do not specify this value in the request, the
-#: notification URL from your Merchant Profile is used, if one exists.
+#: (Optional) Your URL for receiving Instant Payment Notification (IPN)
+#: about this transaction. If you do not specify this value in the
+#: request, the notification URL from your Merchant Profile is used, if
+#: one exists.
 #:
-#: (Optional) Your URL for receiving Instant Payment Notification (IPN) about
-#: this transaction. If you do not specify this value in the request, the
-#: notification URL from your Merchant Profile is used, if one exists. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: (Optional) Your URL for receiving Instant Payment Notification (IPN)
+#: about this transaction. If you do not specify this value in the
+#: request, the notification URL from your Merchant Profile is used, if
+#: one exists. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
@@ -414,22 +398,21 @@ PAYMENTREQUEST_n_NOTIFYURL
 #:
 #:
 #: Notes:
-#:     The notify URL applies only to ``DoExpressCheckoutPayment``. This value
-#:     is ignored when set in ``SetExpressCheckout`` or
+#:     The notify URL applies only to ``DoExpressCheckoutPayment``. This
+#:     value is ignored when set in ``SetExpressCheckout`` or
 #:     ``GetExpressCheckoutDetails``.
 #:
 #:
 #: ``NOTIFYURL`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_NOTIFYURL`` instead. 
+#: ``PAYMENTREQUEST_0_NOTIFYURL`` instead.
 
 
 PAYMENTREQUEST_n_NOTETEXT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Note to the merchant. You can specify up to 10 payments, where n
-#: is a digit between 0 and 9, inclusive.
+#: (Optional) Note to the merchant. You can specify up to 10 payments,
+#: where n is a digit between 0 and 9, inclusive.
 #:
 #: ``NOTETEXT`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_NOTETEXT`` instead. 
+#: ``PAYMENTREQUEST_0_NOTETEXT`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -437,10 +420,9 @@ PAYMENTREQUEST_n_NOTETEXT
 
 
 PAYMENTREQUEST_n_SOFTDESCRIPTOR
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: A per transaction description of the payment that is passed to the buyer's
-#: credit card statement. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive.
+#: A per transaction description of the payment that is passed to the
+#: buyer's credit card statement. You can specify up to 10 payments, where
+#: n is a digit between 0 and 9, inclusive.
 #:
 #:
 #: Notes:
@@ -448,14 +430,13 @@ PAYMENTREQUEST_n_SOFTDESCRIPTOR
 #:
 #:
 #: ``SOFTDESCRIPTOR`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SOFTDESCRIPTOR`` instead. 
+#: ``PAYMENTREQUEST_0_SOFTDESCRIPTOR`` instead.
 
 
 PAYMENTREQUEST_n_TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Transaction identification number of the transaction that was
-#: created.You can specify up to 10 payments, where n is a digit between 0 and
-#: 9, inclusive.
+#: (Optional) Transaction identification number of the transaction that
+#: was created.You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive.
 #:
 #:
 #: Notes:
@@ -464,35 +445,33 @@ PAYMENTREQUEST_n_TRANSACTIONID
 #:
 #:
 #: ``TRANSACTIONID`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_TRANSACTIONID`` instead. 
+#: ``PAYMENTREQUEST_0_TRANSACTIONID`` instead.
 
 
 PAYMENTREQUEST_n_ALLOWEDPAYMENTMETHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The payment method type. Specify the value
 #: ``InstantPaymentOnly``. You can specify up to 10 payments, where n is a
 #: digit between 0 and 9, inclusive.
 #:
 #: ``ALLOWEDPAYMENTMETHOD`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_ALLOWEDPAYMENTMETHOD`` instead. 
+#: ``PAYMENTREQUEST_0_ALLOWEDPAYMENTMETHOD`` instead.
 
 
 PAYMENTREQUEST_n_PAYMENTACTION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: How you want to obtain payment. When implementing parallel payments, this
-#: field is required and must be set to ``Order``. When implementing digital
-#: goods, this field is required and must be set to ``Sale``. You can specify
-#: up to 10 payments, where n is a digit between 0 and 9, inclusive; except
-#: for digital goods, which supports single payments only. If the transaction
-#: does not include a one-time purchase, this field is ignored. It is one of
-#: the following values:
+#: How you want to obtain payment. When implementing parallel payments,
+#: this field is required and must be set to ``Order``. When implementing
+#: digital goods, this field is required and must be set to ``Sale``. You
+#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive; except for digital goods, which supports single payments
+#: only. If the transaction does not include a one-time purchase, this
+#: field is ignored. It is one of the following values:
 #:
 #:
-#:     ``Sale`` – This is a final sale for which you are requesting payment
-#:     (default).
+#:     ``Sale`` – This is a final sale for which you are requesting
+#:     payment (default).
 #:
-#:     ``Authorization`` – This payment is a basic authorization subject to
-#:     settlement with PayPal Authorization and Capture.
+#:     ``Authorization`` – This payment is a basic authorization subject
+#:     to settlement with PayPal Authorization and Capture.
 #:
 #:     ``Order`` – This payment is an order authorization subject to
 #:     settlement with PayPal Authorization and Capture.
@@ -503,11 +482,11 @@ PAYMENTREQUEST_n_PAYMENTACTION
 #:
 #:
 #: Notes:
-#:     You cannot set this field to ``Sale`` in ``SetExpressCheckout`` request
-#:     and then change the value to ``Authorization`` or ``Order`` in the
-#:     ``DoExpressCheckoutPayment`` request. If you set the field to
-#:     ``Authorization`` or ``Order`` in ``SetExpressCheckout``, you may set
-#:     the field to ``Sale``.
+#:     You cannot set this field to ``Sale`` in ``SetExpressCheckout``
+#:     request and then change the value to ``Authorization`` or ``Order``
+#:     in the ``DoExpressCheckoutPayment`` request. If you set the field
+#:     to ``Authorization`` or ``Order`` in ``SetExpressCheckout``, you
+#:     may set the field to ``Sale``.
 #:
 #:
 #: ``PAYMENTACTION`` is deprecated since version 63.0. Use
@@ -515,33 +494,31 @@ PAYMENTREQUEST_n_PAYMENTACTION
 
 
 PAYMENTREQUEST_n_PAYMENTREQUESTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: A unique identifier of the specific payment request. Required when
-#: implementing parallel payments. You can specify up to 10 payments, where n
-#: is a digit between 0 and 9, inclusive.
+#: implementing parallel payments. You can specify up to 10 payments,
+#: where n is a digit between 0 and 9, inclusive.
 #:
 #: ``PAYMENTREQUESTID`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_PAYMENTREQUESTID`` instead. 
+#: ``PAYMENTREQUEST_0_PAYMENTREQUESTID`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Up to 127 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Address Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTREQUEST_n_SHIPTONAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Person's name associated with this shipping address. It is required if
-#: using a shipping address. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive.
+#: using a shipping address. You can specify up to 10 payments, where n is
+#: a digit between 0 and 9, inclusive.
 #:
 #: ``SHIPTONAME`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTONAME`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTONAME`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -549,12 +526,12 @@ PAYMENTREQUEST_n_SHIPTONAME
 
 
 PAYMENTREQUEST_n_SHIPTOSTREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: First street address. It is required if using a shipping address. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: First street address. It is required if using a shipping address. You
+#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``SHIPTOSTREET`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOSTREET`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOSTREET`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -562,12 +539,11 @@ PAYMENTREQUEST_n_SHIPTOSTREET
 
 
 PAYMENTREQUEST_n_SHIPTOSTREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Second street address. You can specify up to 10 payments, where
-#: n is a digit between 0 and 9, inclusive.
+#: (Optional) Second street address. You can specify up to 10 payments,
+#: where n is a digit between 0 and 9, inclusive.
 #:
 #: ``SHIPTOSTREET2`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOSTREET2`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOSTREET2`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -575,12 +551,12 @@ PAYMENTREQUEST_n_SHIPTOSTREET2
 
 
 PAYMENTREQUEST_n_SHIPTOCITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Name of city. It is required if using a shipping address. You can specify
-#: up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: Name of city. It is required if using a shipping address. You can
+#: specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``SHIPTOCITY`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOCITY`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOCITY`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -588,12 +564,12 @@ PAYMENTREQUEST_n_SHIPTOCITY
 
 
 PAYMENTREQUEST_n_SHIPTOSTATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: State or province. It is required if using a shipping address. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``SHIPTOSTATE`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOSTATE`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOSTATE`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -601,14 +577,13 @@ PAYMENTREQUEST_n_SHIPTOSTATE
 
 
 PAYMENTREQUEST_n_SHIPTOZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: U.S. ZIP code or other country-specific postal code. It is required if
-#: using a U.S. shipping address and may be required for other countries. You
-#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: using a U.S. shipping address and may be required for other countries.
+#: You can specify up to 10 payments, where n is a digit between 0 and 9,
 #: inclusive.
 #:
 #: ``SHIPTOZIP`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOZIP`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOZIP`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -616,12 +591,12 @@ PAYMENTREQUEST_n_SHIPTOZIP
 
 
 PAYMENTREQUEST_n_SHIPTOCOUNTRYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Country code. It is required if using a shipping address. You can specify
-#: up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: Country code. It is required if using a shipping address. You can
+#: specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``SHIPTOCOUNTRY`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOCOUNTRYCODE`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -629,32 +604,32 @@ PAYMENTREQUEST_n_SHIPTOCOUNTRYCODE
 
 
 PAYMENTREQUEST_n_SHIPTOPHONENUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Phone number. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive.
+#: (Optional) Phone number. You can specify up to 10 payments, where n is
+#: a digit between 0 and 9, inclusive.
 #:
 #: ``SHIPTOPHONENUM`` is deprecated since version 63.0. Use
-#: ``PAYMENTREQUEST_0_SHIPTOPHONENUM`` instead. 
+#: ``PAYMENTREQUEST_0_SHIPTOPHONENUM`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     20 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Details Item Type Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_PAYMENTREQUEST_n_NAMEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Item name. This field is required when ``None`` is passed. You can specify
-#: up to 10 payments, where n is a digit between 0 and 9, inclusive, and m
-#: specifies the list item within the payment; except for digital goods, which
-#: supports single payments only. These parameters must be ordered
-#: sequentially beginning with 0 (for example ``None``, ``None``).
+#: Item name. This field is required when
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm`` is passed. You can specify up to
+#: 10 payments, where n is a digit between 0 and 9, inclusive, and m
+#: specifies the list item within the payment; except for digital goods,
+#: which supports single payments only. These parameters must be ordered
+#: sequentially beginning with 0 (for example
+#: ``L_PAYMENTREQUEST_n_NAME0``, ``L_PAYMENTREQUEST_n_NAME1``).
 #:
-#: This field is introduced in version 53.0. ``None`` is deprecated since
-#: version 63.0. Use ``None`` instead. 
+#: This field is introduced in version 53.0. ``L_NAMEn`` is deprecated
+#: since version 63.0. Use ``L_PAYMENTREQUEST_0_NAMEm`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -662,15 +637,15 @@ L_PAYMENTREQUEST_n_NAMEm
 
 
 L_PAYMENTREQUEST_n_DESCm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item description. You can specify up to 10 payments, where n is
-#: a digit between 0 and 9, inclusive, and m specifies the list item within
-#: the payment; except for digital goods, which supports single payments only.
-#: These parameters must be ordered sequentially beginning with 0 (for example
-#: ``None``, ``None``).
+#: (Optional) Item description. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment; except for digital goods, which supports single
+#: payments only. These parameters must be ordered sequentially beginning
+#: with 0 (for example ``L_PAYMENTREQUEST_n_DESC0``,
+#: ``L_PAYMENTREQUEST_n_DESC1``).
 #:
-#: This field is introduced in version 53.0. ``None`` is deprecated since
-#: version 63.0. Use ``None`` instead. 
+#: This field is introduced in version 53.0. ``L_DESCn`` is deprecated
+#: since version 63.0. Use ``L_PAYMENTREQUEST_0_DESCm`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -678,39 +653,40 @@ L_PAYMENTREQUEST_n_DESCm
 
 
 L_PAYMENTREQUEST_n_AMTm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Cost of item. This field is required when ``None`` is passed.You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive,
-#: and m specifies the list item within the payment; except for digital goods,
+#: Cost of item. This field is required when
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm`` is passed.You can specify up to 10
+#: payments, where n is a digit between 0 and 9, inclusive, and m
+#: specifies the list item within the payment; except for digital goods,
 #: which supports single payments only. These parameters must be ordered
-#: sequentially beginning with 0 (for example ``None``, ``None``).
+#: sequentially beginning with 0 (for example ``L_PAYMENTREQUEST_n_AMT0``,
+#: ``L_PAYMENTREQUEST_n_AMT1``).
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     If you specify a value for ``None``, you must specify a value for
-#:     ``None``.
+#:     If you specify a value for ``L_PAYMENTREQUEST_n_AMTm``, you must
+#:     specify a value for ``PAYMENTREQUEST_n_ITEMAMT``.
 #:
 #:
-#: This field is introduced in version 53.0. ``None`` is deprecated since
-#: version 63.0. Use ``None`` instead. 
+#: This field is introduced in version 53.0. ``L_AMTn`` is deprecated
+#: since version 63.0. Use ``L_PAYMENTREQUEST_0_AMTm`` instead.
 
 
 L_PAYMENTREQUEST_n_NUMBERm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Item number. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: digit between 0 and 9, inclusive, and m specifies the list item within
+#: the payment. These parameters must be ordered sequentially beginning
+#: with 0 (for example ``L_PAYMENTREQUEST_n_NUMBER0``,
+#: ``L_PAYMENTREQUEST_n_NUMBER1``).
 #:
-#: This field is introduced in version 53.0. ``None`` is deprecated since
-#: version 63.0. Use ``None`` instead. 
+#: This field is introduced in version 53.0. ``L_NUMBERn`` is deprecated
+#: since version 63.0. Use ``L_PAYMENTREQUEST_0_NUMBERm`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -718,16 +694,17 @@ L_PAYMENTREQUEST_n_NUMBERm
 
 
 L_PAYMENTREQUEST_n_QTYm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Item quantity. This field is required when ``None`` is passed. For digital
-#: goods (``None``), this field is required. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive, and m specifies
-#: the list item within the payment; except for digital goods, which only
-#: supports single payments. These parameters must be ordered sequentially
-#: beginning with 0 (for example ``None``, ``None``).
+#: Item quantity. This field is required when
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORYm`` is passed. For digital goods
+#: (``L_PAYMENTREQUEST_n_ITEMCATEGORYm=Digital``), this field is required.
+#: You can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive, and m specifies the list item within the payment; except for
+#: digital goods, which only supports single payments. These parameters
+#: must be ordered sequentially beginning with 0 (for example
+#: ``L_PAYMENTREQUEST_n_QTY0``, ``L_PAYMENTREQUEST_n_QTY1``).
 #:
-#: This field is introduced in version 53.0. ``None`` is deprecated since
-#: version 63.0. Use ``None`` instead. 
+#: This field is introduced in version 53.0. ``L_QTYn`` is deprecated
+#: since version 63.0. Use ``L_PAYMENTREQUEST_0_QTYm`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -735,34 +712,36 @@ L_PAYMENTREQUEST_n_QTYm
 
 
 L_PAYMENTREQUEST_n_TAXAMTm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item sales tax. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment; except for digital goods, which only supports single payments.
-#: These parameters must be ordered sequentially beginning with 0 (for example
-#: ``None``, ``None``).
+#: (Optional) Item sales tax. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment; except for digital goods, which only supports
+#: single payments. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_TAXAMT0``,
+#: ``L_PAYMENTREQUEST_n_TAXAMT1``).
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_TAXAMTn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_TAXAMTm`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 L_PAYMENTREQUEST_n_ITEMWEIGHTVALUEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item weight corresponds to the weight of the item. You can pass
-#: this data to the shipping carrier as is without having to make an
-#: additional database query. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment;. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) Item weight corresponds to the weight of the item. You can
+#: pass this data to the shipping carrier as is without having to make an
+#: additional database query. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment;. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMWEIGHTVALUE0``,
+#: ``L_PAYMENTREQUEST_n_ITEMWEIGHTVALUE1``).
 #:
-#: ``None`` and ``None`` are deprecated since version 63.0. Use ``None`` and
-#: ``None`` instead. 
+#: ``L_ITEMWEIGHTTVALUEn`` and ``L_ITEMWEIGHTUNITn`` are deprecated since
+#: version 63.0. Use ``L_PAYMENTREQUEST_0_ITEMWEIGHTVALUEm`` and
+#: ``L_PAYMENTREQUEST_0_ITEMWEIGHTUNITm`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -770,16 +749,17 @@ L_PAYMENTREQUEST_n_ITEMWEIGHTVALUEm
 
 
 L_PAYMENTREQUEST_n_ITEMLENGTHVALUEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item length corresponds to the length of the item. You can pass
-#: this data to the shipping carrier as is without having to make an
-#: additional database query. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) Item length corresponds to the length of the item. You can
+#: pass this data to the shipping carrier as is without having to make an
+#: additional database query. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMLENGTHVALUE0``,
+#: ``L_PAYMENTREQUEST_n_ITEMLENGTHVALUE1``).
 #:
-#: ``None`` and ``None`` are deprecated since version 63.0. Use ``None`` and
-#: ``None`` instead. 
+#: ``L_ITEMLENGTHVALUEn`` and ``L_ITEMLENGTHUNITm`` are deprecated since
+#: version 63.0. Use ``L_PAYMENTREQUEST_0_ITEMLENGTHVALUEm`` and
+#: ``L_PAYMENTREQUEST_0_ITEMLENGTHUNITn`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -787,16 +767,17 @@ L_PAYMENTREQUEST_n_ITEMLENGTHVALUEm
 
 
 L_PAYMENTREQUEST_n_ITEMWIDTHVALUEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item width corresponds to the width of the item. You can pass
-#: this data to the shipping carrier as is without having to make an
-#: additional database query. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) Item width corresponds to the width of the item. You can
+#: pass this data to the shipping carrier as is without having to make an
+#: additional database query. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMWIDTHVALUE0``,
+#: ``L_PAYMENTREQUEST_n_ITEMWIDTHVALUE1``).
 #:
-#: ``None`` and ``None`` are deprecated since version 63.0. Use ``None`` and
-#: ``None`` instead. 
+#: ``L_ITEMWIDTHVALUEn`` and ``L_ITEMWIDTHUNITm`` are deprecated since
+#: version 63.0. Use ``L_PAYMENTREQUEST_0_ITEMWIDTHVALUEm`` and
+#: ``L_PAYMENTREQUEST_0_ITEMWIDTHUNITn`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -804,16 +785,17 @@ L_PAYMENTREQUEST_n_ITEMWIDTHVALUEm
 
 
 L_PAYMENTREQUEST_n_ITEMHEIGHTVALUEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Item height corresponds to the height of the item. You can pass
-#: this data to the shipping carrier as is without having to make an
-#: additional database query. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive, and m specifies the list item within the
-#: payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) Item height corresponds to the height of the item. You can
+#: pass this data to the shipping carrier as is without having to make an
+#: additional database query. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMHEIGHTVALUE0``,
+#: ``L_PAYMENTREQUEST_n_ITEMHEIGHTVALUE1``).
 #:
-#: ``None`` and ``None`` are deprecated since version 63.0. Use ``None`` and
-#: ``None`` instead. 
+#: ``L_ITEMHEIGHTVALUEn`` and ``L_ITEMHEIGHTUNITm`` are deprecated since
+#: version 63.0. Use ``L_PAYMENTREQUEST_0_ITEMHEIGHTVALUEm`` and
+#: ``L_PAYMENTREQUEST_0_ITEMHEIGHTUNITn`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -821,24 +803,26 @@ L_PAYMENTREQUEST_n_ITEMHEIGHTVALUEm
 
 
 L_PAYMENTREQUEST_n_ITEMURLm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) URL for the item. You can specify up to 10 payments, where n is
-#: a digit between 0 and 9, inclusive, and m specifies the list item within
-#: the payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) URL for the item. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive, and m specifies the list item
+#: within the payment. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMURL0``,
+#: ``L_PAYMENTREQUEST_n_ITEMURL1``).
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_ITEMURLn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_ITEMURLm`` instead.
 
 
 L_PAYMENTREQUEST_n_ITEMCATEGORYm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Indicates whether an item is digital or physical. For digital goods, this
-#: field is required and must be set to ``Digital``. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive, and m specifies
-#: the list item within the payment; except for digital goods, which only
-#: supports single payments. These parameters must be ordered sequentially
-#: beginning with 0 (for example ``None``, ``None``). It is one of the
-#: following values:
+#: Indicates whether an item is digital or physical. For digital goods,
+#: this field is required and must be set to ``Digital``. You can specify
+#: up to 10 payments, where n is a digit between 0 and 9, inclusive, and m
+#: specifies the list item within the payment; except for digital goods,
+#: which only supports single payments. These parameters must be ordered
+#: sequentially beginning with 0 (for example
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORY0``,
+#: ``L_PAYMENTREQUEST_n_ITEMCATEGORY1``). It is one of the following
+#: values:
 #:
 #:
 #:     ``Digital``
@@ -849,67 +833,72 @@ L_PAYMENTREQUEST_n_ITEMCATEGORYm
 #: Available since API version: 65.1
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # EbayItemPaymentDetailsItemType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_PAYMENTREQUEST_n_EBAYITEMNUMBERm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Auction item number. You can specify up to 10 payments, where n
-#: is a digit between 0 and 9, inclusive, and m specifies the list item within
-#: the payment. These parameters must be ordered sequentially beginning with 0
-#: (for example ``None``, ``None``).
+#: (Optional) Auction item number. You can specify up to 10 payments,
+#: where n is a digit between 0 and 9, inclusive, and m specifies the list
+#: item within the payment. These parameters must be ordered sequentially
+#: beginning with 0 (for example ``L_PAYMENTREQUEST_n_EBAYITEMNUMBER0``,
+#: ``L_PAYMENTREQUEST_n_EBAYITEMNUMBER1``).
 #:
 #: Character length: 765 single-byte characters
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_EBAYITEMNUMBERn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_EBAYITEMNUMBERm`` instead.
 
 
 L_PAYMENTREQUESST_n_EBAYITEMAUCTIONTXNIDm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Auction transaction identification number. You can specify up to
-#: 10 payments, where n is a digit between 0 and 9, inclusive, and m specifies
-#: the list item within the payment. These parameters must be ordered
-#: sequentially beginning with 0 (for example ``None``, ``None``).
+#: (Optional) Auction transaction identification number. You can specify
+#: up to 10 payments, where n is a digit between 0 and 9, inclusive, and m
+#: specifies the list item within the payment. These parameters must be
+#: ordered sequentially beginning with 0 (for example
+#: ``L_PAYMENTREQUEST_n_EBAYITEMAUCTIONTXNID0``,
+#: ``L_PAYMENTREQUEST_n_EBAYITEMAUCTIONTXNID1``).
 #:
 #: Character length: 255 single-byte characters
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_EBAYAUCTIONTXNIDn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_EBAYAUCTIONTXNIDm`` instead.
 
 
 L_PAYMENTREQUEST_n_EBAYITEMORDERIDm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Auction order identification number. You can specify up to 10
-#: payments, where n is a digit between 0 and 9, inclusive, and m specifies
-#: the list item within the payment. These parameters must be ordered
-#: sequentially beginning with 0 (for example ``None``, ``None``).
+#: (Optional) Auction order identification number. You can specify up to
+#: 10 payments, where n is a digit between 0 and 9, inclusive, and m
+#: specifies the list item within the payment. These parameters must be
+#: ordered sequentially beginning with 0 (for example
+#: ``L_PAYMENTREQUEST_n_EBAYITEMORDERID0``,
+#: ``L_PAYMENTREQUEST_n_EBAYITEMORDERID1``).
 #:
 #: Character length: 64 single-byte characters
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_EBAYITEMORDERIDn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_EBAYITEMORDERIDm`` instead.
 
 
 L_PAYMENTREQUEST_n_EBAYCARTIDm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The unique identifier provided by eBay for this order from the
-#: buyer. You can specify up to 10 payments, where n is a digit between 0 and
-#: 9, inclusive, and m specifies the list item within the payment. These
-#: parameters must be ordered sequentially beginning with 0 (for example
-#: ``None``, ``None``).
+#: (Optional) The unique identifier provided by eBay for this order from
+#: the buyer. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive, and m specifies the list item within the
+#: payment. These parameters must be ordered sequentially beginning with 0
+#: (for example ``L_PAYMENTREQUEST_n_EBAYITEMCARTID0``,
+#: ``L_PAYMENTREQUEST_n_EBAYITEMCARTID1``).
 #:
 #: Character length: 255 single-byte characters
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_EBAYITEMCARTIDn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTREQUEST_0_EBAYITEMCARTIDm`` instead.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # UserSelectedOptions Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 INSURANCEOPTIONSELECTED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The option that the buyer chose for insurance. It is one of the
-#: following values: 
+#: (Optional) The option that the buyer chose for insurance. It is one of
+#: the following values:
 #:
 #:
 #:     ``Yes`` – The buyer opted for insurance.
@@ -918,9 +907,8 @@ INSURANCEOPTIONSELECTED
 
 
 SHIPPINGOPTIONISDEFAULT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Whether the buyer chose the default shipping option. It is one
-#: of the following values: 
+#: (Optional) Whether the buyer chose the default shipping option. It is
+#: one of the following values:
 #:
 #:
 #:     ``true`` – The buyer chose the default shipping option.
@@ -929,28 +917,25 @@ SHIPPINGOPTIONISDEFAULT
 
 
 SHIPPINGOPTIONAMOUNT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The shipping amount that the buyer chose.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 SHIPPINGOPTIONNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The name of the shipping option, such as air or ground.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Seller Details Type Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTREQUEST_n_SELLERID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Unique non-changing identifier for the merchant at the
 #: marketplace site. This ID is not displayed. You can specify up to 10
 #: payments, where n is a digit between 0 and 9, inclusive.
@@ -964,7 +949,6 @@ PAYMENTREQUEST_n_SELLERID
 
 
 PAYMENTREQUEST_n_SELLERUSERNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Current name of the merchant or business at the marketplace
 #: site. This name may be shown to the buyer. You can specify up to 10
 #: payments, where n is a digit between 0 and 9, inclusive.
@@ -974,9 +958,9 @@ PAYMENTREQUEST_n_SELLERUSERNAME
 
 
 PAYMENTREQUEST_n_SELLERREGISTRATIONDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Date when the merchant registered with the marketplace. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: (Optional) Date when the merchant registered with the marketplace. You
+#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``SELLERREGISTRATIONDATE`` is deprecated since version 63.0. Use
 #: ``PAYMENTREQUEST_0_SELLERREGISTRATIONDATE`` instead.
@@ -987,12 +971,11 @@ PAYMENTREQUEST_n_SELLERREGISTRATIONDATE
 #:     ``2011-06-24T05:38:48Z``
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoExpressCheckoutPayment Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 TOKEN
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The timestamped token value that was returned by ``SetExpressCheckout``
 #: response and passed on ``GetExpressCheckoutDetails`` request.
 #:
@@ -1002,14 +985,12 @@ TOKEN
 
 
 PAYMENTTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Information about the payment.
 
 
 NOTE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The text entered by the buyer on the PayPal website if you set the
-#: ``ALLOWNOTE`` field to ``1`` in ``SetExpressCheckout``. 
+#: ``ALLOWNOTE`` field to ``1`` in ``SetExpressCheckout``.
 #:
 #:
 #: Character length and limitations:
@@ -1020,35 +1001,31 @@ NOTE
 
 
 REDIRECTREQUIRED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Flag to indicate whether you need to redirect the buyer back to PayPal
-#: after successfully completing the transaction. 
+#: after successfully completing the transaction.
 #:
 #:
 #: Notes:
-#:     Use this field only if you are using giropay or bank transfer payment
-#:     methods in Germany.
+#:     Use this field only if you are using giropay or bank transfer
+#:     payment methods in Germany.
 
 
 SUCCESSPAGEREDIRECTREQUESTED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Flag to indicate whether you would like to redirect the buyer to sign up
-#: for 
+#: Flag to indicate whether you would like to redirect the buyer to sign
+#: up for
 #:
-#: PayPal after completing the transaction. 
+#: PayPal after completing the transaction.
 
 
 BILLINGAGREEMENTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The ID of the billing agreement associated with the Express Checkout
 #: transaction.
 
 
 L_FMFfilterIDn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter ID, including the filter type, (``PENDING``, ``REPORT``, or
-#: ``DENY)``, the filter ID, and the entry number, n, starting from 0. Filter
-#: ID is one of the following values:
+#: ``DENY)``, the filter ID, and the entry number, n, starting from 0.
+#: Filter ID is one of the following values:
 #:
 #:
 #:     ``1`` - AVS No Match
@@ -1086,19 +1063,19 @@ L_FMFfilterIDn
 #:     ``17`` - PayPal Fraud Model
 #:
 #:
-#: This field is deprecated since version 63.0. Use ``None`` instead.
+#: This field is deprecated since version 63.0. Use
+#: ``L_PAYMENTINFO_0_FMFfilterIDn`` instead.
 
 
 L_FMFfilterNAMEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter name, including the filter type, (``PENDING``, ``REPORT``, or
 #: ``DENY)``, the filter NAME, and the entry number, n, starting from 0.
 #:
-#: This field is deprecated since version 63.0. Use ``None``instead.
+#: This field is deprecated since version 63.0. Use
+#: ``L_PAYMENTINFO_0_FMFfilterNAMEn ``instead.
 
 
 PAYMENTINFO_n_SHIPPINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Amount of shipping charged on this transaction.
 #:
 #: If you specify a value for ``PAYMENTINFO_n_SHIPPINGAMT``, you must also
@@ -1110,18 +1087,17 @@ PAYMENTINFO_n_SHIPPINGAMT
 #:
 #: Character length and limitations:
 #:     Must not exceed $10,000 USD in any currency. No currency symbol.
-#:     Regardless of currency, decimal separator must be a period (.), and the
-#:     optional thousands separator must be a comma (,). Equivalent to nine
-#:     characters maximum for USD.
+#:     Regardless of currency, decimal separator must be a period (.), and
+#:     the optional thousands separator must be a comma (,). Equivalent to
+#:     nine characters maximum for USD.
 
 
 PAYMENTINFO_n_SELLERID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Unique, non-changing identifier for the merchant at the marketplace site.
-#: (Optional)
+#: Unique, non-changing identifier for the merchant at the marketplace
+#: site. (Optional)
 #:
-#: You can specify up to 10 payments, where '``n``' is a digit between 0 and
-#: 9, inclusive.
+#: You can specify up to 10 payments, where '``n``' is a digit between 0
+#: and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
@@ -1129,20 +1105,18 @@ PAYMENTINFO_n_SELLERID
 
 
 PAYMENTINFO_n_SELLERUSERNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Current name of the merchant or business at the marketplace site. This name
-#: may be shown to the buyer.
+#: Current name of the merchant or business at the marketplace site. This
+#: name may be shown to the buyer.
 #:
-#: You can specify up to 10 payments, where '``n``' is a digit between 0 and
-#: 9, inclusive.
+#: You can specify up to 10 payments, where '``n``' is a digit between 0
+#: and 9, inclusive.
 
 
 PAYMENTINFO_n_SELLERREGISTRATIONDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Date when the merchant registered with the marketplace.
 #:
-#: You can specify up to 10 payments, where '``n``' is a digit between 0 and
-#: 9, inclusive.
+#: You can specify up to 10 payments, where '``n``' is a digit between 0
+#: and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
@@ -1151,7 +1125,6 @@ PAYMENTINFO_n_SELLERREGISTRATIONDATE
 
 
 PAYMENTINFO_n_PARENTTRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Parent or related transaction identification number. This field is
 #: populated for the following transaction types:
 #:
@@ -1165,13 +1138,13 @@ PAYMENTINFO_n_PARENTTRANSACTIONID
 #:     Capture of an order. The value of ``ParentTransactionID`` is the
 #:     original ``OrderID``.
 #:
-#:     Authorization of an order. The value of ``ParentTransactionID`` is the
-#:     original ``OrderID``.
+#:     Authorization of an order. The value of ``ParentTransactionID`` is
+#:     the original ``OrderID``.
 #:
 #:     Capture of an order authorization
 #:
-#:     Void of an order. The value of ``ParentTransactionID`` is the original
-#:     ``OrderID``.
+#:     Void of an order. The value of ``ParentTransactionID`` is the
+#:     original ``OrderID``.
 #:
 #:
 #: Character length and limits: 19 single-byte characters maximum.
@@ -1181,7 +1154,6 @@ PAYMENTINFO_n_PARENTTRANSACTIONID
 
 
 PAYMENTINFO_n_RECEIPTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``RECEIPTID`` is deprecated since version 63.0. Use
 #: ``PAYMENTINFO_n_RECEIPTID`` instead.
 #:
@@ -1191,7 +1163,6 @@ PAYMENTINFO_n_RECEIPTID
 
 
 PAYMENTINFO_n_EXPECTEDECHECKCLEARDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: eCheck latest expected clear date.
 #:
 #: ``EXPECTEDECHECKCLEARDATE`` is deprecated since version 63.0. Use
@@ -1199,7 +1170,6 @@ PAYMENTINFO_n_EXPECTEDECHECKCLEARDATE
 
 
 PAYMENTINFO_n_SHIPPINGMETHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Shipping method selected by the user during check-out.
 #:
 #: ``SHIPPINGMETHOD`` is deprecated since version 63.0. Use
@@ -1207,29 +1177,25 @@ PAYMENTINFO_n_SHIPPINGMETHOD
 
 
 PAYMENTINFO_n_INSTRUMENTCATEGORY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: This field holds the category of the instrument only when it is
 #: promotional. Return value 1 represents BML.
 
 
 PAYMENTINFO_n_OFFERCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Code used to identify the promotion offer.
 
 
 PAYMENTINFO_n_OFFERTRACKINGID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Unique identification for merchant/buyer/offer combo.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Information Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTINFO_n_TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Unique transaction ID of the payment. You can specify up to 10 payments,
-#: where n is a digit between 0 and 9, inclusive.
+#: Unique transaction ID of the payment. You can specify up to 10
+#: payments, where n is a digit between 0 and 9, inclusive.
 #:
 #:
 #: Character length and limitations:
@@ -1242,13 +1208,13 @@ PAYMENTINFO_n_TRANSACTIONID
 #:     Authorization & Capture APIs.
 #:
 #:
-#: ``TRANSACTIONID`` is deprecated since version 63.0. Use ``None`` instead.
+#: ``TRANSACTIONID`` is deprecated since version 63.0. Use
+#: ``PAYMENTINFO_n_TRANSACTIONID`` instead.
 
 
 PAYMENTINFO_n_TRANSACTIONTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Type of transaction. You can specify up to 10 payments, where n is a digit
-#: between 0 and 9, inclusive. It is one of the following values:
+#: Type of transaction. You can specify up to 10 payments, where n is a
+#: digit between 0 and 9, inclusive. It is one of the following values:
 #:
 #:
 #:     ``cart``
@@ -1265,7 +1231,6 @@ PAYMENTINFO_n_TRANSACTIONTYPE
 
 
 PAYMENTINFO_n_PAYMENTTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Indicates whether the payment is instant or delayed. It is one of the
 #: following values:
 #:
@@ -1289,7 +1254,6 @@ PAYMENTINFO_n_PAYMENTTYPE
 
 
 PAYMENTINFO_n_ORDERTIME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Time/date stamp of payment.
 #:
 #: ``ORDERTIME`` is deprecated since version 63.0. Use
@@ -1302,7 +1266,6 @@ PAYMENTINFO_n_ORDERTIME
 
 
 PAYMENTINFO_n_AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The final amount charged, including any shipping and taxes from your
 #: Merchant Profile. You can specify up to 10 payments, where n is a digit
 #: between 0 and 9, inclusive.
@@ -1314,38 +1277,35 @@ PAYMENTINFO_n_AMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 PAYMENTINFO_n_CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: A 3-character currency code. Default: USD. 
+#: A 3-character currency code. Default: USD.
 #:
 #: ``CURRENCYCODE`` is deprecated since version 63.0. Use
 #: ``PAYMENTINFO_0_CURRENCYCODE`` instead.
 
 
 PAYMENTINFO_n_FEEAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: PayPal fee amount charged for the transaction. You can specify up to 10
 #: payments, where n is a digit between 0 and 9, inclusive.
 #:
-#: ``FEEAMT`` is deprecated since version 63.0. Use ``PAYMENTINFO_0_FEEAMT``
-#: instead.
+#: ``FEEAMT`` is deprecated since version 63.0. Use
+#: ``PAYMENTINFO_0_FEEAMT`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 PAYMENTINFO_n_SETTLEAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Amount deposited in your PayPal account after a currency conversion. You
-#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: Amount deposited in your PayPal account after a currency conversion.
+#: You can specify up to 10 payments, where n is a digit between 0 and 9,
 #: inclusive.
 #:
 #: ``SETTLEAMT`` is deprecated since version 63.0. Use
@@ -1355,38 +1315,36 @@ PAYMENTINFO_n_SETTLEAMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 PAYMENTINFO_n_TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Tax charged on the transaction.
 #:
 #: You can specify up to 10 payments, where n is a digit between 0 and 9,
 #: inclusive.
 #:
-#: ``TAXAMT`` is deprecated since version 63.0. Use ``PAYMENTINFO_0_TAXAMT``
-#: instead.
+#: ``TAXAMT`` is deprecated since version 63.0. Use
+#: ``PAYMENTINFO_0_TAXAMT`` instead.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 PAYMENTINFO_n_EXCHANGERATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Exchange rate if a currency conversion occurred. Relevant only if your are
-#: billing in their non-primary currency. If the buyer chooses to pay with a
-#: currency other than the non-primary currency, the conversion occurs in the
-#: buyer's account. You can specify up to 10 payments, where n is a digit
-#: between 0 and 9, inclusive.
+#: Exchange rate if a currency conversion occurred. Relevant only if your
+#: are billing in their non-primary currency. If the buyer chooses to pay
+#: with a currency other than the non-primary currency, the conversion
+#: occurs in the buyer's account. You can specify up to 10 payments, where
+#: n is a digit between 0 and 9, inclusive.
 #:
 #: ``EXCHANGERATE`` is deprecated since version 63.0. Use
-#: ``PAYMENTINFO_0_EXCHANGERATE`` instead. 
+#: ``PAYMENTINFO_0_EXCHANGERATE`` instead.
 #:
 #:
 #: Character length and limitations:
@@ -1395,52 +1353,52 @@ PAYMENTINFO_n_EXCHANGERATE
 
 
 PAYMENTINFO_n_PAYMENTSTATUS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The status of the payment. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive. It is one of the following values:
+#: The status of the payment. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive. It is one of the following
+#: values:
 #:
 #:
 #:     ``None`` – No status.
 #:
-#:     ``Canceled-Reversal`` – A reversal has been canceled; for example, when
-#:     you win a dispute and the funds for the reversal have been returned to
-#:     you.
+#:     ``Canceled-Reversal`` – A reversal has been canceled; for example,
+#:     when you win a dispute and the funds for the reversal have been
+#:     returned to you.
 #:
-#:     ``Completed`` – The payment has been completed, and the funds have been
-#:     added successfully to your account balance.
+#:     ``Completed`` – The payment has been completed, and the funds have
+#:     been added successfully to your account balance.
 #:
-#:     ``Denied`` – You denied the payment. This happens only if the payment
-#:     was previously pending because of possible reasons described for the
-#:     ``PendingReason`` element.
+#:     ``Denied`` – You denied the payment. This happens only if the
+#:     payment was previously pending because of possible reasons
+#:     described for the ``PendingReason`` element.
 #:
 #:     ``Expired`` – the authorization period for this payment has been
 #:     reached.
 #:
-#:     ``Failed`` – The payment has failed. This happens only if the payment
-#:     was made from your buyer's bank account.
+#:     ``Failed`` – The payment has failed. This happens only if the
+#:     payment was made from your buyer's bank account.
 #:
 #:     ``In-Progress`` – The transaction has not terminated, e.g. an
 #:     authorization may be awaiting completion.
 #:
 #:     ``Partially-Refunded`` – The payment has been partially refunded.
 #:
-#:     ``Pending`` – The payment is pending. See the ``PendingReason`` field
-#:     for more information.
+#:     ``Pending`` – The payment is pending. See the ``PendingReason``
+#:     field for more information.
 #:
 #:     ``Refunded`` – You refunded the payment.
 #:
-#:     ``Reversed`` – A payment was reversed due to a chargeback or other type
-#:     of reversal. The funds have been removed from your account balance and
-#:     returned to the buyer. The reason for the reversal is specified in the
-#:     ``ReasonCode`` element.
+#:     ``Reversed`` – A payment was reversed due to a chargeback or other
+#:     type of reversal. The funds have been removed from your account
+#:     balance and returned to the buyer. The reason for the reversal is
+#:     specified in the ``ReasonCode`` element.
 #:
 #:     ``Processed`` – A payment has been accepted.
 #:
 #:     ``Voided`` – An authorization for this transaction has been voided.
 #:
 #:     ``Completed-Funds-Held`` – The payment has been completed, and the
-#:     funds have been added successfully to your pending balance.  See the
-#:     ``None`` field for more information.
+#:     funds have been added successfully to your pending balance.  See
+#:     the ``PAYMENTINFO_n_HOLDDECISION`` field for more information.
 #:
 #:
 #: ``PAYMENTSTATUS`` is deprecated since version 63.0. Use
@@ -1448,53 +1406,55 @@ PAYMENTINFO_n_PAYMENTSTATUS
 
 
 PAYMENTINFO_n_PENDINGREASON
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Reason the payment is pending. You can specify up to 10 payments, where n
-#: is a digit between 0 and 9, inclusive. It is one of the following values:
+#: Reason the payment is pending. You can specify up to 10 payments, where
+#: n is a digit between 0 and 9, inclusive. It is one of the following
+#: values:
 #:
 #:
 #:     ``none`` – No pending reason.
 #:
-#:     ``address`` – The payment is pending because your buyer did not include
-#:     a confirmed shipping address and your Payment Receiving Preferences is
-#:     set such that you want to manually accept or deny each of these
-#:     payments. To change your preference, go to the ``Preferences`` section
-#:     of your ``Profile``.
+#:     ``address`` – The payment is pending because your buyer did not
+#:     include a confirmed shipping address and your Payment Receiving
+#:     Preferences is set such that you want to manually accept or deny
+#:     each of these payments. To change your preference, go to the
+#:     ``Preferences`` section of your ``Profile``.
 #:
 #:     ``authorization`` – The payment is pending because it has been
 #:     authorized but not settled. You must capture the funds first.
 #:
-#:     ``echeck`` – The payment is pending because it was made by an eCheck
-#:     that has not yet cleared.
+#:     ``echeck`` – The payment is pending because it was made by an
+#:     eCheck that has not yet cleared.
 #:
-#:     ``intl`` – The payment is pending because you hold a non-U.S. account
-#:     and do not have a withdrawal mechanism. You must manually accept or
-#:     deny this payment from your ``Account Overview``.
+#:     ``intl`` – The payment is pending because you hold a non-U.S.
+#:     account and do not have a withdrawal mechanism. You must manually
+#:     accept or deny this payment from your ``Account Overview``.
 #:
-#:     ``multi-currency`` – You do not have a balance in the currency sent,
-#:     and you do not have your ``Payment Receiving Preferences`` set to
-#:     automatically convert and accept this payment. You must manually accept
-#:     or deny this payment.
+#:     ``multi-currency`` – You do not have a balance in the currency
+#:     sent, and you do not have your ``Payment Receiving Preferences``
+#:     set to automatically convert and accept this payment. You must
+#:     manually accept or deny this payment.
 #:
-#:     ``order`` – The payment is pending because it is part of an order that
-#:     has been authorized but not settled.
+#:     ``order`` – The payment is pending because it is part of an order
+#:     that has been authorized but not settled.
 #:
-#:     ``paymentreview`` – The payment is pending while it is being reviewed
-#:     by PayPal for risk.
+#:     ``paymentreview`` – The payment is pending while it is being
+#:     reviewed by PayPal for risk.
 #:
-#:     ``unilateral`` – The payment is pending because it was made to an email
-#:     address that is not yet registered or confirmed.
+#:     ``unilateral`` – The payment is pending because it was made to an
+#:     email address that is not yet registered or confirmed.
 #:
-#:     ``verify`` – The payment is pending because you are not yet verified.
-#:     You must verify your account before you can accept this payment.
+#:     ``verify`` – The payment is pending because you are not yet
+#:     verified. You must verify your account before you can accept this
+#:     payment.
 #:
-#:     ``other`` – The payment is pending for a reason other than those listed
-#:     above. For more information, contact PayPal customer service.
+#:     ``other`` – The payment is pending for a reason other than those
+#:     listed above. For more information, contact PayPal customer
+#:     service.
 #:
 #:
 #: Notes:
-#:     ``PendingReason`` is returned in the response only if ``PaymentStatus``
-#:     is ``Pending``.
+#:     ``PendingReason`` is returned in the response only if
+#:     ``PaymentStatus`` is ``Pending``.
 #:
 #:
 #: ``PENDINGREASON`` is deprecated since version 63.0. Use
@@ -1502,28 +1462,27 @@ PAYMENTINFO_n_PENDINGREASON
 
 
 PAYMENTINFO_n_REASONCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Reason for a reversal if TransactionType is reversal. You can specify up to
-#: 10 payments, where n is a digit between 0 and 9, inclusive. It is one of
-#: the following values:
+#: Reason for a reversal if TransactionType is reversal. You can specify
+#: up to 10 payments, where n is a digit between 0 and 9, inclusive. It is
+#: one of the following values:
 #:
 #:
 #:     ``none`` – No reason code.
 #:
-#:     ``chargeback`` – A reversal has occurred on this transaction due to a
-#:     chargeback by your buyer.
+#:     ``chargeback`` – A reversal has occurred on this transaction due to
+#:     a chargeback by your buyer.
 #:
-#:     ``guarantee`` – A reversal has occurred on this transaction due to your
-#:     buyer triggering a money-back guarantee.
+#:     ``guarantee`` – A reversal has occurred on this transaction due to
+#:     your buyer triggering a money-back guarantee.
 #:
-#:     ``buyer-complaint`` – A reversal has occurred on this transaction due
-#:     to a complaint about the transaction from your buyer.
+#:     ``buyer-complaint`` – A reversal has occurred on this transaction
+#:     due to a complaint about the transaction from your buyer.
 #:
-#:     ``refund`` – A reversal has occurred on this transaction because you
-#:     have given the buyer a refund.
+#:     ``refund`` – A reversal has occurred on this transaction because
+#:     you have given the buyer a refund.
 #:
-#:     ``other`` – A reversal has occurred on this transaction due to a reason
-#:     not listed above.
+#:     ``other`` – A reversal has occurred on this transaction due to a
+#:     reason not listed above.
 #:
 #:
 #: ``REASONCODE`` is deprecated since version 63.0. Use
@@ -1531,16 +1490,15 @@ PAYMENTINFO_n_REASONCODE
 
 
 PAYMENTINFO_n_HOLDDECISION
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Reason that this payment is being held. You can specify up to 10 payments,
-#: where n is a digit between 0 and 9, inclusive. It is one of the following
-#: values:
+#: Reason that this payment is being held. You can specify up to 10
+#: payments, where n is a digit between 0 and 9, inclusive. It is one of
+#: the following values:
 #:
 #:
 #:     ``newsellerpaymenthold`` – This is a new merchant.
 #:
-#:     ``paymenthold`` – A hold is placed on the merchant's transaction for a
-#:     reason not listed.
+#:     ``paymenthold`` – A hold is placed on the merchant's transaction
+#:     for a reason not listed.
 #:
 #:     ``ExternalPaymentHold``
 #:
@@ -1553,14 +1511,13 @@ PAYMENTINFO_n_HOLDDECISION
 #:     ``SystemError``
 #:
 #:
-#: Available since API version: 71.0 and is returned only if ``None``is ``Completed-Funds-Held``
+#: Available since API version: 71.0 and is returned only if ``PAYMENTINFO_n_PAYMENTSTATUS ``is ``Completed-Funds-Held``
 
 
 PAYMENTINFO_n_PROTECTIONELIGIBILITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Prior to version 64.4, the kind of seller protection in force for the
-#: transaction. You can specify up to 10 payments, where n is a digit between
-#: 0 and 9, inclusive. It is one of the following values:
+#: transaction. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive. It is one of the following values:
 #:
 #:
 #:     ``None``
@@ -1575,8 +1532,8 @@ PAYMENTINFO_n_PROTECTIONELIGIBILITY
 #:
 #:     ``PartiallyEligible`` - Unauth only.
 #:
-#:     ``Ineligible`` – Merchant is not protected under the Seller Protection
-#:     Policy.
+#:     ``Ineligible`` – Merchant is not protected under the Seller
+#:     Protection Policy.
 #:
 #:
 #: ``PROTECTIONELIGIBILITY`` is deprecated since version 63.0. Use
@@ -1584,16 +1541,15 @@ PAYMENTINFO_n_PROTECTIONELIGIBILITY
 
 
 PAYMENTINFO_n_PROTECTIONELIGIBILITYTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Since version 64.4, the kind of seller protection in force for the
-#: transaction. You can specify up to 10 payments, where n is a digit between
-#: 0 and 9, inclusive. It is one of the following values:
+#: transaction. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive. It is one of the following values:
 #:
 #:
 #:     ``None``
 #:
-#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's Seller
-#:     Protection Policy for Item Not Received
+#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's
+#:     Seller Protection Policy for Item Not Received
 #:
 #:     ``UnauthorizedPaymentEligible`` – Merchant is protected by PayPal's
 #:     Seller Protection Policy for Unauthorized Payment li>
@@ -1605,19 +1561,16 @@ PAYMENTINFO_n_PROTECTIONELIGIBILITYTYPE
 
 
 STOREID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Store ID as entered in the transaction
 
 
 TERMINALID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Terminal ID as entered in the transaction
 
 
 PAYMENTINFO_n_EBAYITEMAUCTIONTXNID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: eBay transaction identification number. You can specify up to 10 payments,
-#: where n is a digit between 0 and 9, inclusive.
+#: eBay transaction identification number. You can specify up to 10
+#: payments, where n is a digit between 0 and 9, inclusive.
 #:
 #: ``EBAYITEMAUCTIONTXNID`` is deprecated since version 63.0. Use
 #: ``PAYMENTINFO_0_EBAYITEMAUCTIONTXNID`` instead.
@@ -1628,10 +1581,10 @@ PAYMENTINFO_n_EBAYITEMAUCTIONTXNID
 
 
 PAYMENTREQUEST_n_PAYMENTREQUESTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Unique identifier of the specific payment request. The value should match
-#: the one you passed in the ``DoExpressCheckout`` request. You can specify up
-#: to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: Unique identifier of the specific payment request. The value should
+#: match the one you passed in the ``DoExpressCheckout`` request. You can
+#: specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #: ``PAYMENTREQUESTID`` is deprecated since version 63.0. Use
 #: ``PAYMENTINFO_0_PAYMENTREQUESTID`` instead.
@@ -1642,10 +1595,9 @@ PAYMENTREQUEST_n_PAYMENTREQUESTID
 
 
 L_PAYMENTINFO_n_FMFfilterIDm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter ID, including the filter type, (``PENDING``, ``REPORT``, or
-#: ``DENY``), the filter ID, and the entry number, m, starting from 0. Filter
-#: ID is one of the following values:
+#: ``DENY``), the filter ID, and the entry number, m, starting from 0.
+#: Filter ID is one of the following values:
 #:
 #:
 #:     ``1`` - AVS No Match
@@ -1684,64 +1636,59 @@ L_PAYMENTINFO_n_FMFfilterIDm
 #:
 #:
 #: You can specify up to 10 payments, where n is a digit between 0 and 9,
-#: inclusive, and m specifies the list item within the payment. 
+#: inclusive, and m specifies the list item within the payment.
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_FMFfilterIDn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTINFO_n_FMFfilterIDn`` instead.
 
 
 L_PAYMENTINFO_n_FMFfilterNAMEm
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Filter name, including the filter type, (``PENDING``, ``REPORT``, or
-#: ``DENY``), the filter NAME, and the entry number, m, starting from 0. You
-#: can specify up to 10 payments, where n is a digit between 0 and 9,
-#: inclusive, and m specifies the list item within the payment. 
+#: ``DENY``), the filter NAME, and the entry number, m, starting from 0.
+#: You can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive, and m specifies the list item within the payment.
 #:
-#: ``None`` is deprecated since version 63.0. Use ``None`` instead. 
+#: ``L_FMFfilterNAMEn`` is deprecated since version 63.0. Use
+#: ``L_PAYMENTINFO_n_FMFfilterNAMEn`` instead.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payment Error Type Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTINFO_n_SHORTMESSAGE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Payment error short message. You can specify up to 10 payments, where n is
-#: a digit between 0 and 9, inclusive.
+#: Payment error short message. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive.
 
 
 PAYMENTINFO_n_LONGMESSAGE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Payment error long message. You can specify up to 10 payments, where n is a
-#: digit between 0 and 9, inclusive.
+#: Payment error long message. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive.
 
 
 PAYMENTINFO_n_ERRORCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Payment error code. You can specify up to 10 payments, where n is a digit
-#: between 0 and 9, inclusive.
+#: Payment error code. You can specify up to 10 payments, where n is a
+#: digit between 0 and 9, inclusive.
 
 
 PAYMENTINFO_n_SEVERITYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Payment error severity code. You can specify up to 10 payments, where n is
-#: a digit between 0 and 9, inclusive.
+#: Payment error severity code. You can specify up to 10 payments, where n
+#: is a digit between 0 and 9, inclusive.
 
 
 PAYMENTINFO_n_ACK
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Application-specific error values indicating more about the error
-#: condition. You can specify up to 10 payments, where n is a digit between 0
-#: and 9, inclusive.
+#: condition. You can specify up to 10 payments, where n is a digit
+#: between 0 and 9, inclusive.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # UserSelectedOptions Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 SHIPPINGCALCULATIONMODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Describes how the options that were presented to the buyer were determined.
-#: It is one of the following values:
+#: Describes how the options that were presented to the buyer were
+#: determined. It is one of the following values:
 #:
 #:
 #:     ``API - Callback``
@@ -1750,9 +1697,8 @@ SHIPPINGCALCULATIONMODE
 
 
 INSURANCEOPTIONSELECTED
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The option that the buyer chose for insurance. It is one of the following
-#: values: 
+#: The option that the buyer chose for insurance. It is one of the
+#: following values:
 #:
 #:
 #:     ``Yes`` – The buyer opted for insurance.
@@ -1761,9 +1707,8 @@ INSURANCEOPTIONSELECTED
 
 
 SHIPPINGOPTIONISDEFAULT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Indicates whether the buyer chose the default shipping option. It is one of
-#: the following values: 
+#: Indicates whether the buyer chose the default shipping option. It is
+#: one of the following values:
 #:
 #:
 #:     ``true`` – The buyer chose the default shipping option.
@@ -1776,31 +1721,29 @@ SHIPPINGOPTIONISDEFAULT
 
 
 SHIPPINGOPTIONAMOUNT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The shipping amount that the buyer chose.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 SHIPPINGOPTIONNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The name of the shipping option, such as air or ground.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Seller Details Type Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTINFO_n_SELLERPAYPALACCOUNTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Unique identifier for the merchant. For parallel payments, this field
-#: contains either the Payer ID or the email address of the merchant. You can
-#: specify up to 10 payments, where n is a digit between 0 and 9, inclusive.
+#: contains either the Payer ID or the email address of the merchant. You
+#: can specify up to 10 payments, where n is a digit between 0 and 9,
+#: inclusive.
 #:
 #:
 #: Character length and limitations:
@@ -1808,8 +1751,7 @@ PAYMENTINFO_n_SELLERPAYPALACCOUNTID
 
 
 PAYMENTINFO_n_SECUREMERCHANTACCOUNTID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Unique PayPal customer account number (of the merchant). This field is
-#: returned in the response. It is ignored if passed in the request. 
+#: returned in the response. It is ignored if passed in the request.
 
 

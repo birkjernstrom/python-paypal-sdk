@@ -1,14 +1,12 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetBalance Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be GetBalance.
 
 
 RETURNALLCURRENCIES
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Indicates whether to return all currencies. It is one of the
 #: following values:
 #:
@@ -19,22 +17,20 @@ RETURNALLCURRENCIES
 #:
 #:
 #: Notes:
-#:     This field is available since ``version`` ``51``. Prior versions return
-#:     only the balance for the primary currency holding.
+#:     This field is available since ``version`` ``51``. Prior versions
+#:     return only the balance for the primary currency holding.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetBalance Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_AMTn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Available balance and associated currency code for the primary currency
-#: holding. 
+#: holding.
 
 
 L_CURRENCYCODEn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Currency code, such as USD, associated with the holding.
 
 

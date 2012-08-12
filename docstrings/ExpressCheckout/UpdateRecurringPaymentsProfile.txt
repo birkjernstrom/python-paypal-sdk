@@ -1,33 +1,31 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # UpdateRecurringPaymentsProfile Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be UpdateRecurringPaymentsProfile.
 
 
 PROFILEID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Recurring payments profile ID returned in the
 #: ``CreateRecurringPaymentsProfile`` response.
 #:
 #:
 #: Character length and limitations:
-#:     14 single-byte alphanumeric characters. 19 character profile IDs are
-#:     supported for compatibility with previous versions of the PayPal API.
+#:     14 single-byte alphanumeric characters. 19 character profile IDs
+#:     are supported for compatibility with previous versions of the
+#:     PayPal API.
 
 
 NOTE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The reason for the update to the recurring payments profile. 
-#: This message is included in the email notification to the buyer for the
-#: recurring payments profile update. This note can also be seen by both you
-#: and the buyer on the Status History page of the PayPal account. 
+#: (Optional) The reason for the update to the recurring payments profile.
+#:  This message is included in the email notification to the buyer for
+#: the recurring payments profile update. This note can also be seen by
+#: both you and the buyer on the Status History page of the PayPal
+#: account.
 
 
 DESC
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Description of the recurring payment.
 #:
 #:
@@ -36,10 +34,9 @@ DESC
 
 
 SUBSCRIBERNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Full name of the person receiving the product or service paid
-#: for by the recurring payment. If not present, the name in the buyer's
-#: PayPal account is used.
+#: (Optional) Full name of the person receiving the product or service
+#: paid for by the recurring payment. If not present, the name in the
+#: buyer's PayPal account is used.
 #:
 #:
 #: Character length and limitations:
@@ -47,7 +44,6 @@ SUBSCRIBERNAME
 
 
 PROFILEREFERENCE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The merchant's own unique reference or invoice number.
 #:
 #:
@@ -56,31 +52,29 @@ PROFILEREFERENCE
 
 
 ADDITIONALBILLINGCYCLES
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The number of additional billing cycles to add to this profile.
+#: (Optional) The number of additional billing cycles to add to this
+#: profile.
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Billing amount for each cycle in the subscription period, not
-#: including shipping and tax amounts. 
+#: (Optional) Billing amount for each cycle in the subscription period,
+#: not including shipping and tax amounts.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     For recurring payments with Express Checkout, the payment amount can be
-#:     increased by no more than 20% every 180 days (starting when the profile
-#:     is created).
+#:     For recurring payments with Express Checkout, the payment amount
+#:     can be increased by no more than 20% every 180 days (starting when
+#:     the profile is created).
 
 
 SHIPPINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Shipping amount for each billing cycle during the regular
 #: payment period.
 #:
@@ -88,16 +82,15 @@ SHIPPINGAMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     All amounts in the request must have the same currency. 
+#:     All amounts in the request must have the same currency.
 
 
 TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Tax amount for each billing cycle during the regular payment
 #: period.
 #:
@@ -105,32 +98,30 @@ TAXAMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     All amounts in the request must have the same currency. 
+#:     All amounts in the request must have the same currency.
 
 
 OUTSTANDINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The current past due or outstanding amount for this profile. You
-#: can only decrease the outstanding amount. It cannot be increased.
+#: (Optional) The current past due or outstanding amount for this profile.
+#: You can only decrease the outstanding amount. It cannot be increased.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 AUTOBILLOUTAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) This field indicates whether you would like PayPal to
 #: automatically bill the outstanding balance amount in the next billing
-#: cycle. It is one of the following values: 
+#: cycle. It is one of the following values:
 #:
 #:
 #:     ``NoAutoBill`` – PayPal does not automatically bill the outstanding
@@ -141,7 +132,6 @@ AUTOBILLOUTAMT
 
 
 MAXFAILEDPAYMENTS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The number of failed payments allowed before the profile is
 #: automatically suspended. The specified value cannot be less than the
 #: current number of failed payments for this profile.
@@ -152,7 +142,6 @@ MAXFAILEDPAYMENTS
 
 
 PROFILESTARTDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The date when billing for this profile begins.
 #:
 #:
@@ -164,12 +153,11 @@ PROFILESTARTDATE
 #:     The profile may take up to 24 hours for activation.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Ship To Address Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 SHIPTONAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Person's name associated with this shipping address. It is required if
 #: using a shipping address.
 #:
@@ -179,7 +167,6 @@ SHIPTONAME
 
 
 SHIPTOSTREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: First street address. It is required if using a shipping address.
 #:
 #:
@@ -188,7 +175,6 @@ SHIPTOSTREET
 
 
 SHIPTOSTREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Second street address.
 #:
 #:
@@ -197,7 +183,6 @@ SHIPTOSTREET2
 
 
 SHIPTOCITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Name of city. It is required if using a shipping address.
 #:
 #:
@@ -206,7 +191,6 @@ SHIPTOCITY
 
 
 SHIPTOSTATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: State or province. It is required if using a shipping address.
 #:
 #:
@@ -215,7 +199,6 @@ SHIPTOSTATE
 
 
 SHIPTOZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: U.S. ZIP code or other country-specific postal code. It is required if
 #: using a U.S. shipping address; may be required for other countries.
 #:
@@ -225,7 +208,6 @@ SHIPTOZIP
 
 
 SHIPTOCOUNTRY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Country code. It is required if using a shipping address.
 #:
 #:
@@ -234,7 +216,6 @@ SHIPTOCOUNTRY
 
 
 SHIPTOPHONENUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Phone number.
 #:
 #:
@@ -242,27 +223,25 @@ SHIPTOPHONENUM
 #:     20 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Billing Period Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 TOTALBILLINGCYCLES
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Number of billing cycles for payment period.
 #:
 #:
-#:     For the regular payment period, if no value is specified or the value
-#:     is ``0``, the regular payment period continues until the profile is
-#:     canceled or deactivated.
+#:     For the regular payment period, if no value is specified or the
+#:     value is ``0``, the regular payment period continues until the
+#:     profile is canceled or deactivated.
 #:
-#:     For the regular payment period, if the value is greater than ``0``, the
-#:     regular payment period will expire after the trial period is finished
-#:     and continue at the billing frequency for ``TotalBillingCycles``
-#:     cycles.
+#:     For the regular payment period, if the value is greater than ``0``,
+#:     the regular payment period will expire after the trial period is
+#:     finished and continue at the billing frequency for
+#:     ``TotalBillingCycles`` cycles.
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Billing amount for each billing cycle during this payment
 #: period. This amount does not include shipping and tax amounts.
 #:
@@ -270,42 +249,39 @@ AMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must have
-#:     the same currency.
+#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must
+#:     have the same currency.
 
 
 TRIALTOTALBILLINGCYCLES
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Number of billing cycles for trial payment period.
 
 
 TRIALAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Billing amount for each billing cycle during this payment period; required
-#: if you specify an optional trial period. This amount does not include
-#: shipping and tax amounts.
+#: Billing amount for each billing cycle during this payment period;
+#: required if you specify an optional trial period. This amount does not
+#: include shipping and tax amounts.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,). 
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must have
-#:     the same currency.
+#:     All amounts in the ``CreateRecurringPaymentsProfile`` request must
+#:     have the same currency.
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Currency code (default is USD). 
+#: (Required) Currency code (default is USD).
 #:
 #:
 #: Character length and limitations:
@@ -313,7 +289,6 @@ CURRENCYCODE
 
 
 SHIPPINGAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Shipping amount for each billing cycle during this payment
 #: period.
 #:
@@ -321,8 +296,8 @@ SHIPPINGAMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
@@ -330,31 +305,30 @@ SHIPPINGAMT
 
 
 TAXAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Tax amount for each billing cycle during this payment period.
+#: (Optional) Tax amount for each billing cycle during this payment
+#: period.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
 #:     All amounts in the request must have the same currency.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Credit Card Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 CREDITCARDTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Type of credit card. For UK, only ``Maestro``, ``MasterCard``,
-#: ``Discover``, and ``Visa`` are allowable. For Canada, only ``MasterCard``
-#: and ``Visa`` are allowable and Interac debit cards are not supported. It is
-#: one of the following values:
+#: (Optional) Type of credit card. For UK, only ``Maestro``,
+#: ``MasterCard``, ``Discover``, and ``Visa`` are allowable. For Canada,
+#: only ``MasterCard`` and ``Visa`` are allowable and Interac debit cards
+#: are not supported. It is one of the following values:
 #:
 #:
 #:     ``Visa``
@@ -373,47 +347,44 @@ CREDITCARDTYPE
 #:
 #:
 #: Notes:
-#:     If the credit card type is ``Maestro``, you must set ``CURRENCYCODE``
-#:     to ``GBP``. In addition, you must specify either ``STARTDATE`` or
-#:     ``ISSUENUMBER``.
+#:     If the credit card type is ``Maestro``, you must set
+#:     ``CURRENCYCODE`` to ``GBP``. In addition, you must specify either
+#:     ``STARTDATE`` or ``ISSUENUMBER``.
 
 
 ACCT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Credit card number.
 #:
 #:
 #: Character length and limitations:
-#:     Numeric characters only with no spaces or punctuation. The string must
-#:     conform with modulo and length required by each credit card type.
+#:     Numeric characters only with no spaces or punctuation. The string
+#:     must conform with modulo and length required by each credit card
+#:     type.
 
 
 EXPDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Credit card expiration date. This field is required if you are using
 #: recurring payments with direct payments.
 #:
 #:
 #: Character length and limitations:
-#:     6 single-byte alphanumeric characters, including leading zero, in the
-#:     format MMYYYY
+#:     6 single-byte alphanumeric characters, including leading zero, in
+#:     the format MMYYYY
 
 
 CVV2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Card Verification Value, version 2. Your Merchant Account settings
 #: determine whether this field is required. To comply with credit card
-#: processing regulations, you must not store this value after a transaction
-#: has been completed.
+#: processing regulations, you must not store this value after a
+#: transaction has been completed.
 #:
 #:
 #: Character length and limitations:
-#:     For Visa, MasterCard, and Discover, the value is exactly 3 digits. For
-#:     American Express, the value is exactly 4 digits.
+#:     For Visa, MasterCard, and Discover, the value is exactly 3 digits.
+#:     For American Express, the value is exactly 4 digits.
 
 
 STARTDATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Month and year that Maestro card was issued.
 #:
 #:
@@ -422,7 +393,6 @@ STARTDATE
 
 
 ISSUENUMBER
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Issue number of Maestro card.
 #:
 #:
@@ -430,12 +400,11 @@ ISSUENUMBER
 #:     2 numeric digits maximum
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Payer Information Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 EMAIL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Email address of buyer.
 #:
 #:
@@ -444,7 +413,6 @@ EMAIL
 
 
 FIRSTNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Buyer's first name.
 #:
 #:
@@ -453,7 +421,6 @@ FIRSTNAME
 
 
 LASTNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Buyer's last name.
 #:
 #:
@@ -461,12 +428,11 @@ LASTNAME
 #:     25 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Address Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 STREET
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) First street address.
 #:
 #:
@@ -475,7 +441,6 @@ STREET
 
 
 STREET2
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Second street address.
 #:
 #:
@@ -484,7 +449,6 @@ STREET2
 
 
 CITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Name of city.
 #:
 #:
@@ -493,7 +457,6 @@ CITY
 
 
 STATE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) State or province.
 #:
 #:
@@ -502,8 +465,7 @@ STATE
 
 
 COUNTRYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Country code. 
+#: (Required) Country code.
 #:
 #:
 #: Character length and limitations:
@@ -511,7 +473,6 @@ COUNTRYCODE
 
 
 ZIP
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) U.S. ZIP code or other country-specific postal code.
 #:
 #:
@@ -520,7 +481,6 @@ ZIP
 
 
 SHIPTOPHONENUM
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Phone number.
 #:
 #:
@@ -528,15 +488,14 @@ SHIPTOPHONENUM
 #:     20 single-byte characters
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # UpdateRecurringPaymentsProfile Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PROFILEID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Recurring payments profile ID returned in the
-#: ``CreateRecurringPaymentsProfile`` response. An error is returned if the
-#: profile specified in the ``BillOutstandingAmount`` request has a status of
-#: ``canceled`` or ``expired``.
+#: ``CreateRecurringPaymentsProfile`` response. An error is returned if
+#: the profile specified in the ``BillOutstandingAmount`` request has a
+#: status of ``canceled`` or ``expired``.
 
 

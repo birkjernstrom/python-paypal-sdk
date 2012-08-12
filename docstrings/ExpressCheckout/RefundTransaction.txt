@@ -1,14 +1,12 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RefundTransaction Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be RefundTransaction.
 
 
 TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Unique identifier of the transaction to be refunded.
 #:
 #:
@@ -17,7 +15,6 @@ TRANSACTIONID
 
 
 INVOICEID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Your own invoice or tracking number.
 #:
 #:
@@ -26,7 +23,6 @@ INVOICEID
 
 
 REFUNDTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Type of refund you are making. It is one of the following values:
 #:
 #:
@@ -34,14 +30,14 @@ REFUNDTYPE
 #:
 #:     ``Partial`` – Partial refund.
 #:
-#:     ``ExternalDispute`` – External dispute. (Value available since version
-#:     82.0)
+#:     ``ExternalDispute`` – External dispute. (Value available since
+#:     version 82.0)
 #:
-#:     ``Other`` – Other type of refund. (Value available since version 82.0)
+#:     ``Other`` – Other type of refund. (Value available since version
+#:     82.0)
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Refund amount. The amount is required if ``RefundType`` is
 #: ``Partial``.
 #:
@@ -49,18 +45,18 @@ AMT
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Notes:
-#:     If ``RefundType`` is ``Full``, do not set the amount. 
+#:     If ``RefundType`` is ``Full``, do not set the amount.
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ISO 4217 3-letter currency code. USD for US Dollars. This field is required
-#: for partial refunds, and is also required for refunds greater than 100%. 
+#: ISO 4217 3-letter currency code. USD for US Dollars. This field is
+#: required for partial refunds, and is also required for refunds greater
+#: than 100%.
 #:
 #:
 #: Character length and limitations:
@@ -68,7 +64,6 @@ CURRENCYCODE
 
 
 NOTE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Custom memo about the refund.
 #:
 #:
@@ -77,8 +72,7 @@ NOTE
 
 
 RETRYUNTIL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Maximum time until you must retry the refund. 
+#: (Optional) Maximum time until you must retry the refund.
 #:
 #:
 #: Notes:
@@ -89,22 +83,21 @@ RETRYUNTIL
 
 
 REFUNDSOURCE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional)Type of PayPal funding source (balance or eCheck) that can be
 #: used for auto refund. It is one of the following values:
 #:
 #:
-#:     ``any`` – The merchant does not have a preference. Use any available
-#:     funding source.
+#:     ``any`` – The merchant does not have a preference. Use any
+#:     available funding source.
 #:
 #:     ``default`` – Use the merchant's preferred funding source, as
 #:     configured in the merchant's profile.
 #:
 #:     ``instant`` – Use the merchant's balance as the funding source.
 #:
-#:     ``eCheck`` – The merchant prefers using the eCheck funding source. If
-#:     the merchant's PayPal balance can cover the refund amount, use the
-#:     PayPal balance.
+#:     ``eCheck`` – The merchant prefers using the eCheck funding source.
+#:     If the merchant's PayPal balance can cover the refund amount, use
+#:     the PayPal balance.
 #:
 #:
 #: Notes:
@@ -115,7 +108,6 @@ REFUNDSOURCE
 
 
 MERCHANTSTOREDETAILS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) Information about the merchant store.
 #:
 #:
@@ -123,33 +115,31 @@ MERCHANTSTOREDETAILS
 
 
 REFUNDADVICE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Flag to indicate that the buyer was already given store credit
-#: for a given transaction. It is one of the following values:
+#: (Optional) Flag to indicate that the buyer was already given store
+#: credit for a given transaction. It is one of the following values:
 #:
 #:
 #:     ``1`` – The buyer was already given store credit for a given
 #:     transaction.
 #:
-#:     ``0`` – The buyer was not given store credit for a given transaction.
+#:     ``0`` – The buyer was not given store credit for a given
+#:     transaction.
 #:
 #:
 #: Available since API version: 85.0
 
 
 REFUNDITEMDETAILS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Details about the individual items to be returned. 
+#: (Optional) Details about the individual items to be returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Merchant Store Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 STOREID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Identifier of the merchant store at which the refund is given. This field
-#: is required for point-of-sale transactions. 
+#: Identifier of the merchant store at which the refund is given. This
+#: field is required for point-of-sale transactions.
 #:
 #:
 #: Character length and limitations:
@@ -160,7 +150,6 @@ STOREID
 
 
 TERMINALID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) ID of the terminal.
 #:
 #:
@@ -171,77 +160,72 @@ TERMINALID
 #: Available since API version: 82.0
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RefundTransaction Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 REFUNDTRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Unique transaction ID of the refund.
 #:
 #: Character length and limitations:17 single-byte characters
 
 
 FEEREFUNDAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Transaction fee refunded to original recipient of payment.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 GROSSREFUNDAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Amount refunded to the original payer. Say, for example, a buyer makes $100
-#: purchase, the buyer was refunded $20 a week ago and is refunded $30 in this
-#: transaction. The gross refund amount is $30 (in this transaction). 
+#: Amount refunded to the original payer. Say, for example, a buyer makes
+#: $100 purchase, the buyer was refunded $20 a week ago and is refunded
+#: $30 in this transaction. The gross refund amount is $30 (in this
+#: transaction).
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 NETREFUNDAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Amount subtracted from PayPal balance of the original recipient of payment,
-#: to make this refund.
+#: Amount subtracted from PayPal balance of the original recipient of
+#: payment, to make this refund.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 TOTALREFUNDEDAMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Total amount refunded so far from the original purchase. Say, for example,
-#: a buyer makes $100 purchase, the buyer was refunded $20 a week ago and is
-#: refunded $30 in this transaction. The gross refund amount is $30 (in this
-#: transaction). The total refunded amount is $50.
+#: Total amount refunded so far from the original purchase. Say, for
+#: example, a buyer makes $100 purchase, the buyer was refunded $20 a week
+#: ago and is refunded $30 in this transaction. The gross refund amount is
+#: $30 (in this transaction). The total refunded amount is $50.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 #:
 #:
 #: Available since API version: 67.0
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Currency code. 
+#: Currency code.
 #:
 #:
 #: Character length and limitations:
@@ -249,19 +233,17 @@ CURRENCYCODE
 
 
 REFUNDINFO
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Contains refund payment status information.
 #:
 #:
 #: Available since API version: 84.0
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RefundInfoType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 REFUNDSTATUS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``ns:PaymentStatusCodeType``
 #:
 #: Status of the refund. It is one of the following values:
@@ -276,7 +258,6 @@ REFUNDSTATUS
 
 
 PENDINGREASON
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Reason that the refund payment status is delayed. It is one of the
 #: following values:
 #:

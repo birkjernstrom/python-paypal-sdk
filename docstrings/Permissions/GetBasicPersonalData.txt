@@ -1,32 +1,29 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetBasicPersonalDataRequest Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 attributeList
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``tns:PersonalAttributeList``
 #:
-#: (Required) The list of personal attributes requested for this account. 
+#: (Required) The list of personal attributes requested for this account.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:requestEnvelope``
 #:
-#: (Required) Information common to each API operation, such as the language
-#: in which an error message is returned.
+#: (Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PersonalAttributeList Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 attribute
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``tns:PersonalAttribute``
 #:
-#: The attributes whose values you are requesting. You specify one or more of
-#: the following URIs:
+#: The attributes whose values you are requesting. You specify one or more
+#: of the following URIs:
 #:
 #:
 #:     ``http://axschema.org/namePerson/first_`` – First name
@@ -53,12 +50,11 @@ attribute
 #: .. _https://www.paypal.com/webapps/auth/schema/payerID: https://www.paypal.com/webapps/auth/schema/payerID
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) Level of detail required by the client application for
@@ -70,23 +66,22 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported.
+#: default it is ``en_US``, which is the only language currently
+#: supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetBasicPersonalData Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 response
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``tns:PersonalDataList``
 #:
-#: The attributes for which you have been granted permission to access; one or
-#: more of the following URIs:
+#: The attributes for which you have been granted permission to access;
+#: one or more of the following URIs:
 #:
 #:
 #:     ``http://axschema.org/namePerson/first_`` – First name
@@ -114,34 +109,31 @@ response
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
 #: acknowledgement status.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PersonalDataList Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 personalData
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``tns:PersonalData``
 #:
-#: The list of name-value pairs of personal data in the response. 
+#: The list of name-value pairs of personal data in the response.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # PersonalData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 personalDataKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``tns:PersonalAttribute``
 #:
-#: The attributes whose values you are requesting. You specify one or more of
-#: the following URIs:
+#: The attributes whose values you are requesting. You specify one or more
+#: of the following URIs:
 #:
 #:
 #:     ``http://axschema.org/namePerson/first_`` – First name
@@ -169,18 +161,16 @@ personalDataKey
 
 
 personalDataValue
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:String``
 #:
 #: The value associated with the key
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgement code. It is one of the following values:
@@ -192,67 +182,65 @@ ack
 #:
 #:     ``Warning`` – Warning.
 #:
-#:     ``SuccessWithWarning`` – The operation completed successfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completed successfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failed with a warning message.
+#:     ``FailureWithWarning ``– The operation failed with a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; it is used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; it is used only by Developer Technical Support.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Date on which the response was sent. The time is currently not supported.
+#: Date on which the response was sent. The time is currently not
+#: supported.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # FaultMessage Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 error
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorData``
 #:
 #: Detailed error information.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
 #: acknowledgement status.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ErrorData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 category
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorCategory``
 #:
-#: The location where the error occurred. 
+#: The location where the error occurred.
 #:
-#: Possible values are: 
+#: Possible values are:
 #:
 #:
 #:     ``System`` – The system encountered errors; try again
@@ -263,37 +251,31 @@ category
 
 
 domain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: The domain to which this service belongs. 
+#: The domain to which this service belongs.
 
 
 errorId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: A number that uniquely identifies a particular error. 
+#: A number that uniquely identifies a particular error.
 
 
 exceptionID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
 message
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: A description of the error. 
+#: A description of the error.
 
 
 parameter
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorParameter``
 #:
-#: Represents contextual information about the error. 
+#: Represents contextual information about the error.
 
 
 severity
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ``common:ErrorSeverity`` 
+#: ``common:ErrorSeverity``
 #:
-#: The severity of the error encountered. 
+#: The severity of the error encountered.
 #:
 #: Possible values are:
 #:
@@ -304,16 +286,14 @@ severity
 
 
 subdomain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgement code. It is one of the following values:
@@ -325,43 +305,43 @@ ack
 #:
 #:     ``Warning`` – Warning.
 #:
-#:     ``SuccessWithWarning`` – The operation completed successfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completed successfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failed with a warning message.
+#:     ``FailureWithWarning ``– The operation failed with a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; it is used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; it is used only by Developer Technical Support.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Date on which the response was sent. The time is currently not supported.
+#: Date on which the response was sent. The time is currently not
+#: supported.
 #:
 #:
 #: Notes:
-#:     You must log and store this data for every response you receive. PayPal
-#:     Technical Support uses the information to assist with reported issues.
+#:     You must log and store this data for every response you receive.
+#:     PayPal Technical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetBasicPersonalData Errors
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 580022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Access Token
 
 

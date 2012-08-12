@@ -1,9 +1,8 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) Levelof detail required by the client application for
@@ -15,38 +14,34 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) RFC3066 language in which error messages are returned; by
 #: default itis ``en_US``, which is the only language currentlysupported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SendInvoiceRequest Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:requestEnvelope``
 #:
-#: (Required) Informationcommon to each API operation, such as the language in
-#: which an errormessage is returned.
+#: (Required) Informationcommon to each API operation, such as the
+#: language in which an errormessage is returned.
 
 
 invoiceID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) IDof the invoice to send.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgementcode. It is one of the following values:
@@ -56,55 +51,52 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completedsuccessfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completedsuccessfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failedwith a warning message.
+#:     ``FailureWithWarning ``– The operation failedwith a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number.It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlationidentifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``)that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``)that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Dateon which the response was sent, for example: 
+#: Dateon which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SendInvoiceResponse Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Commonresponse information, including a timestamp and the response
@@ -112,49 +104,44 @@ responseEnvelope
 
 
 invoiceID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: ID of theinvoice being sent.
 
 
 invoiceURL
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: Locationwhere merchants view the invoice details. 
+#: Locationwhere merchants view the invoice details.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # FaultMessage Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 error
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorData``
 #:
 #: Detailederror information.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Commonresponse information, including a timestamp and the response
 #: acknowledgementstatus.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ErrorData Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 category
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorCategory``
 #:
-#: Thelocation where the error occurred. 
+#: Thelocation where the error occurred.
 #:
-#: Possible values are: 
+#: Possible values are:
 #:
 #:
 #:     ``System`` – The system encountered errors;try again
@@ -165,43 +152,37 @@ category
 
 
 domain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: The domainto which this service belongs. 
+#: The domainto which this service belongs.
 
 
 errorId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:long``
 #:
-#: A 6-digitnumber that uniquely identifies a particular error. 
+#: A 6-digitnumber that uniquely identifies a particular error.
 
 
 exceptionID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
 message
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: A descriptionof the error. 
+#: A descriptionof the error.
 
 
 parameter
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ErrorParameter``
 #:
-#: Representscontextual information about the error. 
+#: Representscontextual information about the error.
 
 
 severity
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ``common:ErrorSeverity`` 
+#: ``common:ErrorSeverity``
 #:
-#: Theseverity of the error encountered. 
+#: Theseverity of the error encountered.
 #:
 #: Possible values are:
 #:
@@ -212,16 +193,14 @@ severity
 
 
 subdomain
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: This field is not used. 
+#: This field is not used.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgementcode. It is one of the following values:
@@ -231,109 +210,96 @@ ack
 #:
 #:     ``Failure`` – The operation failed.
 #:
-#:     ``SuccessWithWarning`` – The operation completedsuccessfully; however,
-#:     there is a warning message.
+#:     ``SuccessWithWarning`` – The operation completedsuccessfully;
+#:     however, there is a warning message.
 #:
-#:     ``FailureWithWarning ``– The operation failedwith a warning message.
+#:     ``FailureWithWarning ``– The operation failedwith a warning
+#:     message.
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Build number.It is used only by PayPal Merchant Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: Correlationidentifier. It is a 13-character, alphanumeric string (for
-#: example, ``db87c705a910e``)that is used only by PayPal Merchant Technical
-#: Support.
+#: example, ``db87c705a910e``)that is used only by PayPal Merchant
+#: Technical Support.
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:datetime``
 #:
-#: Dateon which the response was sent, for example: 
+#: Dateon which the response was sent, for example:
 #:
 #: ``2012-04-02T22:33:35.774-07:00``
 #:
 #:
 #: Notes:
 #:     Youmust log and store this data for every response you receive.
-#:     PayPalTechnical Support uses the information to assist with reported
-#:     issues.
+#:     PayPalTechnical Support uses the information to assist with
+#:     reported issues.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 520002
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error.
 
 
 520005
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Authentication failed. API credentials areincorrect.
 
 
 520009
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Account is restricted.
 
 
 550026
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Partner did not create the invoice but attemptedto access or modify it; a
-#: merchant's invoice can be accessed ormodified only by the partner who
+#: Partner did not create the invoice but attemptedto access or modify it;
+#: a merchant's invoice can be accessed ormodified only by the partner who
 #: created it.
 
 
 550027
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Merchant cannot access or modify an invoicethey did not create; an invoice
-#: can only be accessed or modifiedby the party who created it.
+#: Merchant cannot access or modify an invoicethey did not create; an
+#: invoice can only be accessed or modifiedby the party who created it.
 
 
 570052
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: You cannot send this invoice because ithas already been paid.
 
 
 570053
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: You cannot send this invoice because ithas already been canceled.
 
 
 570058
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid token.
 
 
 570064
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: An invoice that has already been sent cannotbe sent again.
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: This error code corresponds to validationerror messages that deal with
-#: errors of supplied parameters. 
+#: errors of supplied parameters.
 
 
 580047
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invoice does not exist.
 
 

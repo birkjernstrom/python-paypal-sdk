@@ -1,16 +1,14 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetVerifiedStatus Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 emailAddress
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The email address of the PayPal account holder.
 
 
 firstName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The first name of the PayPal account holder. Required if
@@ -18,7 +16,6 @@ firstName
 
 
 lastName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The last name of the PayPal account holder. Required if
@@ -26,11 +23,10 @@ lastName
 
 
 matchCriteria
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The criteria that must be matched in addition to
-#: ``emailAddress``. Currently, only ``NAME`` is supported. 
+#: ``emailAddress``. Currently, only ``NAME`` is supported.
 #:
 #: Allowable string values are:
 #:
@@ -41,24 +37,22 @@ matchCriteria
 #:
 #:
 #: Notes:
-#:     To use ``ConfirmationType`` ``NONE`` you must request and be granted
-#:     advanced permission levels. 
+#:     To use ``ConfirmationType`` ``NONE`` you must request and be
+#:     granted advanced permission levels.
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:RequestEnvelope``
 #:
-#: (Required) Information common to each API operation, such as the language
-#: in which an error message is returned.
+#: (Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) The level of detail required by the client application for
@@ -70,27 +64,25 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported
+#: (Required) The RFC 3066 language in which error messages are returned;
+#: by default it is ``en_US``, which is the only language currently
+#: supported
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetVerifiedStatus Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 accountStatus
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: This field returns ``VERIFIED`` or ``UNVERIFIED`` to indicate the account
-#: status.
+#: This field returns ``VERIFIED`` or ``UNVERIFIED`` to indicate the
+#: account status.
 
 
 responseEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:ResponseEnvelope``
 #:
 #: Common response information, including a timestamp and the response
@@ -98,36 +90,33 @@ responseEnvelope
 
 
 countryCode
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The country code. For allowable values, refer to Country Codes_.
-#: 
+#: (Required) The country code. For allowable values, refer to Country
+#: Codes_.
 #:
 #:
 #: Notes:
-#:     In order to receive a ``countryCode`` value in the response, you must
-#:     specify ``matchCriteria=NONE`` in the ``GetVerifiedStatus`` request. To
-#:     use ``matchCriteria=NONE``, you must request and be granted advanced
-#:     permission levels.
+#:     In order to receive a ``countryCode`` value in the response, you
+#:     must specify ``matchCriteria=NONE`` in the ``GetVerifiedStatus``
+#:     request. To use ``matchCriteria=NONE``, you must request and be
+#:     granted advanced permission levels.
 #:
 #:
 #: .. _Country Codes: https://www.x.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ACCountryCodes
 
 
 userInfoType
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: ``aa:UserInfoType`` 
+#: ``aa:UserInfoType``
 #:
 #: This set of data includes unique account identifiers.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgment code. Possible values are:
@@ -146,26 +135,22 @@ ack
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; used only by Developer Technical Support.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The date on which the response was sent. The time is not supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # UserInfoType Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 accountType
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required) The type of account. Allowable values are:
@@ -179,78 +164,68 @@ accountType
 
 
 name
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``aa:NameType``
 #:
-#: (Required) The name of the person for whom the PayPal account is created.
+#: (Required) The name of the person for whom the PayPal account is
+#: created.
 
 
 businessName
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Business name of the PayPal account holder.
 
 
 accountId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Identifies the PayPal account. 
+#: Identifies the PayPal account.
 #:
 #:
 #: Notes:
-#:      A call to this API must use either ``emailAddress`` or ``accountId``
-#:     as the unique identifier for the account, but must never include both
-#:     in the same call.
+#:      A call to this API must use either ``emailAddress`` or
+#:     ``accountId`` as the unique identifier for the account, but must
+#:     never include both in the same call.
 
 
 emailAddress
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Required)Email address associated with the PayPal account: one of the
-#: unique identifiers for the account. 
+#: unique identifiers for the account.
 #:
 #:
 #: Notes:
-#:      A call to this API must use either ``emailAddress`` or ``accountId``
-#:     as the unique identifier for the account, but must never include both
-#:     in the same call.
+#:      A call to this API must use either ``emailAddress`` or
+#:     ``accountId`` as the unique identifier for the account, but must
+#:     never include both in the same call.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # GetVerifiedStatus Errors
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 500000 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: There is a system error.
 
 
 520002 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error
 
 
 520003 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Username/password is incorrect.
 
 
 550001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: User is not allowed to perform this action.
 
 
 560027 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The argument value is unsupported.
 
 
 560029 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The required <name> header is missing from the HTTP request.
 
 
 580001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Request:
 #:
 #:
@@ -264,22 +239,18 @@ emailAddress
 
 
 580022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Cannot determine PayPal account status
 
 
 580022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid request parameter: <name>
 
 
 580023 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Request.
 
 
 580029 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Missing required request parameter: <name>
 
 

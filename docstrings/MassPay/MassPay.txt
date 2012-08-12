@@ -1,14 +1,12 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # MassPay Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be MassPay.
 
 
 EMAILSUBJECT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The subject line of the email that PayPal sends when the
 #: transaction completes. The subject line is the same for all recipients.
 #:
@@ -18,7 +16,6 @@ EMAILSUBJECT
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Currency code.
 #:
 #:
@@ -27,9 +24,8 @@ CURRENCYCODE
 
 
 RECEIVERTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) How you identify the recipients of payments in this call to
-#: MassPay. It is one of the following values: 
+#: MassPay. It is one of the following values:
 #:
 #:
 #:     ``EmailAddress``

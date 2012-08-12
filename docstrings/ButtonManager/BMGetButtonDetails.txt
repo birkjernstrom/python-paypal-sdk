@@ -1,23 +1,21 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # BMGetButtonDetails Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) BMGetButtonDetails
 
 
 HOSTEDBUTTONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) The ID of the hosted button whose details you want to obtain.
+#: (Required) The ID of the hosted button whose details you want to
+#: obtain.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # BMGetButtonDetails Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 BUTTONTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The kind of button. It is one of the following values:
 #:
 #:
@@ -41,7 +39,6 @@ BUTTONTYPE
 
 
 BUTTONCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The kind of button code. It is one of the following values:
 #:
 #:
@@ -53,7 +50,6 @@ BUTTONCODE
 
 
 BUTTONSUBTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The use of button. It is one of the following values:
 #:
 #:
@@ -63,67 +59,60 @@ BUTTONSUBTYPE
 
 
 HOSTEDBUTTONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ID of a PayPal hosted button
 
 
 WEBSITECODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: HTML code for web pages
 
 
 EMAILLINK
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Code for email links and links in other documents that support external
 #: links
 
 
 L_BUTTONVARn
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: HTML standard button variables
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Option Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 OPTIONnNAME
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The menu name
 #:
 #: It is one or more variables, in which n is a digit between 0 and 4,
-#: inclusive, for hosted buttons; otherwise, it is a digit between 0 and 9,
-#: inclusive.
+#: inclusive, for hosted buttons; otherwise, it is a digit between 0 and
+#: 9, inclusive.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Option Selection Details Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_OPTIONnSELECTx
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The menu item's name
 #:
-#: It is a list of variables for each ``None``, in which x is a digit between
-#: 0 and 9, inclusive
+#: It is a list of variables for each ``OPTIONnNAME``, in which x is a
+#: digit between 0 and 9, inclusive
 
 
 L_OPTION0PRICEx
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The price associated with the first menu item
 #:
-#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
-#: between 0 and 9, inclusive
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a
+#: digit between 0 and 9, inclusive
 #:
 #:
 #: Notes:
-#:     If you specify a price, you cannot set a button variable to ``amount``.
+#:     If you specify a price, you cannot set a button variable to
+#:     ``amount``.
 
 
 OPTIONnTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The installment option type for an ``None``, which is one of the
-#: following values:
+#: (Optional) The installment option type for an ``OPTIONnNAME``, which is
+#: one of the following values:
 #:
 #:
 #:     ``FULL`` - Payment in full
@@ -137,12 +126,11 @@ OPTIONnTYPE
 #:     Only available for Installment Plan buttons.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Installment Details
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 L_OPTIONnBILLINGPERIOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The installment cycle unit, which is one of the following
 #: values:
 #:
@@ -160,81 +148,72 @@ L_OPTIONnBILLINGPERIOD
 #:     ``Year``
 #:
 #:
-#: It is a list of variables for each ``None``, in which x is a digit between
-#: 0 and 4, inclusive
+#: It is a list of variables for each ``OPTIONnNAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
 L_OPTIONnBILLINGPFREQUENCY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The installment cycle frequency in units, e.g. if the billing
-#: frequency is ``2`` and the billing period is ``Month``, the billing cycle
-#: is every 2 months. The default billing frequency is ``1``.
+#: (Optional) The installment cycle frequency in units, e.g. if the
+#: billing frequency is ``2`` and the billing period is ``Month``, the
+#: billing cycle is every 2 months. The default billing frequency is
+#: ``1``.
 #:
-#: It is a list of variables for each ``None``, in which x is a digit between
-#: 0 and 4, inclusive
+#: It is a list of variables for each ``OPTIONnNAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
 L_OPTIONnTOTALBILLINGCYCLES
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The total number of billing cycles, regardless of the duration
-#: of a cycle; ``1`` is the default
+#: (Optional) The total number of billing cycles, regardless of the
+#: duration of a cycle; ``1`` is the default
 #:
-#: It is a list of variables for each ``None``, in which x is a digit between
-#: 0 and 4, inclusive
+#: It is a list of variables for each ``OPTIONnNAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
 L_OPTIONnAMOUNTx
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Optional) The base amount to bill for the cycle.
 #:
-#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
-#: between 0 and 4, inclusive
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
 L_OPTIONnSHIPPINGAMOUNTx
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The shipping amount to bill for the cycle, in addition to the
-#: base amount.
+#: (Optional) The shipping amount to bill for the cycle, in addition to
+#: the base amount.
 #:
-#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
-#: between 0 and 4, inclusive
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
 L_OPTIONnTAXAMOUNTx
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) The tax amount to bill for the cycle, in addition to the base
-#: amount.
+#: (Optional) The tax amount to bill for the cycle, in addition to the
+#: base amount.
 #:
-#: It is a list of variables for each ``OPTION0NAME``, in which x is a digit
-#: between 0 and 4, inclusive
+#: It is a list of variables for each ``OPTION0NAME``, in which x is a
+#: digit between 0 and 4, inclusive
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # Installment Details
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 10001
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal Error
 
 
 11950
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Data
 
 
 11951
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Argument
 
 
 11951
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Argument
 
 
 11992
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid Argument
 
 

@@ -1,108 +1,101 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoAuthorization Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 METHOD
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Must be ``DoAuthorization``.
 
 
 TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Required) Value of the order's transaction identification number returned
-#: by PayPal.
+#: (Required) Value of the order's transaction identification number
+#: returned by PayPal.
 #:
 #:
 #: Character length and limitations:
-#:     19 single-byte characters 
+#:     19 single-byte characters
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: (Required) Amount to authorize.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
 TRANSACTIONENTITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) Type of transaction to authorize. The only allowable value is
-#: ``Order``, which means that the transaction represents a buyer order that
-#: can be fulfilled over 29 days.
+#: (Optional) Type of transaction to authorize. The only allowable value
+#: is ``Order``, which means that the transaction represents a buyer order
+#: that can be fulfilled over 29 days.
 
 
 CURRENCYCODE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: (Optional) A 3-character currency code. 
+#: (Optional) A 3-character currency code.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # DoAuthorization Response Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 TRANSACTIONID
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Authorization identification number.
 
 
 AMT
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Amount you specified in the request.
 #:
 #:
 #: Character length and limitations:
 #:     Value is a positive number which cannot exceed $10,000 USD in any
 #:     currency. It includes no currency symbol. It must have 2 decimal
-#:     places, the decimal separator must be a period (.), and the optional
-#:     thousands separator must be a comma (,).
+#:     places, the decimal separator must be a period (.), and the
+#:     optional thousands separator must be a comma (,).
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # AuthorizationInfo Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 PAYMENTSTATUS
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Status of the payment. It is one of the following values:
 #:
 #:
 #:     ``None`` – No status.
 #:
-#:     ``Canceled-Reversal`` – A reversal has been canceled. For example, when
-#:     you win a dispute, PayPal returns the funds for the reversal to you.
+#:     ``Canceled-Reversal`` – A reversal has been canceled. For example,
+#:     when you win a dispute, PayPal returns the funds for the reversal
+#:     to you.
 #:
-#:     ``Completed`` – The payment has been completed, and the funds have been
-#:     added successfully to your account balance.
+#:     ``Completed`` – The payment has been completed, and the funds have
+#:     been added successfully to your account balance.
 #:
-#:     ``Denied`` – You denied the payment. This happens only if the payment
-#:     was previously pending because of possible reasons described for the
-#:     ``PendingReason`` element.
+#:     ``Denied`` – You denied the payment. This happens only if the
+#:     payment was previously pending because of possible reasons
+#:     described for the ``PendingReason`` element.
 #:
 #:     ``Expired`` – The authorization period for this payment has been
 #:     reached.
 #:
-#:     ``Failed`` – The payment has failed. This happens only if the payment
-#:     was made from the buyer's bank account.
+#:     ``Failed`` – The payment has failed. This happens only if the
+#:     payment was made from the buyer's bank account.
 #:
-#:     ``In-Progress`` – The transaction has not terminated. For example, an
-#:     authorization may be awaiting completion.
+#:     ``In-Progress`` – The transaction has not terminated. For example,
+#:     an authorization may be awaiting completion.
 #:
 #:     ``Partially-Refunded`` – The payment has been partially refunded.
 #:
-#:     ``Pending`` – The payment is pending. See the ``PendingReason`` field
-#:     for more information.
+#:     ``Pending`` – The payment is pending. See the ``PendingReason``
+#:     field for more information.
 #:
 #:     ``Refunded`` – You refunded the payment.
 #:
-#:     ``Reversed``– A payment was reversed due to a chargeback or other type
-#:     of reversal. PayPal removes the funds from your account balance and
-#:     returns them to the buyer. The ``ReasonCode`` element specifies the
-#:     reason for the reversal.
+#:     ``Reversed``– A payment was reversed due to a chargeback or other
+#:     type of reversal. PayPal removes the funds from your account
+#:     balance and returns them to the buyer. The ``ReasonCode`` element
+#:     specifies the reason for the reversal.
 #:
 #:     ``Processed`` – A payment has been accepted.
 #:
@@ -110,7 +103,6 @@ PAYMENTSTATUS
 
 
 PENDINGREASON
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Reason the payment is pending. It is one of the following values:
 #:
 #:
@@ -118,48 +110,49 @@ PENDINGREASON
 #:
 #:     ``address`` – The payment is pending because your customer did not
 #:     include a confirmed shipping address and your Payment Receiving
-#:     Preferences is set such that you want to manually accept or deny each
-#:     of these payments. To change your preference, go to the ``Preferences``
-#:     section of your ``Profile``.
+#:     Preferences is set such that you want to manually accept or deny
+#:     each of these payments. To change your preference, go to the
+#:     ``Preferences`` section of your ``Profile``.
 #:
 #:     ``authorization`` – The payment is pending because it has been
 #:     authorized but not settled. You must capture the funds first.
 #:
-#:     ``echeck`` – The payment is pending because it was made by an eCheck
-#:     that has not yet cleared.
+#:     ``echeck`` – The payment is pending because it was made by an
+#:     eCheck that has not yet cleared.
 #:
-#:     ``intl`` – The payment is pending because you hold a non-U.S. account
-#:     and do not have a withdrawal mechanism. You must manually accept or
-#:     deny this payment from your ``Account Overview``.
+#:     ``intl`` – The payment is pending because you hold a non-U.S.
+#:     account and do not have a withdrawal mechanism. You must manually
+#:     accept or deny this payment from your ``Account Overview``.
 #:
-#:     ``multi-currency`` – You do not have a balance in the currency sent,
-#:     and you do not have your ``Payment Receiving Preferences`` set to
-#:     automatically convert and accept this payment. You must manually accept
-#:     or deny this payment.
+#:     ``multi-currency`` – You do not have a balance in the currency
+#:     sent, and you do not have your ``Payment Receiving Preferences``
+#:     set to automatically convert and accept this payment. You must
+#:     manually accept or deny this payment.
 #:
-#:     ``order`` – The payment is pending because it is part of an order that
-#:     has been authorized but not settled.
+#:     ``order`` – The payment is pending because it is part of an order
+#:     that has been authorized but not settled.
 #:
-#:     ``paymentreview`` – The payment is pending while it is being reviewed
-#:     by PayPal for risk.
+#:     ``paymentreview`` – The payment is pending while it is being
+#:     reviewed by PayPal for risk.
 #:
-#:     ``unilateral`` – The payment is pending because it was made to an email
-#:     address that is not yet registered or confirmed.
+#:     ``unilateral`` – The payment is pending because it was made to an
+#:     email address that is not yet registered or confirmed.
 #:
-#:     ``verify`` – The payment is pending because you are not yet verified.
-#:     You must verify your account before you can accept this payment.
+#:     ``verify`` – The payment is pending because you are not yet
+#:     verified. You must verify your account before you can accept this
+#:     payment.
 #:
-#:     ``other`` – The payment is pending for a reason other than those listed
-#:     above. For more information, contact PayPal Customer Service.
+#:     ``other`` – The payment is pending for a reason other than those
+#:     listed above. For more information, contact PayPal Customer
+#:     Service.
 #:
 #:
 #: Notes:
-#:     ``PendingReason`` is returned in the response only if ``PaymentStatus``
-#:     is ``Pending``.
+#:     ``PendingReason`` is returned in the response only if
+#:     ``PaymentStatus`` is ``Pending``.
 
 
 PROTECTIONELIGIBILITY
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Prior to version 64.4, the kind of seller protection in force for the
 #: transaction. It is one of the following values:
 #:
@@ -170,12 +163,11 @@ PROTECTIONELIGIBILITY
 #:     ``PartiallyEligible`` – Merchant is protected by PayPal's Seller
 #:     Protection Policy for Item Not Received.
 #:
-#:     ``Ineligible`` – Merchant is not protected under the Seller Protection
-#:     Policy.
+#:     ``Ineligible`` – Merchant is not protected under the Seller
+#:     Protection Policy.
 
 
 PROTECTIONELIGIBILITYTYPE
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Since version 64.4, the kind of seller protection in force for the
 #: transaction. It is one of the following values:
 #:
@@ -183,14 +175,14 @@ PROTECTIONELIGIBILITYTYPE
 #:     ``Eligible`` – Merchant is protected by PayPal's Seller Protection
 #:     Policy for both Unauthorized Payment and Item Not Received.
 #:
-#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's Seller
-#:     Protection Policy for Item Not Received.
+#:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's
+#:     Seller Protection Policy for Item Not Received.
 #:
 #:     ``UnauthorizedPaymentEligible`` – Merchant is protected by PayPal's
 #:     Seller Protection Policy for Unauthorized Payment.
 #:
-#:     ``Ineligible`` – Merchant is not protected under the Seller Protection
-#:     Policy.
+#:     ``Ineligible`` – Merchant is not protected under the Seller
+#:     Protection Policy.
 #:
 #:
 #: Available since API version: 64.4

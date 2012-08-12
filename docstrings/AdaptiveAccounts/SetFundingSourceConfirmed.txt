@@ -1,29 +1,26 @@
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SetFundingSourceConfirmed Request Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 accountId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The merchant account Id of the PayPal account to which the
-#: funding source was added in the AddPaymentCard or AddBankAccount request.
-#: You must specify either the ``accountId`` or ``mailAddress`` when making
-#: this request, but never both in the same request.
+#: funding source was added in the AddPaymentCard or AddBankAccount
+#: request. You must specify either the ``accountId`` or ``mailAddress``
+#: when making this request, but never both in the same request.
 
 
 emailAddress
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: (Optional) The email address of the PayPal account to which the funding
-#: source was added in the AddPaymentCard or AddBankAccount request. You must
-#: specify either the ``accountId`` or ``mailAddress`` when making this
-#: request, but never both in the same request.
+#: source was added in the AddPaymentCard or AddBankAccount request. You
+#: must specify either the ``accountId`` or ``mailAddress`` when making
+#: this request, but never both in the same request.
 
 
 fundingSourceKey
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
 #: The funding source key returned in the AddBankAccount or AddPaymentCard
@@ -31,19 +28,17 @@ fundingSourceKey
 
 
 requestEnvelope
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:RequestEnvelope``
 #:
-#: (Required) Information common to each API operation, such as the language
-#: in which an error message is returned.
+#: (Required) Information common to each API operation, such as the
+#: language in which an error message is returned.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # RequestEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 detailLevel
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:DetailLevelCode``
 #:
 #: (Optional) The level of detail required by the client application for
@@ -55,19 +50,18 @@ detailLevel
 
 
 errorLanguage
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``xs:string``
 #:
-#: (Required) The RFC 3066 language in which error messages are returned; by
-#: default it is ``en_US``, which is the only language currently supported
+#: (Required) The RFC 3066 language in which error messages are returned;
+#: by default it is ``en_US``, which is the only language currently
+#: supported
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # ResponseEnvelope Fields
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 ack
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: ``common:AckCode``
 #:
 #: Acknowledgment code. Possible values are:
@@ -86,57 +80,47 @@ ack
 
 
 build
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Build number; used only by Developer Technical Support.
 
 
 correlationId
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Correlation ID; used only by Developer Technical Support.
 
 
 timestamp
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The date on which the response was sent. The time is not supported.
 
 
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # SetFundingSourceConfirmed Errors
-#------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 
 500000 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Framework failure. Retry.
 
 
 520002 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Internal error
 
 
 520003 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid credentials.
 
 
 550001 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: User is not allowed to perform this action
 
 
 560022 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: Invalid header.
 
 
 560029 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The required <name> header is missing from the HTTP request.
 
 
 580001
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Invalid request: 
+#: Invalid request:
 #:
 #:
 #:     PayPal account specified in the request is locked
@@ -149,8 +133,7 @@ timestamp
 
 
 580022
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#: Request parameter is invalid: 
+#: Request parameter is invalid:
 #:
 #:
 #:     Expired createAccountKey
@@ -163,7 +146,6 @@ timestamp
 
 
 580023 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The argument is inconsistent with the rest of the request
 #:
 #:
@@ -174,7 +156,6 @@ timestamp
 
 
 580027 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #: The parameter is not supported.
 
 
