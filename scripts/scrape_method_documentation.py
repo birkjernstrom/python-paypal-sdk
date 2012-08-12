@@ -41,6 +41,53 @@ from BeautifulSoup import BeautifulSoup
 from HTMLParser import HTMLParser
 
 
+ADAPTIVE_ACCOUNTS_URLS = {
+    'AddBankAccount': 'addbankaccount-api-operation',
+    'AddPaymentCard': 'addpaymentcard-api-operation',
+    'CreateAccount': 'createaccount-api-operation',
+    'GetUserAgreement': 'getuseragreement-api-operation',
+    'GetVerifiedStatus': 'getverifiedstatus-api-operation',
+    'SetFundingSourceConfirmed': 'setfundingsourceconfirmed-api-operation',
+}
+
+ADAPTIVE_PAYMENTS_URLS = {
+    'CancelPreapproval': 'cancelpreapproval-api-operation',
+    'ConvertCurrency': 'convertcurrency-api-operation',
+    'ExecutePayment': 'executepayment-api-operation',
+    'GetFundingPlans': 'getfundingplans-api-operation',
+    'GetPaymentOptions': 'getpaymentoptions-api-operation',
+    'GetShippingAddress': 'getshippingaddress-api-operation',
+    'Pay': 'pay-api-operation',
+    'PaymentDetails': 'paymentdetails-api-operation',
+    'Preapproval': 'preapproval-api-operation',
+    'PreapprovalDetails': 'preapprovaldetails-api-operation',
+    'Refund': 'refund-api-operation',
+    'SetPaymentOptions': 'setpaymentoptions-api-operation',
+}
+
+BUTTON_MANAGER_URLS = {
+    'BMButtonSearch': 'bmbuttonsearch-api-operation-nvp',
+    'BMGetButtonDetails': 'bmgetbuttondetails-api-operation-nvp',
+    'BMGetInventory': 'bmgetinventory-api-operation-nvp',
+    'BMManageButtonStatus': 'bmmanagebuttonstatus-api-operation-nvp',
+    'BMSetInventory': 'bmsetinventory-api-operation-nvp',
+    'BMUpdateButton': 'bmupdatebutton-api-operation-nvp',
+}
+
+
+INVOICING_URLS = {
+    'CancelInvoice': 'cancelinvoice-api-operation',
+    'CreateAndSendInvoice': 'createandsendinvoice-api-operation',
+    'CreateInvoice': 'createinvoice-api-operation',
+    'GetInvoiceDetails': 'getinvoicedetails-api-operation',
+    'MarkInvoiceAsPaid': 'markinvoiceaspaid-api-operation',
+    'MarkInvoiceAsRefunded': 'markinvoiceasrefunded-api-operation',
+    'MarkInvoiceAsUnpaid': 'markinvoiceasunpaid-api-operation',
+    'SearchInvoices': 'searchinvoices-api-operation',
+    'SendInvoice': 'sendinvoice-api-operation',
+    'UpdateInvoice': 'updateinvoice-api-operation',
+}
+
 EXPRESS_CHECKOUT_URLS = {
     'AddressVerify': 'addressverify-api-operation-nvp',
     'BillOutstandingAmount': 'billoutstandingamount-api-operation-nvp',
@@ -67,8 +114,33 @@ EXPRESS_CHECKOUT_URLS = {
     'UpdateRecurringPaymentsProfile': 'updaterecurringpaymentsprofile-api-operation-nvp',
 }
 
+MASSPAY_URLS = {
+    'MassPay': 'masspay-api-operation-nvp',
+}
+
+PAYMENTS_PRO_URLS = {
+    'DoDirectPayment': 'dodirectpayment-api-operation-nvp',
+    'DoNonReferencedCredit': 'dononreferencedcredit-api-operation-nvp',
+}
+
+PERMISSIONS_URLS = {
+    'CancelPermissions': 'cancelpermissions-api-operation',
+    'GetAccessToken': 'getaccesstoken-api-operation',
+    'GetAdvancedPersonalData': 'getadvancedpersonaldata-api-operation',
+    'GetBasicPersonalData': 'getbasicpersonaldata-api-operation',
+    'GetPermissions': 'getpermissions-api-operation',
+    'RequestPermissions': 'requestpermissions-api-operation',
+}
+
 ALL_URLS = {
+    'AdaptiveAccounts': ADAPTIVE_ACCOUNTS_URLS,
+    'AdaptivePayments': ADAPTIVE_PAYMENTS_URLS,
+    'ButtonManager': BUTTON_MANAGER_URLS,
+    'Invoicing': INVOICING_URLS,
     'ExpressCheckout': EXPRESS_CHECKOUT_URLS,
+    'MassPay': MASSPAY_URLS,
+    'PaymentsPro': PAYMENTS_PRO_URLS,
+    'Permissions': PERMISSIONS_URLS,
 }
 
 CHARACTER_LIMITATIONS_NEEDLE = 'Character length and limitations: '
