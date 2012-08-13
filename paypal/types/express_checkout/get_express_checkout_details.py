@@ -9,18 +9,16 @@ from paypal import countries
 # MIXINS
 ###############################################################################
 
+useroptions = base.UserSelectedOptionsWithCalculationMixin
+
 #: Alias for ``base.AddressMixin``
 AddressMixin = base.AddressMixin
-#: Alias for ``base.PaymentDetailsMixin``
-PaymentDetailsMixin = base.PaymentDetailsMixin
-#: Alias for ``base.PaymentItemDetailsMixin``
-PaymentItemDetailsMixin = base.PaymentItemDetailsMixin
-#: Alias for ``base.eBayPaymentDetailsMixin``
-eBayPaymentDetailsMixin = base.eBayPaymentDetailsMixin
 #: Alias for ``base.SellerDetailsMixin``
 SellerDetailsMixin = base.SellerDetailsMixin
 #: Alias for ``base.TaxDetailsMixin``
 TaxDetailsMixin = base.TaxDetailsMixin
+#: Alias for ``base.UserSelectedOptionsWithCalculationMixin``
+UserSelectedOptionsWithCalculationMixin = useroptions
 
 
 class PayerInformationMixin(core.BaseType):
@@ -126,55 +124,6 @@ class AddressMixin(base.AddressMixin):
     ))
 
 
-class UserSelectedOptionsMixin(core.BaseType):
-    """The params related to the user selected
-    options within a ``PaymentRequest``.
-
-    """
-    #: Describes how the options that were presented to the buyer were
-    #: determined. It is one of the following values:
-    #:
-    #:     ``API - Callback``
-    #:
-    #:     ``API - Flatrate``
-    shippingcalculationmode = core.StringField(choices=(
-        'API - Callback', 'API - Flatrate',  # Really PayPal, really?
-    ))
-
-    #: The option that the buyer chose for insurance. It is one of the
-    #: following values:
-    #:
-    #:     ``Yes`` – The buyer opted for insurance.
-    #:
-    #:     ``No`` – The buyer did not opt for insurance.
-    insuranceoptionselected = core.StringField(choices=('Yes', 'No'))
-
-    #: Indicates whether the buyer chose the default shipping option. It is
-    #: one of the following values:
-    #:
-    #:     ``true`` – The buyer chose the default shipping option.
-    #:
-    #:     ``false`` – The buyer did not choose the default shipping option.
-    #:
-    #:
-    #: Character length and limitations:
-    #:     true or false
-    shippingoptionisdefault = core.StringField(choices=('true', 'false'))
-
-    #: The shipping amount that the buyer chose.
-    #:
-    #:
-    #: Character length and limitations:
-    #:     Value is a positive number which cannot exceed $10,000 USD in any
-    #:     currency. It includes no currency symbol. It must have 2 decimal
-    #:     places, the decimal separator must be a period (.), and the
-    #:     optional thousands separator must be a comma (,).
-    shippingoptionamount = core.MoneyField()
-
-    #: The name of the shipping option, such as air or ground.
-    shippingoptionname = core.StringField()
-
-
 class PaymentRequestInfoMixin(core.BaseType):
     #: Transaction ID for up to 10 parallel payment requests. You can specify
     #: up to 10 payments, where n is a digit between 0 and 9, inclusive.
@@ -197,34 +146,13 @@ class PaymentRequestInfoMixin(core.BaseType):
 
 #: Alias for ``base.BaseType``
 BaseType = base.BaseType
+#: Alias for ``base.PaymentInfo``
+PaymentInfo = base.PaymentInfo
 
 
 class PaymentRequest(base.PaymentRequest,
                      PaymentRequestInfoMixin):
     """Payment Request Package."""
-
-
-class PaymentInfo(BaseType, SellerDetailsMixin):
-    #: Payment error short message. You can specify up to 10 payments, where n
-    #: is a digit between 0 and 9, inclusive.
-    shortmessage = core.StringField()
-
-    #: Payment error long message. You can specify up to 10 payments, where n
-    #: is a digit between 0 and 9, inclusive.
-    longmessage = core.StringField()
-
-    #: Payment error code. You can specify up to 10 payments, where n is a
-    #: digit between 0 and 9, inclusive.
-    errorcode = core.StringField()
-
-    #: Payment error severity code. You can specify up to 10 payments, where n
-    #: is a digit between 0 and 9, inclusive.
-    severitycode = core.StringField()
-
-    #: Application-specific error values indicating more about the error
-    #: condition. You can specify up to 10 payments, where n is a digit
-    #: between 0 and 9, inclusive.
-    ack = core.StringField()
 
 
 class Request(BaseType):
@@ -244,7 +172,7 @@ class Request(BaseType):
 class Response(BaseType,
                PayerInformationMixin,
                AddressMixin,
-               UserSelectedOptionsMixin,
+               UserSelectedOptionsWithCalculationMixin,
                TaxDetailsMixin):
     """GetExpressCheckoutDetails Response Type."""
     #: The timestamped token value that was returned by ``SetExpressCheckout``

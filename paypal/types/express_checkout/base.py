@@ -323,6 +323,42 @@ class PaymentDetailsMixin(core.BaseType):
     paymentrequestid = core.StringField(max_length=127)
 
 
+class PaymentDetailsWithActionMixin(PaymentDetailsMixin):
+    """The params related to the details, but with payment action as well."""
+    #: How you want to obtain payment. When implementing parallel payments,
+    #: this field is required and must be set to ``Order``. When implementing
+    #: digital goods, this field is required and must be set to ``Sale``. You
+    #: can specify up to 10 payments, where n is a digit between 0 and 9,
+    #: inclusive; except for digital goods, which supports single payments
+    #: only. If the transaction does not include a one-time purchase, this
+    #: field is ignored. It is one of the following values:
+    #:
+    #:
+    #:     ``Sale`` – This is a final sale for which you are requesting
+    #:     payment (default).
+    #:
+    #:     ``Authorization`` – This payment is a basic authorization subject
+    #:     to settlement with PayPal Authorization and Capture.
+    #:
+    #:     ``Order`` – This payment is an order authorization subject to
+    #:     settlement with PayPal Authorization and Capture.
+    #:
+    #:
+    #: Character length and limitations:
+    #:     Up to 13 single-byte alphabetic characters
+    #:
+    #:
+    #: Notes:
+    #:     You cannot set this field to ``Sale`` in ``SetExpressCheckout``
+    #:     request and then change the value to ``Authorization`` or ``Order``
+    #:     in the ``DoExpressCheckoutPayment`` request. If you set the field
+    #:     to ``Authorization`` or ``Order`` in ``SetExpressCheckout``, you
+    #:     may set the field to ``Sale``.
+    paymentaction = core.StringField(
+        choices=('Sale', 'Authorization', 'Order'),
+    )
+
+
 class PaymentItemDetailsMixin(core.BaseType):
     """The params related to the item details."""
     #: Item name. This field is required when
@@ -510,6 +546,16 @@ class PaymentItemDetailsMixin(core.BaseType):
     )
 
 
+class PaymentItemDetailsWithURLMixin(core.BaseType):
+    """The params related to the item details, but with item URL as well."""
+    #: (Optional) URL for the item. You can specify up to 10 payments, where n
+    #: is a digit between 0 and 9, inclusive, and m specifies the list item
+    #: within the payment. These parameters must be ordered sequentially
+    #: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMURL0``,
+    #: ``L_PAYMENTREQUEST_n_ITEMURL1``).
+    itemurl = core.ListField(sanitization_callback=util.ensure_unicode)
+
+
 class eBayPaymentDetailsMixin(core.BaseType):
     """The params related to the eBay details."""
     #: (Optional) Auction item number. You can specify up to 10 payments,
@@ -575,6 +621,16 @@ class SellerDetailsMixin(core.BaseType):
     sellerpaypalaccountid = core.StringField(max_length=127)
 
 
+class SellerDetailsWithMerchantAccountMixin(SellerDetailsMixin):
+    """The params related to the seller details along with
+    the merchant account identifier.
+
+    """
+    #: Unique PayPal customer account number (of the merchant). This field is
+    #: returned in the response. It is ignored if passed in the request.
+    securemerchantaccountid = core.StringField()
+
+
 class TaxDetailsMixin(core.BaseType):
     """The params related to the tax details."""
     #: Buyer’s tax ID type. This field is required for Brazil and used for
@@ -598,12 +654,87 @@ class TaxDetailsMixin(core.BaseType):
     taxiddetails = core.StringField(max_length=14)
 
 
+class UserSelectedOptionsMixin(core.BaseType):
+    """The params related to the user selected payment options."""
+    #: The option that the buyer chose for insurance. It is one of the
+    #: following values:
+    #:
+    #:     ``Yes`` – The buyer opted for insurance.
+    #:
+    #:     ``No`` – The buyer did not opt for insurance.
+    insuranceoptionselected = core.StringField(choices=('Yes', 'No'))
+
+    #: Indicates whether the buyer chose the default shipping option. It is
+    #: one of the following values:
+    #:
+    #:     ``true`` – The buyer chose the default shipping option.
+    #:
+    #:     ``false`` – The buyer did not choose the default shipping option.
+    #:
+    #:
+    #: Character length and limitations:
+    #:     true or false
+    shippingoptionisdefault = core.StringField(choices=('true', 'false'))
+
+    #: The shipping amount that the buyer chose.
+    #:
+    #:
+    #: Character length and limitations:
+    #:     Value is a positive number which cannot exceed $10,000 USD in any
+    #:     currency. It includes no currency symbol. It must have 2 decimal
+    #:     places, the decimal separator must be a period (.), and the
+    #:     optional thousands separator must be a comma (,).
+    shippingoptionamount = core.MoneyField()
+
+    #: The name of the shipping option, such as air or ground.
+    shippingoptionname = core.StringField()
+
+
+class UserSelectedOptionsWithCalculationMixin(UserSelectedOptionsMixin):
+    """The params related to the user selected payment options
+    along with the shipping calculation mode.
+
+    """
+    #: Describes how the options that were presented to the buyer were
+    #: determined. It is one of the following values:
+    #:
+    #:     ``API - Callback``
+    #:
+    #:     ``API - Flatrate``
+    shippingcalculationmode = core.StringField(choices=(
+        'API - Callback', 'API - Flatrate',  # Really PayPal, really?
+    ))
+
+
 ###############################################################################
 # TYPES
 ###############################################################################
 
 class BaseType(core.BaseType):
     """Base Express Checkout Type."""
+
+
+class PaymentInfo(BaseType, SellerDetailsMixin):
+    #: Payment error short message. You can specify up to 10 payments, where n
+    #: is a digit between 0 and 9, inclusive.
+    shortmessage = core.StringField()
+
+    #: Payment error long message. You can specify up to 10 payments, where n
+    #: is a digit between 0 and 9, inclusive.
+    longmessage = core.StringField()
+
+    #: Payment error code. You can specify up to 10 payments, where n is a
+    #: digit between 0 and 9, inclusive.
+    errorcode = core.StringField()
+
+    #: Payment error severity code. You can specify up to 10 payments, where n
+    #: is a digit between 0 and 9, inclusive.
+    severitycode = core.StringField()
+
+    #: Application-specific error values indicating more about the error
+    #: condition. You can specify up to 10 payments, where n is a digit
+    #: between 0 and 9, inclusive.
+    ack = core.StringField()
 
 
 class PaymentRequest(BaseType,

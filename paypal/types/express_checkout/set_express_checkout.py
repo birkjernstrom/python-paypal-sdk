@@ -2,65 +2,19 @@
 
 from paypal.types import core
 from paypal.types.express_checkout import base
-from paypal import countries, util
+from paypal import countries
 
 
 ###############################################################################
 # MIXINS
 ###############################################################################
 
-#: Alias for ``base.AddressMixin``
-AddressMixin = base.AddressMixin
-#: Alias for ``base.eBayPaymentDetailsMixin``
-eBayPaymentDetailsMixin = base.eBayPaymentDetailsMixin
-#: Alias for ``base.SellerDetailsMixin``
-SellerDetailsMixin = base.SellerDetailsMixin
+#: Alias for ``base.PaymentDetailsWithMixin``
+PaymentDetailsWithActionMixin = base.PaymentDetailsWithActionMixin
+#: Alias for ``base.PaymentItemDetailsWithURLMixin``
+PaymentItemDetailsWithURLMixin = base.PaymentItemDetailsWithURLMixin
 #: Alias for ``base.TaxDetailsMixin``
 TaxDetailsMixin = base.TaxDetailsMixin
-
-
-class PaymentDetailsMixin(base.PaymentDetailsMixin):
-    #: How you want to obtain payment. When implementing parallel payments,
-    #: this field is required and must be set to ``Order``. When implementing
-    #: digital goods, this field is required and must be set to ``Sale``. You
-    #: can specify up to 10 payments, where n is a digit between 0 and 9,
-    #: inclusive; except for digital goods, which supports single payments
-    #: only. If the transaction does not include a one-time purchase, this
-    #: field is ignored. It is one of the following values:
-    #:
-    #:
-    #:     ``Sale`` – This is a final sale for which you are requesting
-    #:     payment (default).
-    #:
-    #:     ``Authorization`` – This payment is a basic authorization subject
-    #:     to settlement with PayPal Authorization and Capture.
-    #:
-    #:     ``Order`` – This payment is an order authorization subject to
-    #:     settlement with PayPal Authorization and Capture.
-    #:
-    #:
-    #: Character length and limitations:
-    #:     Up to 13 single-byte alphabetic characters
-    #:
-    #:
-    #: Notes:
-    #:     You cannot set this field to ``Sale`` in ``SetExpressCheckout``
-    #:     request and then change the value to ``Authorization`` or ``Order``
-    #:     in the ``DoExpressCheckoutPayment`` request. If you set the field
-    #:     to ``Authorization`` or ``Order`` in ``SetExpressCheckout``, you
-    #:     may set the field to ``Sale``.
-    paymentaction = core.StringField(
-        choices=('Sale', 'Authorization', 'Order'),
-    )
-
-
-class PaymentItemDetailsMixin(base.PaymentItemDetailsMixin):
-    #: (Optional) URL for the item. You can specify up to 10 payments, where n
-    #: is a digit between 0 and 9, inclusive, and m specifies the list item
-    #: within the payment. These parameters must be ordered sequentially
-    #: beginning with 0 (for example ``L_PAYMENTREQUEST_n_ITEMURL0``,
-    #: ``L_PAYMENTREQUEST_n_ITEMURL1``).
-    itemurl = core.ListField(sanitization_callback=util.ensure_unicode)
 
 
 class BuyerDetailsMixin(core.BaseType):
@@ -232,9 +186,9 @@ class BillingAgreementDetailsMixin(core.BaseType):
 BaseType = base.BaseType
 
 
-class PaymentRequest(BaseType,
-                     PaymentDetailsMixin,
-                     PaymentItemDetailsMixin):
+class PaymentRequest(base.PaymentRequest,
+                     PaymentDetailsWithActionMixin,
+                     PaymentItemDetailsWithURLMixin):
     """The Payment Request intended to be included in a
     SetExpressCheckout request, i.e it is not a standalone request
     but rather an integral part of the SetExpressCheckout call.
