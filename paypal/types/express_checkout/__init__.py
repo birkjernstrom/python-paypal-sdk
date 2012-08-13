@@ -4,12 +4,14 @@ __all__ = [
     'set_express_checkout',
     'get_express_checkout_details',
     'do_express_checkout',
+    'do_reference_transaction',
 ]
 
 from paypal.types.express_checkout import (
     set_express_checkout,
     get_express_checkout_details,
     do_express_checkout,
+    do_reference_transaction,
 )
 
 ###############################################################################
@@ -42,3 +44,12 @@ GetExpressCheckoutDetailsResponse = get_express_checkout_details.Response
 DoExpressCheckoutRequest = do_express_checkout.Request
 #: Alias for ``do_express_checkout.Response``
 DoExpressCheckoutResponse = do_express_checkout.Response
+
+#----------------------------------------
+# DoReferenceTransaction Aliases
+#----------------------------------------
+
+#: Alias for ``do_reference_transaction.Request``
+DoReferenceTransactionRequest = do_reference_transaction.Request
+#: Alias for ``do_reference_transaction.Response``
+DoReferenceTransactionResponse = do_reference_transaction.Response

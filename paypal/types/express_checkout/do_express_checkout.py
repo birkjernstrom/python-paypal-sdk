@@ -8,28 +8,23 @@ from paypal import currencies
 
 
 ###############################################################################
-# VALIDATOR
-###############################################################################
-
-def validate_fmf_filter(value):
-    if value >= 1 and value <= 17:
-        return True
-
-    raise ValueError('Invalid filter given')
-
-
-###############################################################################
 # MIXINS
 ###############################################################################
 
+#: Alias for ``base.FilterMixin``
+FilterMixin = base.FilterMixin
 #: Alias for ``base.AddressMixin``
 AddressMixin = base.AddressMixin
-#: Alias for ``base.PaymentItemDetailsWithURLMixin``
-PaymentItemDetailsWithURLMixin = base.PaymentItemDetailsWithURLMixin
+#: Alias for ``base.PaymentItemURLDetailsMixin``
+PaymentItemURLDetailsMixin = base.PaymentItemURLDetailsMixin
+#: Alias for ``base.PaymentItemDimensionDetailsMixin``
+PaymentItemDimensionDetailsMixin = base.PaymentItemDimensionDetailsMixin
 #: Alias for ``base.eBayPaymentDetailsMixin``
 eBayPaymentDetailsMixin = base.eBayPaymentDetailsMixin
 #: Alias for ``base.TaxDetailsMixin``
 TaxDetailsMixin = base.TaxDetailsMixin
+#: Alias for ``base.eBayPaymentCartDetailsMixin``
+eBayPaymentCartDetailsMixin = base.eBayPaymentCartDetailsMixin
 
 
 class PaymentDetailsMixin(base.PaymentDetailsWithActionMixin):
@@ -80,8 +75,10 @@ BaseType = base.BaseType
 
 class PaymentRequest(base.PaymentRequest,
                      PaymentDetailsMixin,
-                     PaymentItemDetailsWithURLMixin,
-                     SellerDetailsMixin):
+                     PaymentItemDimensionDetailsMixin,
+                     PaymentItemURLDetailsMixin,
+                     SellerDetailsMixin,
+                     eBayPaymentCartDetailsMixin):
     """Payment Request Package."""
 
 
@@ -185,145 +182,8 @@ class Request(BaseType, base.UserSelectedOptionsMixin):
 
 
 class PaymentInfo(base.PaymentInfo,
-                  base.SellerDetailsWithMerchantAccountMixin):
-    #: Filter ID is one of the following values:
-    #:
-    #:     ``1`` - AVS No Match
-    #:
-    #:     ``2`` - AVS Partial Match
-    #:
-    #:     ``3`` - AVS Unavailable/Unsupported
-    #:
-    #:     ``4`` - Card Security Code (CSC) Mismatch
-    #:
-    #:     ``5`` - Maximum Transaction Amount
-    #:
-    #:     ``6`` - Unconfirmed Address
-    #:
-    #:     ``7`` - Country Monitor
-    #:
-    #:     ``8`` - Large Order Number
-    #:
-    #:     ``9`` - Billing/Shipping Address Mismatch
-    #:
-    #:     ``10`` - Risky ZIP Code
-    #:
-    #:     ``11`` - Suspected Freight Forwarder Check
-    #:
-    #:     ``12`` - Total Purchase Price Minimum
-    #:
-    #:     ``13`` - IP Address Velocity
-    #:
-    #:     ``14`` - Risky Email Address Domain Check
-    #:
-    #:     ``15`` - Risky Bank Identification Number (BIN) Check
-    #:
-    #:     ``16`` - Risky IP Address Range
-    #:
-    #:     ``17`` - PayPal Fraud Model
-    fmfpendingid = core.ListField(
-        sanitization_callback=int,
-        validation_callback=validate_fmf_filter,
-    )
-
-    #: Filter ID is one of the following values:
-    #:
-    #:     ``1`` - AVS No Match
-    #:
-    #:     ``2`` - AVS Partial Match
-    #:
-    #:     ``3`` - AVS Unavailable/Unsupported
-    #:
-    #:     ``4`` - Card Security Code (CSC) Mismatch
-    #:
-    #:     ``5`` - Maximum Transaction Amount
-    #:
-    #:     ``6`` - Unconfirmed Address
-    #:
-    #:     ``7`` - Country Monitor
-    #:
-    #:     ``8`` - Large Order Number
-    #:
-    #:     ``9`` - Billing/Shipping Address Mismatch
-    #:
-    #:     ``10`` - Risky ZIP Code
-    #:
-    #:     ``11`` - Suspected Freight Forwarder Check
-    #:
-    #:     ``12`` - Total Purchase Price Minimum
-    #:
-    #:     ``13`` - IP Address Velocity
-    #:
-    #:     ``14`` - Risky Email Address Domain Check
-    #:
-    #:     ``15`` - Risky Bank Identification Number (BIN) Check
-    #:
-    #:     ``16`` - Risky IP Address Range
-    #:
-    #:     ``17`` - PayPal Fraud Model
-    fmfreportid = core.ListField(
-        sanitization_callback=int,
-        validation_callback=validate_fmf_filter,
-    )
-
-    #: Filter ID is one of the following values:
-    #:
-    #:     ``1`` - AVS No Match
-    #:
-    #:     ``2`` - AVS Partial Match
-    #:
-    #:     ``3`` - AVS Unavailable/Unsupported
-    #:
-    #:     ``4`` - Card Security Code (CSC) Mismatch
-    #:
-    #:     ``5`` - Maximum Transaction Amount
-    #:
-    #:     ``6`` - Unconfirmed Address
-    #:
-    #:     ``7`` - Country Monitor
-    #:
-    #:     ``8`` - Large Order Number
-    #:
-    #:     ``9`` - Billing/Shipping Address Mismatch
-    #:
-    #:     ``10`` - Risky ZIP Code
-    #:
-    #:     ``11`` - Suspected Freight Forwarder Check
-    #:
-    #:     ``12`` - Total Purchase Price Minimum
-    #:
-    #:     ``13`` - IP Address Velocity
-    #:
-    #:     ``14`` - Risky Email Address Domain Check
-    #:
-    #:     ``15`` - Risky Bank Identification Number (BIN) Check
-    #:
-    #:     ``16`` - Risky IP Address Range
-    #:
-    #:     ``17`` - PayPal Fraud Model
-    fmfdenyid = core.ListField(
-        sanitization_callback=int,
-        validation_callback=validate_fmf_filter,
-    )
-
-    #: Filter name.
-    #:
-    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
-    #: inclusive, and m specifies the list item within the payment.
-    fmfpendingname = core.ListStringField()
-
-    #: Filter name.
-    #:
-    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
-    #: inclusive, and m specifies the list item within the payment.
-    fmfreportname = core.ListStringField()
-
-    #: Filter name.
-    #:
-    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
-    #: inclusive, and m specifies the list item within the payment.
-    fmfdenyname = core.ListStringField()
-
+                  base.SellerDetailsWithMerchantAccountMixin,
+                  FilterMixin):
     #: Amount of shipping charged on this transaction.
     #:
     #: If you specify a value for ``PAYMENTINFO_n_SHIPPINGAMT``, you must also

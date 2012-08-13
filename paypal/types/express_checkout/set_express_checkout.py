@@ -11,10 +11,14 @@ from paypal import countries
 
 #: Alias for ``base.PaymentDetailsWithMixin``
 PaymentDetailsWithActionMixin = base.PaymentDetailsWithActionMixin
-#: Alias for ``base.PaymentItemDetailsWithURLMixin``
-PaymentItemDetailsWithURLMixin = base.PaymentItemDetailsWithURLMixin
+#: Alias for ``base.PaymentItemURLDetailsMixin``
+PaymentItemURLDetailsMixin = base.PaymentItemURLDetailsMixin
+#: Alias for ``base.PaymentItemDimensionDetailsMixin``
+PaymentItemDimensionDetailsMixin = base.PaymentItemDimensionDetailsMixin
 #: Alias for ``base.TaxDetailsMixin``
 TaxDetailsMixin = base.TaxDetailsMixin
+#: Alias for ``base.eBayPaymentCartDetailsMixin``
+eBayPaymentCartDetailsMixin = base.eBayPaymentCartDetailsMixin
 
 
 class BuyerDetailsMixin(core.BaseType):
@@ -186,20 +190,16 @@ class BillingAgreementDetailsMixin(core.BaseType):
 BaseType = base.BaseType
 
 
-class PaymentRequest(base.PaymentRequest,
+class PaymentRequest(base.PaymentRequestWithReason,
                      PaymentDetailsWithActionMixin,
-                     PaymentItemDetailsWithURLMixin):
+                     PaymentItemDimensionDetailsMixin,
+                     PaymentItemURLDetailsMixin,
+                     eBayPaymentCartDetailsMixin):
     """The Payment Request intended to be included in a
     SetExpressCheckout request, i.e it is not a standalone request
     but rather an integral part of the SetExpressCheckout call.
 
     """
-    #: Indicates the type of transaction. It is one of the following values:
-    #:
-    #:     ``None`` – Transaction is not identified as a particular type.
-    #:
-    #:     ``Refund`` – Identifies the transaction as a refund.
-    paymentreason = core.StringField(choices=('None', 'Refund'))
 
 
 class Request(BaseType,

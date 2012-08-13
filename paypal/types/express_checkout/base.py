@@ -17,9 +17,158 @@ def validate_item_category(value):
     raise ValueError(message % (valid, value))
 
 
+def validate_fmf_filter(value):
+    if value >= 1 and value <= 17:
+        return True
+
+    raise ValueError('Invalid filter given')
+
+
 ###############################################################################
 # MIXINS
 ###############################################################################
+
+
+class FilterMixin(core.BaseType):
+    """The params related to payment filters."""
+    #: Filter ID is one of the following values:
+    #:
+    #:     ``1`` - AVS No Match
+    #:
+    #:     ``2`` - AVS Partial Match
+    #:
+    #:     ``3`` - AVS Unavailable/Unsupported
+    #:
+    #:     ``4`` - Card Security Code (CSC) Mismatch
+    #:
+    #:     ``5`` - Maximum Transaction Amount
+    #:
+    #:     ``6`` - Unconfirmed Address
+    #:
+    #:     ``7`` - Country Monitor
+    #:
+    #:     ``8`` - Large Order Number
+    #:
+    #:     ``9`` - Billing/Shipping Address Mismatch
+    #:
+    #:     ``10`` - Risky ZIP Code
+    #:
+    #:     ``11`` - Suspected Freight Forwarder Check
+    #:
+    #:     ``12`` - Total Purchase Price Minimum
+    #:
+    #:     ``13`` - IP Address Velocity
+    #:
+    #:     ``14`` - Risky Email Address Domain Check
+    #:
+    #:     ``15`` - Risky Bank Identification Number (BIN) Check
+    #:
+    #:     ``16`` - Risky IP Address Range
+    #:
+    #:     ``17`` - PayPal Fraud Model
+    fmfpendingid = core.ListField(
+        sanitization_callback=int,
+        validation_callback=validate_fmf_filter,
+    )
+
+    #: Filter ID is one of the following values:
+    #:
+    #:     ``1`` - AVS No Match
+    #:
+    #:     ``2`` - AVS Partial Match
+    #:
+    #:     ``3`` - AVS Unavailable/Unsupported
+    #:
+    #:     ``4`` - Card Security Code (CSC) Mismatch
+    #:
+    #:     ``5`` - Maximum Transaction Amount
+    #:
+    #:     ``6`` - Unconfirmed Address
+    #:
+    #:     ``7`` - Country Monitor
+    #:
+    #:     ``8`` - Large Order Number
+    #:
+    #:     ``9`` - Billing/Shipping Address Mismatch
+    #:
+    #:     ``10`` - Risky ZIP Code
+    #:
+    #:     ``11`` - Suspected Freight Forwarder Check
+    #:
+    #:     ``12`` - Total Purchase Price Minimum
+    #:
+    #:     ``13`` - IP Address Velocity
+    #:
+    #:     ``14`` - Risky Email Address Domain Check
+    #:
+    #:     ``15`` - Risky Bank Identification Number (BIN) Check
+    #:
+    #:     ``16`` - Risky IP Address Range
+    #:
+    #:     ``17`` - PayPal Fraud Model
+    fmfreportid = core.ListField(
+        sanitization_callback=int,
+        validation_callback=validate_fmf_filter,
+    )
+
+    #: Filter ID is one of the following values:
+    #:
+    #:     ``1`` - AVS No Match
+    #:
+    #:     ``2`` - AVS Partial Match
+    #:
+    #:     ``3`` - AVS Unavailable/Unsupported
+    #:
+    #:     ``4`` - Card Security Code (CSC) Mismatch
+    #:
+    #:     ``5`` - Maximum Transaction Amount
+    #:
+    #:     ``6`` - Unconfirmed Address
+    #:
+    #:     ``7`` - Country Monitor
+    #:
+    #:     ``8`` - Large Order Number
+    #:
+    #:     ``9`` - Billing/Shipping Address Mismatch
+    #:
+    #:     ``10`` - Risky ZIP Code
+    #:
+    #:     ``11`` - Suspected Freight Forwarder Check
+    #:
+    #:     ``12`` - Total Purchase Price Minimum
+    #:
+    #:     ``13`` - IP Address Velocity
+    #:
+    #:     ``14`` - Risky Email Address Domain Check
+    #:
+    #:     ``15`` - Risky Bank Identification Number (BIN) Check
+    #:
+    #:     ``16`` - Risky IP Address Range
+    #:
+    #:     ``17`` - PayPal Fraud Model
+    fmfdenyid = core.ListField(
+        sanitization_callback=int,
+        validation_callback=validate_fmf_filter,
+    )
+
+    #: Filter name.
+    #:
+    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
+    #: inclusive, and m specifies the list item within the payment.
+    fmfpendingname = core.ListStringField()
+
+    #: Filter name.
+    #:
+    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
+    #: inclusive, and m specifies the list item within the payment.
+    fmfreportname = core.ListStringField()
+
+    #: Filter name.
+    #:
+    #: You can specify up to 10 payments, where n is a digit between 0 and 9,
+    #: inclusive, and m specifies the list item within the payment.
+    fmfdenyname = core.ListStringField()
+
 
 class AddressMixin(core.BaseType):
     """The params related to the buyers address."""
@@ -459,7 +608,28 @@ class PaymentItemDetailsMixin(core.BaseType):
     #:     optional thousands separator must be a comma (,).
     taxamt = core.ListField(sanitization_callback=core.Money)
 
+    #: Indicates whether an item is digital or physical. For digital goods,
+    #: this field is required and must be set to ``Digital``. You can specify
+    #: up to 10 payments, where n is a digit between 0 and 9, inclusive, and m
+    #: specifies the list item within the payment; except for digital goods,
+    #: which only supports single payments. These parameters must be ordered
+    #: sequentially beginning with 0 (for example
+    #: ``L_PAYMENTREQUEST_n_ITEMCATEGORY0``,
+    #: ``L_PAYMENTREQUEST_n_ITEMCATEGORY1``). It is one of the following
+    #: values:
+    #:
+    #:     ``Digital``
+    #:
+    #:     ``Physical``
+    #:
+    #:
+    #: Available since API version: 65.1
+    itemcategory = core.ListField(
+        sanitization_callback=util.ensure_unicode,
+        validation_callback=validate_item_category,
+    )
 
+class PaymentItemDimensionDetailsMixin(core.BaseType):
     #: (Optional) Item weight corresponds to the weight of the item. You can
     #: pass this data to the shipping carrier as is without having to make an
     #: additional database query. You can specify up to 10 payments, where n
@@ -524,29 +694,8 @@ class PaymentItemDetailsMixin(core.BaseType):
         validation_callback=core.gen_unsigned_int_validator('itemheightvalue'),
     )
 
-    #: Indicates whether an item is digital or physical. For digital goods,
-    #: this field is required and must be set to ``Digital``. You can specify
-    #: up to 10 payments, where n is a digit between 0 and 9, inclusive, and m
-    #: specifies the list item within the payment; except for digital goods,
-    #: which only supports single payments. These parameters must be ordered
-    #: sequentially beginning with 0 (for example
-    #: ``L_PAYMENTREQUEST_n_ITEMCATEGORY0``,
-    #: ``L_PAYMENTREQUEST_n_ITEMCATEGORY1``). It is one of the following
-    #: values:
-    #:
-    #:     ``Digital``
-    #:
-    #:     ``Physical``
-    #:
-    #:
-    #: Available since API version: 65.1
-    itemcategory = core.ListField(
-        sanitization_callback=util.ensure_unicode,
-        validation_callback=validate_item_category,
-    )
 
-
-class PaymentItemDetailsWithURLMixin(core.BaseType):
+class PaymentItemURLDetailsMixin(core.BaseType):
     """The params related to the item details, but with item URL as well."""
     #: (Optional) URL for the item. You can specify up to 10 payments, where n
     #: is a digit between 0 and 9, inclusive, and m specifies the list item
@@ -595,6 +744,9 @@ class eBayPaymentDetailsMixin(core.BaseType):
         validation_callback=core.gen_strlen_validator('ebayitemorderid', 64),
     )
 
+
+class eBayPaymentCartDetailsMixin(core.BaseType):
+    """eBay Payment Cart Identifier Mixin."""
     #: (Optional) The unique identifier provided by eBay for this order from
     #: the buyer. You can specify up to 10 payments, where n is a digit
     #: between 0 and 9, inclusive, and m specifies the list item within the
@@ -743,3 +895,13 @@ class PaymentRequest(BaseType,
                      PaymentItemDetailsMixin,
                      eBayPaymentDetailsMixin):
     """Payment Request Package."""
+
+
+class PaymentRequestWithReason(PaymentRequest):
+    """Payment Request Package including request reason."""
+    #: Indicates the type of transaction. It is one of the following values:
+    #:
+    #:     ``None`` – Transaction is not identified as a particular type.
+    #:
+    #:     ``Refund`` – Identifies the transaction as a refund.
+    paymentreason = core.StringField(choices=('None', 'Refund'))

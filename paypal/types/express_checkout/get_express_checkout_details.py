@@ -19,6 +19,10 @@ SellerDetailsMixin = base.SellerDetailsMixin
 TaxDetailsMixin = base.TaxDetailsMixin
 #: Alias for ``base.UserSelectedOptionsWithCalculationMixin``
 UserSelectedOptionsWithCalculationMixin = useroptions
+#: Alias for ``base.PaymentItemDimensionDetailsMixin``
+PaymentItemDimensionDetailsMixin = base.PaymentItemDimensionDetailsMixin
+#: Alias for ``base.eBayPaymentCartDetailsMixin``
+eBayPaymentCartDetailsMixin = base.eBayPaymentCartDetailsMixin
 
 
 class PayerInformationMixin(core.BaseType):
@@ -151,7 +155,9 @@ PaymentInfo = base.PaymentInfo
 
 
 class PaymentRequest(base.PaymentRequest,
-                     PaymentRequestInfoMixin):
+                     PaymentRequestInfoMixin,
+                     PaymentItemDimensionDetailsMixin,
+                     eBayPaymentCartDetailsMixin):
     """Payment Request Package."""
 
 
