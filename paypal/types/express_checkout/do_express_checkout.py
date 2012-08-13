@@ -4,7 +4,7 @@
 
 from paypal.types import core
 from paypal.types.express_checkout import base
-from paypal import countries, currencies, util
+from paypal import currencies
 
 
 ###############################################################################
@@ -16,7 +16,6 @@ def validate_fmf_filter(value):
         return True
 
     raise ValueError('Invalid filter given')
-
 
 
 ###############################################################################
@@ -723,8 +722,8 @@ class PaymentInfo(base.PaymentInfo,
     #:     ``ItemNotReceivedEligible`` – Merchant is protected by PayPal's
     #:     Seller Protection Policy for Item Not Received
     #:
-    #:     ``UnauthorizedPaymentEligible`` – Merchant is protected by PayPal's
-    #:     Seller Protection Policy for Unauthorized Payment li>
+    #:     ``UnauthorizedPaymentEligible`` – Merchant is protected
+    #:     by PayPal's Seller Protection Policy for Unauthorized Payment li>
     #:
     #:     ``ItemNotReceivedEligible``, ``UnauthorizedPaymentEligible``
     #:
