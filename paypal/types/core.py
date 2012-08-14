@@ -7,6 +7,8 @@ import time
 import decimal
 from datetime import datetime
 
+import nvp
+
 from paypal.util import ensure_unicode
 
 
@@ -442,8 +444,7 @@ class ListStringField(ListField):
 class ConstantField(Field):
     def __init__(self, constant, name=None):
         super(ConstantField, self).__init__(name=name)
-        attribute = self.get_attribute_name()
-        setattr(self, attribute, constant)
+        self.constant_value = constant
 
     def __set__(self, instance, value):
         if instance is None:
@@ -451,6 +452,12 @@ class ConstantField(Field):
 
         message = 'Cannot set value for field of type constant: %s'
         raise RuntimeError(message % value)
+
+    def __get__(self, instance, owner):
+        if instance is None:
+            return self
+
+        return self.constant_value
 
 
 class URLField(UnicodeField):
@@ -608,3 +615,93 @@ class MoneyField(NumericField):
 
     def sanitize(self, value):
         return Money(value, precision=self.precision)
+
+
+###############################################################################
+# CORE REQUEST & RESPONSE CLASSES
+###############################################################################
+
+class Request(BaseType):
+    NVP_CONVENTION = 'prefix'
+
+    #: API Version
+    version = StringField()
+
+    #: API Username
+    user = StringField(required=True)
+
+    #: API Password
+    pwd = StringField(required=True)
+
+    #: API Signature
+    signature = StringField(required=True)
+
+    #: Email address of a PayPal account that has granted you permission to make this call.
+    #: Set this parameter only if you are calling an API on a different user’s behalf.
+    subject = StringField()
+
+    @classmethod
+    def encode_dict(cls, source):
+        return nvp.dumps(source, convention=cls.NVP_CONVENTION,
+                         key_filter=cls.key_encoding_filter)
+
+    @staticmethod
+    def key_encoding_filter(key):
+        return key.upper()
+
+    def encode(self):
+        print 'AS DICT: %s\n' % self.to_dict()
+        return self.encode_dict(self.to_dict())
+
+
+class Response(BaseType):
+    """Base NVP Response Type.
+
+    Including the common response envelope which is given
+    in all PayPal NVP API responses.
+    """
+
+    NVP_CONVENTION = 'prefix'
+
+    #: Acknowledgement status, which is one of the following values:
+    #:
+    #:     ``Success`` - indicates a successful operation.
+    #:     ``SuccessWithWarning`` - indicates a successful operation; however,
+    #:     there are messages returned in the response that you should examine.
+    #:     ``Failure`` indicates the operation failed; the response also
+    #:     contains one or more error messages explaining the failure.
+    #:     ``FailureWithWarning`` indicates that the operation failed
+    #:     and that there are messages returned in the response that you
+    #:     should examine.
+    ack = StringField(choices=(
+        'Success', 'SuccessWithWarning', 'Failure', 'FailureWithWarning',
+    ))
+
+    #: Correlation ID, which uniquely identifies the transaction to PayPal.
+    correlationid = StringField()
+
+    #: The date and time that the requested API operation was performed.
+    timestamp = UTCDatetimeField()
+
+    #: The version of the API.
+    version = StringField()
+
+    #: The sub-version of the API.
+    build = StringField()
+
+    @classmethod
+    def decode(cls, raw_response):
+        return nvp.loads(raw_response, key_filter=cls.key_decoding_filter)
+
+    @classmethod
+    def get_decoded_instance(cls, raw_response):
+        params = cls.decode(raw_response)
+        return cls(**params)
+
+    @staticmethod
+    def key_decoding_filter(key):
+        return key.lower()
+
+    def is_success(self):
+        """Check whether the request was successful or not."""
+        return self.ack == 'Success'

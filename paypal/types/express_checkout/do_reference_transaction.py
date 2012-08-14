@@ -343,7 +343,7 @@ class PaymentRequest(base.PaymentRequestWithReason):
     pass
 
 
-class Request(BaseType,
+class Request(core.Request,
               AddressMixin,
               PaymentDetailsMixin,
               base.PaymentItemDimensionDetailsMixin,
@@ -464,7 +464,7 @@ class Request(BaseType,
                                         required=True)
 
 
-class Response(base.BaseType,
+class Response(core.Request,
                FilterMixin):
     """DoReferenceTransaction Response Type."""
     #: Address Verification System response code.

@@ -19,6 +19,8 @@ PaymentItemDimensionDetailsMixin = base.PaymentItemDimensionDetailsMixin
 TaxDetailsMixin = base.TaxDetailsMixin
 #: Alias for ``base.eBayPaymentCartDetailsMixin``
 eBayPaymentCartDetailsMixin = base.eBayPaymentCartDetailsMixin
+#: Alias for ``base.SellerDetailsMixin``
+SellerDetailsMixin = base.SellerDetailsMixin
 
 
 class BuyerDetailsMixin(core.BaseType):
@@ -194,7 +196,8 @@ class PaymentRequest(base.PaymentRequestWithReason,
                      PaymentDetailsWithActionMixin,
                      PaymentItemDimensionDetailsMixin,
                      PaymentItemURLDetailsMixin,
-                     eBayPaymentCartDetailsMixin):
+                     eBayPaymentCartDetailsMixin,
+                     SellerDetailsMixin):
     """The Payment Request intended to be included in a
     SetExpressCheckout request, i.e it is not a standalone request
     but rather an integral part of the SetExpressCheckout call.
@@ -202,7 +205,7 @@ class PaymentRequest(base.PaymentRequestWithReason,
     """
 
 
-class Request(BaseType,
+class Request(core.Request,
               BuyerDetailsMixin,
               FundingSourceDetailsMixin,
               ShippingOptionsMixin,
@@ -653,7 +656,7 @@ class Request(BaseType,
                                         required=True)
 
 
-class Response(BaseType):
+class Response(core.Response):
     """SetExpressCheckout Response Type."""
     #: A timestamped token by which you identify to PayPal that you are
     #: processing this payment with Express Checkout. The token expires after
@@ -665,3 +668,7 @@ class Response(BaseType):
     #: Character length and limitations:
     #:     20 single-byte characters
     token = core.StringField(max_length=20)
+
+    def get_redirect_url(self, client):
+        path = '/webscr?cmd=_express-checkout&token=%s' % self.token
+        return client.generate_paypal_url(path)

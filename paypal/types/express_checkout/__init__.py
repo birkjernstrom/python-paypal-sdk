@@ -1,16 +1,27 @@
 # -*- coding: utf-8 -*-
 
 __all__ = [
+    # Modules
     'set_express_checkout',
     'get_express_checkout_details',
-    'do_express_checkout',
+    'do_express_checkout_payment',
     'do_reference_transaction',
+
+    # Aliases
+    'SetExpressCheckoutRequest',
+    'SetExpressCheckoutResponse',
+    'GetExpressCheckoutDetailsRequest',
+    'GetExpressCheckoutDetailsResponse',
+    'DoExpressCheckoutPaymentRequest',
+    'DoExpressCheckoutPaymentResponse',
+    'DoReferenceTransactionRequest',
+    'DoReferenceTransactionResponse',
 ]
 
 from paypal.types.express_checkout import (
     set_express_checkout,
     get_express_checkout_details,
-    do_express_checkout,
+    do_express_checkout_payment,
     do_reference_transaction,
 )
 
@@ -37,13 +48,13 @@ GetExpressCheckoutDetailsRequest = get_express_checkout_details.Request
 GetExpressCheckoutDetailsResponse = get_express_checkout_details.Response
 
 #----------------------------------------
-# DoExpressCheckout Aliases
+# DoExpressCheckoutPayment Aliases
 #----------------------------------------
 
 #: Alias for ``do_express_checkout.Request``
-DoExpressCheckoutRequest = do_express_checkout.Request
+DoExpressCheckoutPaymentRequest = do_express_checkout_payment.Request
 #: Alias for ``do_express_checkout.Response``
-DoExpressCheckoutResponse = do_express_checkout.Response
+DoExpressCheckoutPaymentResponse = do_express_checkout_payment.Response
 
 #----------------------------------------
 # DoReferenceTransaction Aliases

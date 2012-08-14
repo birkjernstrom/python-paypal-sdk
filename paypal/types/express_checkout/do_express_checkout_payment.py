@@ -82,10 +82,10 @@ class PaymentRequest(base.PaymentRequest,
     """Payment Request Package."""
 
 
-class Request(BaseType, base.UserSelectedOptionsMixin):
+class Request(core.Request, base.UserSelectedOptionsMixin):
     """DoExpressCheckout Request Type."""
     #: (Required) Must be DoExpressCheckoutPayment.
-    method = core.ConstantField('DoExpressCheckout')
+    method = core.ConstantField('DoExpressCheckoutPayment')
 
     #: (Required) The timestamped token value that was returned in the
     #: ``SetExpressCheckout`` response and passed in the
@@ -613,7 +613,7 @@ class PaymentInfo(base.PaymentInfo,
     paymentrequestid = core.StringField(max_length=127)
 
 
-class Response(BaseType):
+class Response(core.Response):
     """DoExpressCheckout Response Type."""
     #: The timestamped token value that was returned by ``SetExpressCheckout``
     #: response and passed on ``GetExpressCheckoutDetails`` request.

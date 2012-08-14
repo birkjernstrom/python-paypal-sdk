@@ -161,7 +161,7 @@ class PaymentRequest(base.PaymentRequest,
     """Payment Request Package."""
 
 
-class Request(BaseType):
+class Request(core.Request):
     """GetExpressCheckoutDetails Request Type."""
     #: (Required) Must be GetExpressCheckoutDetails.
     method = core.ConstantField('GetExpressCheckoutDetails')
@@ -175,7 +175,7 @@ class Request(BaseType):
     token = core.StringField(max_length=20)
 
 
-class Response(BaseType,
+class Response(core.Response,
                PayerInformationMixin,
                AddressMixin,
                UserSelectedOptionsWithCalculationMixin,
