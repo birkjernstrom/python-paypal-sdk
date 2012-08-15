@@ -644,8 +644,9 @@ class Request(BaseType):
     #: API Signature
     signature = StringField(required=True)
 
-    #: Email address of a PayPal account that has granted you permission to make this call.
-    #: Set this parameter only if you are calling an API on a different user’s behalf.
+    #: Email address of a PayPal account that has granted you
+    #: permission to make this call. Set this parameter only if you
+    #: are calling an API on a different user’s behalf.
     subject = StringField()
 
     @classmethod
@@ -658,7 +659,6 @@ class Request(BaseType):
         return key.upper()
 
     def encode(self):
-        print 'AS DICT: %s\n' % self.to_dict()
         return self.encode_dict(self.to_dict())
 
 
