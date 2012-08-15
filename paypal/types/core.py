@@ -160,6 +160,14 @@ class BaseType(object):
                 ret[name] = field.to_dict(value)
         return ret
 
+    def __repr__(self):
+        module = self.__class__.__module__
+        classname = self.__class__.__name__
+        contents = repr(self.to_dict())
+        return '<%s.%s object at %s: %s>' % (
+            module, classname, hex(id(self)), contents,
+        )
+
 
 ###############################################################################
 # FIELDS
