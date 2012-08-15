@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from paypal.types import core
-from paypal.types.express_checkout import base
+from paypal.service import core
+from paypal.service.express_checkout import base
 from paypal import countries
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from paypal.types import core
+from paypal.service import core
 from paypal import countries, currencies, util
 
 

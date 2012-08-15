@@ -12,7 +12,7 @@ __all__ = [
     'express_checkout',
 ]
 
-from paypal.types import core, express_checkout
+from paypal.service import core, express_checkout
 
 ###############################################################################
 # ALIASES

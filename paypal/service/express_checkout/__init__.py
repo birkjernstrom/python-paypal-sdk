@@ -18,7 +18,7 @@ __all__ = [
     'DoReferenceTransactionResponse',
 ]
 
-from paypal.types.express_checkout import (
+from paypal.service.express_checkout import (
     set_express_checkout,
     get_express_checkout_details,
     do_express_checkout_payment,

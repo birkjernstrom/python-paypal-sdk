@@ -2,7 +2,7 @@
 
 __all__ = [
     # Modules
-    'types', 'client', 'exceptions',
+    'service', 'client', 'exceptions',
 
     # Client aliases
     'Client',
@@ -11,7 +11,7 @@ __all__ = [
     'InvalidRequestException', 'InvalidResponseException',
 ]
 
-from paypal import types, client, exceptions
+from paypal import service, client, exceptions
 
 ###############################################################################
 # ALIASES
