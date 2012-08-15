@@ -5,7 +5,7 @@
 import uuid
 import urllib2
 
-from paypal import util, types, exceptions
+from paypal import util, service, exceptions
 
 API_VERSION = '93.0'
 
@@ -16,7 +16,7 @@ PAYPAL_URL = 'https://www.paypal.com'
 PAYPAL_SANDBOX_URL = 'https://www.sandbox.paypal.com'
 
 TYPE_MODULE_MAPPING = {
-    'ExpressCheckout': types.express_checkout,
+    'ExpressCheckout': service.express_checkout,
 }
 
 
