@@ -108,13 +108,6 @@ class BaseClient(object):
 
     def get_headers(self):
         return {}
-        #h['X-PAYPAL-REQUEST-DATA-FORMAT'] = 'NV'
-        #h['X-PAYPAL-RESPONSE-DATA-FORMAT'] = 'NV'
-        #h['X-PAYPAL-SECURITY-USERID'] = self.config.api_username
-        #h['X-PAYPAL-SECURITY-PASSWORD'] = self.config.api_password
-        #h['X-PAYPAL-SECURITY-SIGNATURE'] = self.config.api_signature
-        #h['X-PAYPAL-APPLICATION-ID'] = self.config.application_id
-        #return h
 
     def generate_paypal_url(self, path):
         base = PAYPAL_SANDBOX_URL
