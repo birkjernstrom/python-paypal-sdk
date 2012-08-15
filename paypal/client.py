@@ -115,34 +115,15 @@ class BaseClient(object):
             base = PAYPAL_URL
         return base + path
 
-    def execute(self,
-                method,
-                endpoint,
-                headers,
-                body,
-                response_as_dict=False,
-                group_id=None):
-        try:
-            request = urllib2.Request(endpoint, body, headers)
-            encoded = urllib2.urlopen(request).read()
-            response = self.generate_response(method, encoded,
-                                              as_dict=response_as_dict)
-
-            self.log_api_response(encoded, response, group_id=group_id)
-            return response
-        except urllib2.HTTPError as e:
-            util.api_logger.error(e.strerror)
-        return None
-
     def log_api_request(self, encoded, decoded, group_id=None):
         if group_id is not None:
             message = '(GID %s) Request: %s => %s'
-            util.api_logger(message, group_id, decoded, encoded)
+            util.api_logger.info(message, group_id, decoded, encoded)
         else:
-            util.api_logger('Request: %s => %s', decoded, encoded)
+            util.api_logger.info('Request: %s => %s', decoded, encoded)
 
     def log_api_response(self, encoded, decoded, group_id=None):
-        params, messages = []
+        params, messages = [], []
         if group_id is not None:
             messages.append('(GID %s)')
             params.append(group_id)
@@ -156,7 +137,7 @@ class BaseClient(object):
             params.extend((encoded, decoded))
 
         message = ' '.join(messages)
-        util.api_logger(message, *params)
+        util.api_logger.info(message, *params)
 
     def __call__(self,
                  method,
@@ -176,6 +157,16 @@ class BaseClient(object):
         group_id = self.generate_group_id()
 
         self.log_api_request(encoded_request, request, group_id=group_id)
+        try:
+            request = urllib2.Request(endpoint, encoded_request, headers)
+            encoded = urllib2.urlopen(request).read()
+        except urllib2.HTTPError as e:
+            util.api_logger.error(e.strerror)
+            return None
+
+        r = self.generate_response(method, encoded, as_dict=response_as_dict)
+        self.log_api_response(encoded, r, group_id=group_id)
+        return r
 
 
 class Client(BaseClient):
