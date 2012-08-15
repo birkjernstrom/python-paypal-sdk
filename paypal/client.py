@@ -2,8 +2,8 @@
 """
 """
 
+import uuid
 import urllib2
-import logging
 
 from paypal import util, types, exceptions
 
@@ -12,8 +12,8 @@ API_VERSION = '93.0'
 SANDBOX_3TOKEN_ENDPOINT = 'https://api-3t.sandbox.paypal.com/nvp'
 PRODUCTION_3TOKEN_ENDPOINT = 'https://api-3t.paypal.com/nvp'
 
-PAYPAL_BASE_URL = 'https://www.paypal.com'
-PAYPAL_SANDBOX_BASE_URL = 'https://www.sandbox.paypal.com'
+PAYPAL_URL = 'https://www.paypal.com'
+PAYPAL_SANDBOX_URL = 'https://www.sandbox.paypal.com'
 
 TYPE_MODULE_MAPPING = {
     'ExpressCheckout': types.express_checkout,
@@ -46,8 +46,6 @@ class Config(object):
         if self.is_sandbox:
             return SANDBOX_3TOKEN_ENDPOINT
         return PRODUCTION_3TOKEN_ENDPOINT
-
-
 
 
 class BaseClient(object):
@@ -106,13 +104,54 @@ class BaseClient(object):
         #return h
 
     def generate_paypal_url(self, path):
-        base = PAYPAL_SANDBOX_BASE_URL
+        base = PAYPAL_SANDBOX_URL
         if not self.config.is_sandbox:
-            base = PAYPAL_BASE_URL
+            base = PAYPAL_URL
         return base + path
 
+    def execute(self,
+                method,
+                endpoint,
+                headers,
+                body,
+                response_as_dict=False,
+                group_id=None):
+        try:
+            request = urllib2.Request(endpoint, body, headers)
+            encoded = urllib2.urlopen(request).read()
+            response = self.generate_response(method, encoded,
+                                              as_dict=response_as_dict)
 
-class ClientRequestMixin(object):
+            self.log_api_response(encoded, response, group_id=group_id)
+            return response
+        except urllib2.HTTPError as e:
+            util.api_logger.error(e.strerror)
+        return None
+
+    def log_api_request(self, encoded, decoded, group_id=None):
+        if group_id is not None:
+            message = '(GID %s) Request: %s => %s'
+            util.api_logger(message, group_id, decoded, encoded)
+        else:
+            util.api_logger('Request: %s => %s', decoded, encoded)
+
+    def log_api_response(self, encoded, decoded, group_id=None):
+        params, messages = []
+        if group_id is not None:
+            messages.append('(GID %s)')
+            params.append(group_id)
+
+        correlation_id = decoded.correlationid
+        if correlation_id:
+            messages.append('Response: [%s]: %s => %s')
+            params.extend((correlation_id, encoded, decoded))
+        else:
+            messages.append('Response: %s => %s')
+            params.extend((encoded, decoded))
+
+        message = ' '.join(messages)
+        util.api_logger(message, *params)
+
     def __call__(self,
                  method,
                  endpoint=None,
@@ -128,28 +167,20 @@ class ClientRequestMixin(object):
         headers = self.get_headers()
         request = self.generate_request(method, params)
         encoded_request = request.encode()
-        print 'ENCODED REQUEST: %s\n\n' % encoded_request
+
+        # Generate unique API request/response group identifier in case
+        # permitted in the client configuration. The identifier is logged
+        # along with both the request and response. This can be useful in
+        # scenarios where the request and response records are not guaranteed
+        # to be written sequentially - for instance in case a asynchronous
+        # PayPal client is being used. Thus easing the search for the
+        # response of an API request and vice versa.
+        group_id = uuid.uuid4().hex if self.config.log_group_id else None
+        self.log_api_request(encoded_request, request, group_id=group_id)
         return self.execute(method, endpoint, headers, encoded_request,
-                            response_as_dict=response_as_dict)
-
-    def execute(self,
-                method,
-                endpoint,
-                headers,
-                body,
-                response_as_dict=False):
-        try:
-            print 'REQUEST HEADERS: %s\n\n' % headers
-            request = urllib2.Request(endpoint, body, headers)
-            response = urllib2.urlopen(request)
-            response = response.read()
-            print 'ENCODED RESPONSE: %s\n\n' % response
-            return self.generate_response(method, response,
-                                          as_dict=response_as_dict)
-        except urllib2.HTTPError as e:
-            logging.error(e.strerror)
-        return None
+                            response_as_dict=response_as_dict,
+                            group_id=group_id)
 
 
-class Client(BaseClient, ClientRequestMixin):
+class Client(BaseClient):
     pass
