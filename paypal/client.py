@@ -30,6 +30,7 @@ class Config(object):
                  application_id,
                  validate_requests=True,
                  validate_responses=False,
+                 log_group_id=False,
                  sandbox=True):
         """
         """
@@ -39,6 +40,7 @@ class Config(object):
         self.application_id = application_id
         self.validate_requests = validate_requests
         self.validate_responses = validate_responses
+        self.log_group_id = log_group_id
         self.is_sandbox = sandbox
 
     @property
@@ -71,6 +73,17 @@ class BaseClient(object):
         request.pwd = self.config.api_password
         request.signature = self.config.api_signature
         return request
+
+    def generate_group_id(self):
+        # Generate unique API request/response group identifier in case
+        # permitted in the client configuration. The identifier is logged
+        # along with both the request and response. This can be useful in
+        # scenarios where the request and response records are not guaranteed
+        # to be written sequentially - for instance in case a asynchronous
+        # PayPal client is being used. Thus easing the search for the
+        # response of an API request and vice versa.
+        group_id = uuid.uuid4().hex if self.config.log_group_id else None
+        return group_id
 
     def generate_request(self, method, payload):
         request_cls = self.get_type(method, is_request=True)
@@ -167,19 +180,9 @@ class BaseClient(object):
         headers = self.get_headers()
         request = self.generate_request(method, params)
         encoded_request = request.encode()
+        group_id = self.generate_group_id()
 
-        # Generate unique API request/response group identifier in case
-        # permitted in the client configuration. The identifier is logged
-        # along with both the request and response. This can be useful in
-        # scenarios where the request and response records are not guaranteed
-        # to be written sequentially - for instance in case a asynchronous
-        # PayPal client is being used. Thus easing the search for the
-        # response of an API request and vice versa.
-        group_id = uuid.uuid4().hex if self.config.log_group_id else None
         self.log_api_request(encoded_request, request, group_id=group_id)
-        return self.execute(method, endpoint, headers, encoded_request,
-                            response_as_dict=response_as_dict,
-                            group_id=group_id)
 
 
 class Client(BaseClient):
