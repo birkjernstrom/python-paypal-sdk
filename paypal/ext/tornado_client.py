@@ -12,7 +12,6 @@ class AsyncClient(client.Client):
                  method,
                  endpoint=None,
                  payload=None,
-                 response_as_dict=False,
                  callback=None,
                  **params):
         """
@@ -34,7 +33,7 @@ class AsyncClient(client.Client):
                                   headers=headers)
 
         encoded = response.body
-        r = self.generate_response(method, encoded, as_dict=response_as_dict)
+        r = self.generate_response(method, encoded)
         self.log_api_response(encoded, r, group_id=group_id)
         if callback:
             callback(r)

@@ -2,10 +2,15 @@
 """
 """
 
+import nvp
 import uuid
 import urllib2
 
-from paypal import util, service, exceptions
+from paypal import util
+
+###############################################################################
+# CONSTANTS
+###############################################################################
 
 API_VERSION = '93.0'
 
@@ -15,10 +20,72 @@ PRODUCTION_3TOKEN_ENDPOINT = 'https://api-3t.paypal.com/nvp'
 PAYPAL_URL = 'https://www.paypal.com'
 PAYPAL_SANDBOX_URL = 'https://www.sandbox.paypal.com'
 
-TYPE_MODULE_MAPPING = {
-    'ExpressCheckout': service.express_checkout,
+
+###############################################################################
+# REQUEST & RESPONSE OBJECTS
+###############################################################################
+
+class Request(dict):
+    NVP_CONVENTION = 'bracket'
+    KEY_ENCODING_FILTER = None
+
+    def encode(self):
+        return nvp.dumps(
+            self, convention=self.NVP_CONVENTION,
+            key_filter=self.KEY_ENCODING_FILTER,
+        )
+
+
+class Response(dict):
+    NVP_CONVENTION = 'bracket'
+    KEY_DECODING_FILTER = None
+
+    @classmethod
+    def decode(cls, encoded_response):
+        return nvp.loads(
+            encoded_response, cls.NVP_CONVENTION,
+            key_filter=cls.KEY_DECODING_FILTER,
+        )
+
+    @classmethod
+    def get_decoded_instance(cls, encoded_response):
+        return cls(cls.decode(encoded_response))
+
+
+class PrefixConventionRequest(Request):
+    NVP_CONVENTION = 'prefix'
+
+    def encode(self):
+        return nvp.dumps(
+            self, convention=self.NVP_CONVENTION,
+            key_filter=lambda key: key.upper(),
+        )
+
+
+class PrefixConventionResponse(Response):
+    NVP_CONVENTION = 'prefix'
+
+    @classmethod
+    def decode(cls, encoded_response):
+        return nvp.loads(encoded_response, key_filter=lambda key: key.lower())
+
+
+ExpressCheckoutRequest = PrefixConventionRequest
+
+
+class ExpressCheckoutResponse(PrefixConventionResponse):
+    def is_success(self):
+        return self['ack'] == 'Success'
+
+
+TYPE_MAPPING = {
+    'ExpressCheckout': (ExpressCheckoutRequest, ExpressCheckoutResponse),
 }
 
+
+###############################################################################
+# CLIENT CONFIGURATION
+###############################################################################
 
 class Config(object):
     """
@@ -28,8 +95,6 @@ class Config(object):
                  api_password,
                  api_signature,
                  application_id,
-                 validate_requests=True,
-                 validate_responses=False,
                  log_group_id=False,
                  sandbox=True):
         """
@@ -38,8 +103,6 @@ class Config(object):
         self.api_password = api_password
         self.api_signature = api_signature
         self.application_id = application_id
-        self.validate_requests = validate_requests
-        self.validate_responses = validate_responses
         self.log_group_id = log_group_id
         self.is_sandbox = sandbox
 
@@ -50,29 +113,30 @@ class Config(object):
         return PRODUCTION_3TOKEN_ENDPOINT
 
 
+###############################################################################
+# CLIENTS
+###############################################################################
+
 class BaseClient(object):
     def __init__(self, api_service, config=None, **kwargs):
         if not isinstance(config, Config):
             config = Config(**kwargs)
 
+        request_cls, response_cls = TYPE_MAPPING[api_service]
+
         self.config = config
         self.api_service = api_service
-        self.type_module = TYPE_MODULE_MAPPING[api_service]
+        self.request_cls = request_cls
+        self.response_cls = response_cls
 
-    def get_type_classname(self, method, is_request=True):
-        to_append = ('Response', 'Request')[is_request]
-        return '%s%s' % (method, to_append)
-
-    def get_type(self, method, is_request=True):
-        classname = self.get_type_classname(method, is_request=is_request)
-        return getattr(self.type_module, classname)
-
-    def normalize_request(self, request):
-        request.version = API_VERSION
-        request.user = self.config.api_username
-        request.pwd = self.config.api_password
-        request.signature = self.config.api_signature
-        return request
+    def normalize_request(self, request, method):
+        request.update({
+            'version': API_VERSION,
+            'user': self.config.api_username,
+            'pwd': self.config.api_password,
+            'signature': self.config.api_signature,
+            'method': method,
+        })
 
     def generate_group_id(self):
         # Generate unique API request/response group identifier in case
@@ -86,25 +150,12 @@ class BaseClient(object):
         return group_id
 
     def generate_request(self, method, payload):
-        request_cls = self.get_type(method, is_request=True)
-        request = request_cls(**payload)
-        request = self.normalize_request(request)
-        if self.config.validate_requests and not request.validate():
-            raise exceptions.InvalidRequestException()
-
+        request = self.request_cls(payload)
+        self.normalize_request(request, method)
         return request
 
-    def generate_response(self, method, raw_response, as_dict=False):
-        response_cls = self.get_type(method, is_request=False)
-        decoded_response = response_cls.decode(raw_response)
-        if as_dict:
-            return decoded_response
-
-        response = response_cls(**decoded_response)
-        if self.config.validate_responses and not response.validate():
-            raise exceptions.InvalidResponseException()
-
-        return response
+    def generate_response(self, method, encoded_response):
+        return self.response_cls.get_decoded_instance(encoded_response)
 
     def get_headers(self):
         return {}
@@ -143,7 +194,6 @@ class BaseClient(object):
                  method,
                  endpoint=None,
                  payload=None,
-                 response_as_dict=False,
                  **params):
         """
         """

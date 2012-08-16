@@ -2,16 +2,19 @@
 
 __all__ = [
     # Modules
-    'service', 'client', 'exceptions',
+    'client', 'util',
 
     # Client aliases
+    'ExpressCheckoutRequest',
+    'ExpressCheckoutResponse',
+    'Config',
     'Client',
 
-    # Exception aliases
-    'InvalidRequestException', 'InvalidResponseException',
+    # Utility aliases
+    'ensure_unicode',
 ]
 
-from paypal import service, client, exceptions
+from paypal import client, util
 
 ###############################################################################
 # ALIASES
@@ -21,16 +24,18 @@ from paypal import service, client, exceptions
 # Client Aliases
 #----------------------------------------
 
-#: Alias for ``client.Client``
-Client = client.Client
+#: Alias for ``client.ExpressCheckoutRequest``
+ExpressCheckoutRequest = client.ExpressCheckoutRequest
+#: Alias for ``client.ExpressCheckoutResponse``
+ExpressCheckoutResponse = client.ExpressCheckoutResponse
 #: Alias for ``client.Config``
 Config = client.Config
+#: Alias for ``client.Client``
+Client = client.Client
 
 #----------------------------------------
-# Exception Aliases
+# Utility Aliases
 #----------------------------------------
 
-#: Alias for ``exceptions.InvalidRequestException``
-InvalidRequestException = exceptions.InvalidRequestException
-#: Alias for ``exceptions.InvalidResponseException``
-InvalidResponseException = exceptions.InvalidResponseException
+#: Alias for ``util.ensure_unicode``
+ensure_unicode = util.ensure_unicode
