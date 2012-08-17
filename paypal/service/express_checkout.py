@@ -6,10 +6,10 @@ from paypal.service import core
 # API REQUEST & RESPONSE OBJECTS
 ###############################################################################
 
-Request = core.PrefixConventionRequest
+Request = core.UnderscoreConventionRequest
 
 
-class Response(core.PrefixConventionResponse):
+class Response(core.UnderscoreConventionResponse):
     def is_success(self):
         return self['ack'] == 'Success'
 

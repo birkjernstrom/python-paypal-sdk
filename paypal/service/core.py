@@ -30,8 +30,8 @@ class Response(dict):
         return cls(cls.decode(encoded_response))
 
 
-class PrefixConventionRequest(Request):
-    NVP_CONVENTION = 'prefix'
+class UnderscoreConventionRequest(Request):
+    NVP_CONVENTION = 'underscore'
 
     def encode(self):
         return nvp.dumps(
@@ -40,8 +40,8 @@ class PrefixConventionRequest(Request):
         )
 
 
-class PrefixConventionResponse(Response):
-    NVP_CONVENTION = 'prefix'
+class UnderscoreConventionResponse(Response):
+    NVP_CONVENTION = 'underscore'
 
     @classmethod
     def decode(cls, encoded_response):
