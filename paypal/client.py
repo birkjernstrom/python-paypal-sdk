@@ -2,11 +2,10 @@
 """
 """
 
-import nvp
 import uuid
 import urllib2
 
-from paypal import util
+from paypal import util, service
 
 ###############################################################################
 # CONSTANTS
@@ -20,66 +19,11 @@ PRODUCTION_3TOKEN_ENDPOINT = 'https://api-3t.paypal.com/nvp'
 PAYPAL_URL = 'https://www.paypal.com'
 PAYPAL_SANDBOX_URL = 'https://www.sandbox.paypal.com'
 
-
-###############################################################################
-# REQUEST & RESPONSE OBJECTS
-###############################################################################
-
-class Request(dict):
-    NVP_CONVENTION = 'bracket'
-    KEY_ENCODING_FILTER = None
-
-    def encode(self):
-        return nvp.dumps(
-            self, convention=self.NVP_CONVENTION,
-            key_filter=self.KEY_ENCODING_FILTER,
-        )
-
-
-class Response(dict):
-    NVP_CONVENTION = 'bracket'
-    KEY_DECODING_FILTER = None
-
-    @classmethod
-    def decode(cls, encoded_response):
-        return nvp.loads(
-            encoded_response, cls.NVP_CONVENTION,
-            key_filter=cls.KEY_DECODING_FILTER,
-        )
-
-    @classmethod
-    def get_decoded_instance(cls, encoded_response):
-        return cls(cls.decode(encoded_response))
-
-
-class PrefixConventionRequest(Request):
-    NVP_CONVENTION = 'prefix'
-
-    def encode(self):
-        return nvp.dumps(
-            self, convention=self.NVP_CONVENTION,
-            key_filter=lambda key: key.upper(),
-        )
-
-
-class PrefixConventionResponse(Response):
-    NVP_CONVENTION = 'prefix'
-
-    @classmethod
-    def decode(cls, encoded_response):
-        return nvp.loads(encoded_response, key_filter=lambda key: key.lower())
-
-
-ExpressCheckoutRequest = PrefixConventionRequest
-
-
-class ExpressCheckoutResponse(PrefixConventionResponse):
-    def is_success(self):
-        return self['ack'] == 'Success'
-
-
 TYPE_MAPPING = {
-    'ExpressCheckout': (ExpressCheckoutRequest, ExpressCheckoutResponse),
+    'ExpressCheckout': (
+        service.ExpressCheckoutRequest,
+        service.ExpressCheckoutResponse,
+    ),
 }
 
 
@@ -179,7 +123,7 @@ class BaseClient(object):
             messages.append('(GID %s)')
             params.append(group_id)
 
-        correlation_id = decoded.correlationid
+        correlation_id = decoded.get('correlationid', None)
         if correlation_id:
             messages.append('Response: [%s]: %s => %s')
             params.extend((correlation_id, encoded, decoded))
@@ -214,9 +158,9 @@ class BaseClient(object):
             util.api_logger.error(e.strerror)
             return None
 
-        r = self.generate_response(method, encoded, as_dict=response_as_dict)
-        self.log_api_response(encoded, r, group_id=group_id)
-        return r
+        response = self.generate_response(method, encoded)
+        self.log_api_response(encoded, response, group_id=group_id)
+        return response
 
 
 class Client(BaseClient):

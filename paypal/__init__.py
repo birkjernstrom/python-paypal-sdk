@@ -2,7 +2,7 @@
 
 __all__ = [
     # Modules
-    'client', 'util',
+    'client', 'util', 'service',
 
     # Client aliases
     'ExpressCheckoutRequest',
@@ -14,7 +14,7 @@ __all__ = [
     'ensure_unicode',
 ]
 
-from paypal import client, util
+from paypal import client, util, service
 
 ###############################################################################
 # ALIASES
@@ -24,10 +24,6 @@ from paypal import client, util
 # Client Aliases
 #----------------------------------------
 
-#: Alias for ``client.ExpressCheckoutRequest``
-ExpressCheckoutRequest = client.ExpressCheckoutRequest
-#: Alias for ``client.ExpressCheckoutResponse``
-ExpressCheckoutResponse = client.ExpressCheckoutResponse
 #: Alias for ``client.Config``
 Config = client.Config
 #: Alias for ``client.Client``
