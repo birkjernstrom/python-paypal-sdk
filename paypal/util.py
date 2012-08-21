@@ -8,6 +8,10 @@ logger = logging.getLogger('paypal.core')
 #: requests and responses along with potential errors
 #: associated with them.
 api_logger = logging.getLogger('paypal.api')
+#: Restricted logger which is intended to only log
+#: Instant Payment Notifications (IPN) from PayPal along
+#: with the verification for each notification.
+ipn_logger = logging.getLogger('paypal.ipn')
 
 
 class LoggingNullHandler(logging.Handler):
@@ -18,6 +22,7 @@ class LoggingNullHandler(logging.Handler):
 
 logger.addHandler(LoggingNullHandler())
 api_logger.addHandler(LoggingNullHandler())
+ipn_logger.addHandler(LoggingNullHandler())
 
 
 def ensure_unicode(obj):

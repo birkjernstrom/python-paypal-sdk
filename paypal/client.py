@@ -151,16 +151,28 @@ class BaseClient(object):
         group_id = self.generate_group_id()
 
         self.log_api_request(encoded_request, request, group_id=group_id)
-        try:
-            request = urllib2.Request(endpoint, encoded_request, headers)
-            encoded = urllib2.urlopen(request).read()
-        except urllib2.HTTPError as e:
-            util.api_logger.error(e.strerror)
+
+        response = self.execute_request(
+            endpoint, encoded_request, headers=headers,
+            logger=util.api_logger.error,
+        )
+
+        if response is None:
             return None
 
-        response = self.generate_response(method, encoded)
-        self.log_api_response(encoded, response, group_id=group_id)
+        encoded_response = response.read()
+        response = self.generate_response(method, encoded_response)
+        self.log_api_response(encoded_response, response, group_id=group_id)
         return response
+
+    def execute_request(self, url, body, headers={}, logger=None):
+        try:
+            request = urllib2.Request(url, body, headers)
+            return urllib2.urlopen(request)
+        except urllib2.HTTPError as e:
+            if logger is not None:
+                logger('HTTPError: %s' % e.strerror)
+            return None
 
 
 class Client(BaseClient):
