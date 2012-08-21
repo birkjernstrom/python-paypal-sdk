@@ -79,7 +79,16 @@ class Listener(object):
         callbacks.append(callback)
 
     def dispatch(self, encoded_notification):
-        notification = Notification.get_decoded_instance(encoded_notification)
+        try:
+            # Ensure we log the notification even in the unlikely event of
+            # catching an exception during the decoding procedure.
+            get_decoded = Notification.get_decoded_instance
+            notification = get_decoded(encoded_notification)
+        except Exception:
+            message = 'IPN: Cannot decode given notification: %s'
+            ipn_logger.critical(message, encoded_notification)
+            return False
+
         log(notification, 'info', 'Received notification: %s => {0}')
         if not self.send_verification(encoded_notification, notification):
             return False
