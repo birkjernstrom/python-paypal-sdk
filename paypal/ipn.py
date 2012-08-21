@@ -142,6 +142,7 @@ class Listener(object):
 
         response_body = response.read()
         if response_body == 'VERIFIED':
+            log(notification, 'info', 'Notification verified by PayPal')
             return True
 
         log(
