@@ -26,6 +26,19 @@ def log(notification, method, message, *args):
 class Notification(dict):
     @staticmethod
     def decode(encoded_notification):
+        # Although certain Instant Payment Notification payloads appear
+        # to adhere to the NVP format they are not to be considered as such.
+        # For instance list values are no represented accurately since the
+        # key will begin at index 0 causing an IndexError exception to be
+        # raised in the NVP module. Along with breaking hierarchical
+        # structures by assigning string values for both address_country and
+        # address_country_code. Causing TypeError exceptions to be raised.
+        #
+        # Another important thing to note here is that we convert the
+        # query string pairs into a dictionary. Which could cause key
+        # collision in case multiple values where to be given for the same
+        # paramter. However, PayPal never does this in IPN notifications
+        # which is why this technique is considered safe.
         return dict(parse_qsl(encoded_notification))
 
     @classmethod
