@@ -25,6 +25,10 @@ api_logger.addHandler(LoggingNullHandler())
 ipn_logger.addHandler(LoggingNullHandler())
 
 
+def generate_utc_string(utc_datetime):
+    return utc_datetime.strftime('%Y-%m-%dT%H-%M-%SZ')
+
+
 def ensure_unicode(obj):
     """Recursively encode the given ``obj`` to unicode.
 
