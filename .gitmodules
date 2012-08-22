@@ -1,0 +1,3 @@
+[submodule "vendor/python-nvp"]
+	path = vendor/python-nvp
+	url = git@github.com:birknilson/python-nvp.git
