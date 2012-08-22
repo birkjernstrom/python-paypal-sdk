@@ -45,6 +45,17 @@ class Notification(dict):
     def get_decoded_instance(cls, encoded_notification):
         return cls(cls.decode(encoded_notification))
 
+    def get_identifier_name(self):
+        name = self.get('txn_type', None)
+        if name is not None:
+            return name
+
+        is_reversal = self.get('reason_code', None)
+        if is_reversal:
+            return 'reversal'
+
+    identifier_name = property(get_identifier_name)
+
     def is_sandbox(self):
         return self.test_ipn == '1'
 
@@ -93,16 +104,16 @@ class Listener(object):
         if not self.send_verification(encoded_notification, notification):
             return False
 
-        transaction_type = notification.txn_type
-        if not transaction_type:
-            message = 'Ignoring notification due to missing transaction type!'
+        identifier_name = notification.get_identifier_name()
+        if not identifier_name:
+            message = 'Ignoring unrecognizable notification: %s'
             log(notification, 'error', message)
             return False
 
-        callbacks = self.callbacks.get(transaction_type, None)
+        callbacks = self.callbacks.get(identifier_name, None)
         if not callbacks:
             message = 'No callbacks registered to IPN transactions of type: %s'
-            log(notification, 'warn', message, transaction_type)
+            log(notification, 'warn', message, identifier_name)
             return False
 
         for callback in callbacks:
