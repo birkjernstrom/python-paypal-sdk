@@ -7,8 +7,8 @@ __all__ = [
 
     # Core Aliases
     'Request',
-    'Response',
     'UnderscoreConventionRequest',
+    'Response',
     'UnderscoreConventionResponse',
 ]
 
@@ -24,10 +24,10 @@ from paypal.service import core, express_checkout
 
 #: Alias for ``core.Request``
 Request = core.Request
-#: Alias for ``core.Response``
-Response = core.Response
 #: Alias for ``core.UnderscoreConventionRequest``
 UnderscoreConventionRequest = core.UnderscoreConventionRequest
+#: Alias for ``core.Response``
+Response = core.Response
 #: Alias for ``core.UnderscoreConventionResponse``
 UnderscoreConventionResponse = core.UnderscoreConventionResponse
 
