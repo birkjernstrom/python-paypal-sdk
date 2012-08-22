@@ -9,9 +9,6 @@ __all__ = [
     'ExpressCheckoutResponse',
     'Config',
     'Client',
-
-    # Utility aliases
-    'ensure_unicode',
 ]
 
 from paypal import client, util, service, ipn
@@ -28,13 +25,6 @@ from paypal import client, util, service, ipn
 Config = client.Config
 #: Alias for ``client.Client``
 Client = client.Client
-
-#----------------------------------------
-# Utility Aliases
-#----------------------------------------
-
-#: Alias for ``util.ensure_unicode``
-ensure_unicode = util.ensure_unicode
 
 #----------------------------------------
 # Instant Payment Notification Aliases
