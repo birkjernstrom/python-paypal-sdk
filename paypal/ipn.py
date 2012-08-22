@@ -100,7 +100,8 @@ class Listener(object):
             ipn_logger.critical(message, encoded_notification)
             return False
 
-        log(notification, 'info', 'Received notification: %s => {0}')
+        message = 'Received notification: %s => {0}'
+        log(notification, 'info', message, encoded_notification)
         if not self.send_verification(encoded_notification, notification):
             return False
 
