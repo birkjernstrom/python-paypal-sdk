@@ -4,7 +4,7 @@
 
 from urlparse import parse_qsl
 
-from paypal.util import ipn_logger, ensure_unicode
+from paypal.util import ipn_logger
 
 
 def log(notification, method, message, *args):
@@ -40,7 +40,13 @@ class Notification(dict):
         # paramter. However, PayPal never does this in IPN notifications
         # which is why this technique is considered safe.
         params = dict(parse_qsl(encoded_notification))
-        return ensure_unicode(params)
+        charset = params.get('charset', 'utf-8')
+
+        def d(value):
+            if isinstance(value, bytes):
+                return value.decode(charset)
+            return value
+        return dict((d(k), d(v)) for k, v in params.iteritems())
 
     @classmethod
     def get_decoded_instance(cls, encoded_notification):
