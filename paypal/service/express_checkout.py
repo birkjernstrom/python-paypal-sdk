@@ -10,8 +10,19 @@ Request = core.UnderscoreConventionRequest
 
 
 class Response(core.UnderscoreConventionResponse):
-    def is_success(self):
+    def is_success(self, allow_warnings=True):
+        if self.is_success_without_warning():
+            return True
+
+        if allow_warnings:
+            return self.is_success_with_warning()
+        return False
+
+    def is_success_without_warning(self):
         return self['ack'] == 'Success'
+
+    def is_success_with_warning(self):
+        return self['ack'] == 'SuccessWithWarning'
 
 
 ###############################################################################
