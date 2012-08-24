@@ -53,7 +53,7 @@ class UnderscoreConventionRequest(Request):
 
     def encode_key_filter(self, key):
         parent = super(UnderscoreConventionRequest, self).encode_key_filter
-        return parent(key.lower())
+        return parent(key.upper())
 
 
 class UnderscoreConventionResponse(Response):
