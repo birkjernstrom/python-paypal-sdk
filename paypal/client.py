@@ -142,11 +142,13 @@ class BaseClient(object):
         """
         """
         endpoint = endpoint if endpoint else self.config.endpoint
-        if payload is not None:
-            params.update(payload)
+        if payload is None:
+            payload = {}
+
+        payload.update(params)
 
         headers = self.get_headers()
-        request = self.generate_request(method, params)
+        request = self.generate_request(method, payload)
         encoded_request = request.encode()
         group_id = self.generate_group_id()
 
