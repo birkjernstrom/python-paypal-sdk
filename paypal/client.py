@@ -171,11 +171,7 @@ class BaseClient(object):
         try:
             request = urllib2.Request(url, body, headers)
             response = urllib2.urlopen(request)
-            try:
-                util.api_logger.debug('PayPal response: %s', response.read())
-            except:
-                pass
-            response.seek(0)
+            util.api_logger.debug('PayPal response: %s', response)
             return response
         except urllib2.HTTPError as e:
             if logger is not None:
