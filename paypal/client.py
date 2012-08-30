@@ -164,7 +164,7 @@ class BaseClient(object):
 
         decoded_response = self.generate_response(method, response)
         self.log_api_response(response, decoded_response, group_id=group_id)
-        return response
+        return decoded_response
 
     def execute_request(self, url, body, headers={}, logger=None):
         try:
