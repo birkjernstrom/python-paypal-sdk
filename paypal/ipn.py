@@ -142,7 +142,7 @@ class Listener(object):
             message = 'Could not verify notification due to %s' % message
             log(notification, 'error', message)
 
-        response = self.client.execute_request(
+        response, code = self.client.execute_request(
             self.get_verification_url(),
             encoded_notification,
             logger=logger,
@@ -153,14 +153,12 @@ class Listener(object):
             # execution of the verification request.
             return False
 
-        http_code = response.getcode()
-        if http_code != 200:
+        if code != 200:
             message = 'Could not verify notification due to HTTP code %s'
-            log(notification, 'error', message, http_code)
+            log(notification, 'error', message, code)
             return False
 
-        response_body = response.read()
-        if response_body == 'VERIFIED':
+        if response == 'VERIFIED':
             log(notification, 'info', 'Notification verified by PayPal')
             return True
 
@@ -168,6 +166,6 @@ class Listener(object):
             notification, 'error',
             'Could not verify notification! Received inaccurate '
             'response which does not contain the string "VERIFIED": %s',
-            response_body,
+            response,
         )
         return False

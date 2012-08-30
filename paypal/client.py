@@ -154,7 +154,7 @@ class BaseClient(object):
 
         self.log_api_request(encoded_request, request, group_id=group_id)
 
-        response = self.execute_request(
+        response, code = self.execute_request(
             endpoint, encoded_request, headers=headers,
             logger=util.api_logger.error,
         )
@@ -162,17 +162,18 @@ class BaseClient(object):
         if response is None:
             return None
 
-        encoded_response = response.read()
-        response = self.generate_response(method, encoded_response)
-        self.log_api_response(encoded_response, response, group_id=group_id)
+        decoded_response = self.generate_response(method, response)
+        self.log_api_response(response, decoded_response, group_id=group_id)
         return response
 
     def execute_request(self, url, body, headers={}, logger=None):
         try:
             request = urllib2.Request(url, body, headers)
             response = urllib2.urlopen(request)
-            util.api_logger.debug('PayPal response: %s', response)
-            return response
+            body = response.read()
+            code = response.getcode()
+            util.api_logger.debug('PayPal response [%s]: %s', code, body)
+            return (body, code)
         except urllib2.HTTPError as e:
             if logger is not None:
                 logger('HTTPError: %s' % e.strerror)
