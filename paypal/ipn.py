@@ -52,16 +52,17 @@ class Notification(dict):
     def get_decoded_instance(cls, encoded_notification):
         return cls(cls.decode(encoded_notification))
 
-    def get_identifier_name(self):
-        name = self.get('txn_type', None)
-        if name is not None:
-            return name
+    def get_transaction_type(self):
+        return self.get('txn_type', None)
 
-        is_reversal = self.get('reason_code', None)
-        if is_reversal:
-            return 'reversal'
+    transaction_type = property(get_transaction_type)
 
-    identifier_name = property(get_identifier_name)
+    def get_status_key(self):
+        payment_status = self.get('payment_status', '').lower()
+        if not payment_status:
+            return None
+
+    status_key = property(get_status_key)
 
     def is_sandbox(self):
         return self.test_ipn == '1'
@@ -89,12 +90,20 @@ class Listener(object):
     def __init__(self, client):
         self._client = client
         self.callbacks = {}
+        self.default_callback = self.default_notification_handler
 
     client = property(lambda self: self._client)
 
     def add_callback(self, transaction_type, callback):
         callbacks = self.callbacks.setdefault(transaction_type, [])
         callbacks.append(callback)
+
+    def default_notification_handler(self, notification):
+        log(notification, 'error', (
+            'Could not dispatch given notification since either no callbacks '
+            'where assigned to the transaction type or a transaction type '
+            'is not specified in the notification: {0}'
+        ))
 
     def dispatch(self, encoded_notification):
         try:
@@ -112,16 +121,14 @@ class Listener(object):
         if not self.send_verification(encoded_notification, notification):
             return False
 
-        identifier_name = notification.get_identifier_name()
-        if not identifier_name:
-            message = 'Ignoring unrecognizable notification: %s'
-            log(notification, 'error', message)
+        transaction_type = notification.get_transaction_type()
+        if not transaction_type:
+            self.default_callback(notification)
             return False
 
-        callbacks = self.callbacks.get(identifier_name, None)
+        callbacks = self.callbacks.get(transaction_type, None)
         if not callbacks:
-            message = 'No callbacks registered to IPN transactions of type: %s'
-            log(notification, 'warn', message, identifier_name)
+            self.default_callback(notification)
             return False
 
         for callback in callbacks:
