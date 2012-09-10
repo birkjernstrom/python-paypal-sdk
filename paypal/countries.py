@@ -1386,6 +1386,7 @@ ORDER = (
 )
 
 _ordered_cache = {}
+_name_lookup_cache = {}
 
 
 def get_ordered():
@@ -1416,16 +1417,32 @@ def get_name(code):
     return _get_name_from_dict(code, COUNTRIES)
 
 
+def get_code(name):
+    return _get_code_from_dict(name, 'countries', COUNTRIES)
+
+
 def get_us_state_name(code):
     return _get_name_from_dict(code, US_STATES)
+
+
+def get_us_state_code(name):
+    return _get_code_from_dict(name, 'us_states', US_TERRITORIES)
 
 
 def get_us_province_name(code):
     return _get_name_from_dict(code, US_PROVINCES)
 
 
+def get_us_province_code(name):
+    return _get_code_from_dict(name, 'us_provinces', US_TERRITORIES)
+
+
 def get_us_territory_name(code):
     return _get_name_from_dict(code, US_TERRITORIES)
+
+
+def get_us_territory_code(name):
+    return _get_code_from_dict(name, 'us_territories', US_TERRITORIES)
 
 
 def _get_ordered_us_pairs(cache_key, source):
@@ -1441,3 +1458,20 @@ def _get_ordered_us_pairs(cache_key, source):
 
 def _get_name_from_dict(code, source):
     return source[code.upper()]['name']
+
+
+def _get_code_lookup(cache_key, source):
+    global _name_lookup_cache
+    cache = _name_lookup_cache.get(cache_key, None)
+    if cache is not None:
+        return cache
+
+    lookup = dict((v['name'].lower(), v) for k, v in source.iteritems())
+    _name_lookup_cache[cache_key] = lookup
+    return lookup
+
+
+def _get_code_from_dict(name, cache_key, source):
+    lookup = _get_code_lookup(cache_key, source)
+    result = lookup.get(name.lower(), None)
+    return result['code'] if result else None
