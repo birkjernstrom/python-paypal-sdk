@@ -174,9 +174,9 @@ class BaseClient(object):
             code = response.getcode()
             util.api_logger.debug('PayPal response [%s]: %s', code, body)
             return (body, code)
-        except urllib2.HTTPError as e:
+        except (urllib2.HTTPError, urllib2.URLError) as e:
             if logger is not None:
-                logger('HTTPError: %s' % e.strerror)
+                logger('Connection error: %s' % e.strerror)
             return None
 
 
