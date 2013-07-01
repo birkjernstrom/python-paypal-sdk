@@ -62,6 +62,9 @@ class Config(object):
 ###############################################################################
 
 class BaseClient(object):
+
+    http_timeout = 10  # Timeout in seconds, passed to urllib2.urlopen
+
     def __init__(self, api_service, config=None, **kwargs):
         if not isinstance(config, Config):
             config = Config(**kwargs)
@@ -169,7 +172,7 @@ class BaseClient(object):
     def execute_request(self, url, body, headers={}, logger=None):
         try:
             request = urllib2.Request(url, body, headers)
-            response = urllib2.urlopen(request)
+            response = urllib2.urlopen(request, None, self.http_timeout)
             body = response.read()
             code = response.getcode()
             util.api_logger.debug('PayPal response [%s]: %s', code, body)
