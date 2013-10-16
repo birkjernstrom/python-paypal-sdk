@@ -76,7 +76,7 @@ NAME_MAPPING = {
     SWISS_FRANC: 'Swiss Franc',
     POLISH_ZLOTY: 'Polish Zloty',
     HONG_KONG_DOLLAR: 'Hong Kong Dollar',
-    JAPANEASE_YEN: 'Japanease Yen',
+    JAPANEASE_YEN: 'Japanese Yen',
     ISRAELI_NEW_SHEQEL: 'Israeli New Sheqel',
     MALAYSIAN_RINGGIT: 'Malaysian Ringgit',
     SINGAPORE_DOLLAR: 'Singapore Dollar',
