@@ -18,6 +18,8 @@ HUNGARIAN_FORINT = 'HUF'
 POUND_STERLING = 'GBP'
 SWISS_FRANC = 'CHF'
 POLISH_ZLOTY = 'PLN'
+TURKISH_LIRA = 'TRY'
+RUSSIAN_RUBLE = 'RUB'
 
 # Asia
 HONG_KONG_DOLLAR = 'HKD'
@@ -49,6 +51,8 @@ codes = frozenset([
     POUND_STERLING,
     SWISS_FRANC,
     POLISH_ZLOTY,
+    TURKISH_LIRA,
+    RUSSIAN_RUBLE,
     HONG_KONG_DOLLAR,
     JAPANEASE_YEN,
     ISRAELI_NEW_SHEQEL,
@@ -75,6 +79,8 @@ NAME_MAPPING = {
     POUND_STERLING: 'British Pound',
     SWISS_FRANC: 'Swiss Franc',
     POLISH_ZLOTY: 'Polish Zloty',
+    TURKISH_LIRA: 'Turkish Lira',
+    RUSSIAN_RUBLE: 'Russian Ruble',
     HONG_KONG_DOLLAR: 'Hong Kong Dollar',
     JAPANEASE_YEN: 'Japanese Yen',
     ISRAELI_NEW_SHEQEL: 'Israeli New Sheqel',
