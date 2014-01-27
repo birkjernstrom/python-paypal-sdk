@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-"""
-
+import re
 from urlparse import parse_qsl
 
 from paypal.util import ipn_logger
@@ -17,8 +15,14 @@ def log(notification, method, message, *args):
             prepend = '%s PTID: %s' % (prepend, parent_txn_id)
         prepend += ']'
 
-    message = message.format(notification)
+    # Make sure the notification does not contain any values that could affect
+    # log formatting, like percentages.
+    for key, value in notification.iteritems():
+        if isinstance(value, basestring):
+            notification[key] = re.sub('%', '', value)
+
     message = '%s: %s' % (prepend, message)
+    message = message.format(notification=notification)
     write = getattr(ipn_logger, method)
     write(message, *args)
 
@@ -102,7 +106,7 @@ class Listener(object):
         log(notification, 'error', (
             'Could not dispatch given notification since either no callbacks '
             'where assigned to the transaction type or a transaction type '
-            'is not specified in the notification: {0}'
+            'is not specified in the notification: {notification}'
         ))
 
     def dispatch(self, encoded_notification):
@@ -116,8 +120,8 @@ class Listener(object):
             ipn_logger.critical(message, encoded_notification)
             return False
 
-        message = 'Received notification: %s => {0}'
-        log(notification, 'info', message, encoded_notification)
+        message = 'Received notification: {notification}'
+        log(notification, 'info', message)
         if not self.send_verification(encoded_notification, notification):
             return False
 
