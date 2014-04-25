@@ -180,7 +180,7 @@ class BaseClient(object):
         except (urllib2.HTTPError, urllib2.URLError) as e:
             if logger is not None:
                 logger('Connection error: %s' % e.strerror)
-            return None
+            return (None, None)
 
 
 class Client(BaseClient):
