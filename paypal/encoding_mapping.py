@@ -5,7 +5,7 @@ def opposite_platform_endian():
     endianness = sys.byteorder
     if endianness == 'little':
         return 'be'
-    else: # endianness == 'big'
+    else:   # endianness == 'big'
         return 'le'
 
 paypal_to_python_char_encoding_mapping = {
@@ -38,13 +38,13 @@ paypal_to_python_char_encoding_mapping = {
     'UTF-16':                   'utf_16',
     'UTF-16BE':                 'utf_16_be',
     'UTF-16LE':                 'utf_16_le',
-    'UTF16_PlatformEndian':     'utf_16', # Python default is platform endianness
-    'UTF16_OppositeEndian':     'utf_16_'+opposite_platform_endian(),
+    'UTF16_PlatformEndian':     'utf_16',       # Python default is platform endianness
+    'UTF16_OppositeEndian':     'utf_16_' + opposite_platform_endian(),
     'UTF-32':                   'utf_32',
     'UTF-32BE':                 'utf_32_be',
     'UTF-32LE':                 'utf_32_le',
-    'UTF32_PlatformEndian':     'utf_32', # Python default is platform endianness
-    'UTF32_OppositeEndian':     'utf_32_'+opposite_platform_endian(),
+    'UTF32_PlatformEndian':     'utf_32',       # Python default is platform endianness
+    'UTF32_OppositeEndian':     'utf_32_' + opposite_platform_endian(),
     'US-ASCII':                 'ascii',
     'windows-1250':             'cp1250',
     'windows-1251':             'cp1251',
@@ -61,6 +61,6 @@ paypal_to_python_char_encoding_mapping = {
     'x-mac-turkish':            'mac_turkish',
     'x-mac-centraleurroman':    'mac_latin2',
     'x-mac-cyrillic':           'mac_cyrillic',
-    'ebcdic-cp-us':             'cp037' # According to http://www.fileformat.info/info/charset/index.htm
+    'ebcdic-cp-us':             'cp037'         # According to http://www.fileformat.info/info/charset/index.htm
     'ibm-1047':                 'not-supported'
 }
